@@ -112,7 +112,7 @@ export async function loginUser(input: LoginInput): Promise<{
       const payload: UserSessionPayload = {
         userId: "usr-user-demo",
         email: "user@zento.tech",
-        name: "Никита Дмитренко",
+        name: "Сергей Новиков",
         role: "USER",
       };
       const token = await createSessionToken(payload);

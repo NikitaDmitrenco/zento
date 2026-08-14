@@ -52,7 +52,7 @@ export const demoUsers = [
     role: "ADMIN" as const,
   },
   {
-    name: "Никита Дмитренко",
+    name: "Сергей Новиков",
     email: "user@zento.tech",
     password: "user123",
     role: "USER" as const,

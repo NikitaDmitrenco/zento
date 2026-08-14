@@ -37,7 +37,7 @@ export default async function AdminUsersPage() {
       },
       {
         id: "usr-user-2",
-        name: "Покупатель Тест",
+        name: "Сергей Новиков",
         email: "user@zento.tech",
         role: "USER",
         createdAt: new Date(),
