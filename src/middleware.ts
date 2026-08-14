@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
     const token = request.cookies.get("zento_session")?.value;
 
     if (!token) {
-      const loginUrl = new URL("/auth/login", request.url);
+      const loginUrl = new URL("/ru/auth/login", request.url);
       loginUrl.searchParams.set("callbackUrl", pathname);
       return NextResponse.redirect(loginUrl);
     }
@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
         return new NextResponse("Forbidden: Admin access required", { status: 403 });
       }
     } catch {
-      const loginUrl = new URL("/auth/login", request.url);
+      const loginUrl = new URL("/ru/auth/login", request.url);
       return NextResponse.redirect(loginUrl);
     }
   }

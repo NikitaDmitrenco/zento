@@ -12,7 +12,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   // Server-side authorization check for ADMIN role
   if (!session || session.role !== "ADMIN") {
-    redirect("/auth/login?callbackUrl=/admin");
+    redirect("/ru/auth/login?callbackUrl=/admin");
   }
 
   return (
