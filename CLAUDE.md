@@ -81,3 +81,13 @@ Keep components focused. Business rules and database access do not belong in pre
 - Update `PROJECT_STATUS.md` after meaningful work and before stage completion.
 - Never commit `.env`, `.env.local`, or credentials. Maintain `.env.example`.
 - Push only after reviewing the diff and confirming checks. Deploy only at Stage 12 after the production build, migrations, configuration, and core user flows pass.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

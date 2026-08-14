@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 6 — Product Page
+Stage 7 — Cart
 
 ## Completed Stages
 
@@ -12,7 +12,7 @@ Stage 6 — Product Page
 - [x] Stage 3 — Authentication
 - [x] Stage 4 — UI / Layout / I18n
 - [x] Stage 5 — Catalog
-- [ ] Stage 6 — Product Page
+- [x] Stage 6 — Product Page
 - [ ] Stage 7 — Cart
 - [ ] Stage 8 — Checkout
 - [ ] Stage 9 — Admin
@@ -31,13 +31,13 @@ Stage 6 — Product Page
 - [x] Configure Drizzle ORM, PostgreSQL schema, indexes, migrations, and seed script with 20 demo products.
 - [x] Implement Auth.js credentials authentication: password hashing, JWT sessions, registration/login/logout/me API handlers, Zod validation, role authorization, and protected admin middleware.
 - [x] Implement UI, responsive Layout, Zento typographic branding, reusable UI components, mobile navigation drawer, and 3-language i18n localization (RU, EN, RO).
-- [x] Implement Catalog: isolated PostgreSQL search service (`searchCatalog`), category filtering, brand filtering, sorting (price asc/desc, name, featured), pagination, product cards, filter sidebar, and empty states.
-- [x] Run and pass all Stage 5 quality checks (`typecheck`, `lint`, 18 Vitest tests, `build`).
+- [x] Implement Catalog: isolated search service, categories, brands, price filters, sorting, product cards, pagination, and empty/loading states.
+- [x] Implement Product Page (`/[locale]/product/[slug]`): breadcrumbs, gallery, price, stock status, quantity selector, ProductActions with cart state, guarantee perks, and grouped specifications table.
+- [x] Run and pass all Stage 6 quality checks (`typecheck`, `lint`, 20 Vitest tests, `build`).
 
 ## Remaining Tasks
 
-- [ ] Stage 6 — Implement detailed product page (`/[locale]/product/[slug]`), image gallery, specifications table, stock status, quantity selector, and Add to Cart button.
-- [ ] Stage 7 — Implement persistent cart with stock validation.
+- [ ] Stage 7 — Implement persistent cart (`/[locale]/cart`), item list, quantity adjustment, item removal, stock limit validation, total calculation, and empty state.
 - [ ] Stage 8 — Implement checkout and order creation.
 - [ ] Stage 9 — Implement protected admin management UI.
 - [ ] Stage 10 — Complete automated test coverage and quality checks.
@@ -54,6 +54,7 @@ Stage 6 — Product Page
 - [x] Authentication & Authorization subsystem: bcrypt password hashing, JWT HTTP-only cookies, Auth API routes, role checks, and protected admin middleware.
 - [x] UI System & i18n Localization: Zento branding, header with mobile menu, footer, language switcher, design tokens, light theme, micro-animations, and full RU/EN/RO translation dictionaries.
 - [x] Interactive Catalog Subsystem: isolated search service, categories, brands, price filters, sorting, product cards, pagination, and empty/loading states.
+- [x] Product Page Subsystem: detailed view at `/[locale]/product/[slug]`, product specifications table, gallery, stock status, quantity selector, and Add to Cart action.
 
 ## Known Issues
 
@@ -83,7 +84,7 @@ Core entities: users, categories, brands, products, product_images, product_spec
 
 - TypeScript: PASS
 - ESLint: PASS
-- Unit / Integration: PASS (18 Vitest tests in `tests/smoke.test.ts`, `tests/db.test.ts`, `tests/auth.test.ts`, `tests/i18n.test.ts`, `tests/catalog.test.ts`)
+- Unit / Integration: PASS (20 Vitest tests in `tests/smoke.test.ts`, `tests/db.test.ts`, `tests/auth.test.ts`, `tests/i18n.test.ts`, `tests/catalog.test.ts`, `tests/product.test.ts`)
 - E2E: PASS (Playwright configured)
 - Production Build: PASS
 
@@ -99,11 +100,11 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Completed Stage 5 Catalog: Isolated search service, catalog grid layout, product cards, category & brand filters, sorting, pagination, and unit test suite.
+Completed Stage 6 Product Page: Detailed product view, specifications table, stock validation, quantity controls, Add to Cart interaction, and unit tests.
 
 ## Next Action
 
-Stage 6 — Product Page: Detailed product page at `/[locale]/product/[slug]`, product specifications, gallery placeholders, stock, quantity selector, and Add to Cart action.
+Stage 7 — Cart: Persistent Cart page (`/[locale]/cart`), quantity controls, removal, stock limit checks, order summary calculation, and Proceed to Checkout button.
 
 ## Last Updated
 
