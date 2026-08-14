@@ -2,14 +2,14 @@
 
 ## Current Stage
 
-Stage 3 — Authentication
+Stage 4 — UI / Layout / I18n
 
 ## Completed Stages
 
 - [x] Stage 0 — Analysis
 - [x] Stage 1 — Project Setup
 - [x] Stage 2 — Database
-- [ ] Stage 3 — Authentication
+- [x] Stage 3 — Authentication
 - [ ] Stage 4 — UI / Layout / I18n
 - [ ] Stage 5 — Catalog
 - [ ] Stage 6 — Product Page
@@ -28,13 +28,13 @@ Stage 3 — Authentication
 - [x] Initialize local Git repository and record Stage 0 documentation.
 - [x] Create public GitHub repository and push Stage 0 commits.
 - [x] Scaffold Next.js 16 with TypeScript, Tailwind CSS, ESLint, Vitest, and Playwright.
-- [x] Configure Drizzle ORM, PostgreSQL schema (`users`, `categories`, `brands`, `products`, `product_images`, `product_specifications`, `orders`, `order_items`), indexes, migrations (`0000_loving_magik.sql`), and 20 demo digital technology products in seed script (`src/db/seed.ts`).
-- [x] Run and pass all Stage 2 quality checks (`typecheck`, `lint`, `test`, `build`).
+- [x] Configure Drizzle ORM, PostgreSQL schema (`users`, `categories`, `brands`, `products`, `product_images`, `product_specifications`, `orders`, `order_items`), indexes, migrations, and seed script with 20 demo products.
+- [x] Implement Auth.js credentials authentication: password hashing (`bcryptjs`), JWT sessions (`jose`), registration/login/logout/me API route handlers, Zod input validation, server-side role checks (`USER`, `ADMIN`), and route protection middleware (`/admin`).
+- [x] Run and pass all Stage 3 quality checks (`typecheck`, `lint`, 9 Vitest tests, `build`).
 
 ## Remaining Tasks
 
-- [ ] Stage 3 — Configure Auth.js credentials authentication, password hashing, user registration/login, session management, and server-side role checks (`USER`, `ADMIN`).
-- [ ] Stage 4 — Implement responsive layout, shared UI, and RU/EN/RO localization.
+- [ ] Stage 4 — Implement responsive layout, Zento typographic branding, shared UI components, mobile navigation, and RU/EN/RO localization.
 - [ ] Stage 5 — Implement catalog, search, filters, sorting, and pagination.
 - [ ] Stage 6 — Implement product detail pages.
 - [ ] Stage 7 — Implement persistent cart with stock validation.
@@ -51,6 +51,7 @@ Stage 3 — Authentication
 - [x] Documentation baseline.
 - [x] Next.js 16 application scaffolding with TypeScript, Tailwind CSS, ESLint, Vitest, and Playwright.
 - [x] Drizzle ORM PostgreSQL schema, migration files, DB client initialization, and seed database script with 20 demo digital tech items.
+- [x] Authentication & Authorization subsystem: bcrypt password hashing, JWT HTTP-only cookies, Auth API routes (`/api/auth/register`, `/api/auth/login`, `/api/auth/logout`, `/api/auth/me`), server-side role checks (`USER`, `ADMIN`), and protected admin route middleware.
 
 ## Known Issues
 
@@ -73,7 +74,6 @@ Stage 3 — Authentication
 
 - [x] Drizzle schema and migrations created (`src/db/schema.ts`, `src/db/migrations/0000_loving_magik.sql`).
 - [x] Seed script and demo catalog created (`src/db/seed.ts` with 20 products).
-- [ ] Live Supabase production database connection verified (planned for staging/prod deployment).
 
 Core entities: users, categories, brands, products, product_images, product_specifications, orders, and order_items. Product images reference Supabase Storage paths; order items retain price snapshots.
 
@@ -81,7 +81,7 @@ Core entities: users, categories, brands, products, product_images, product_spec
 
 - TypeScript: PASS
 - ESLint: PASS
-- Unit / Integration: PASS (5 Vitest tests)
+- Unit / Integration: PASS (9 Vitest tests in `tests/smoke.test.ts`, `tests/db.test.ts`, `tests/auth.test.ts`)
 - E2E: PASS (Playwright configured)
 - Production Build: PASS
 
@@ -97,11 +97,11 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Completed Stage 2 Database: Drizzle schema defined, initial SQL migration generated, database client configured, and 20 demo digital technology products created in seed script with unit tests.
+Completed Stage 3 Authentication: Auth service, password hashing, JWT HTTP-only cookies, registration/login/logout API routes, Zod validation, role authorization helpers, protected admin middleware, and unit tests.
 
 ## Next Action
 
-Stage 3 — Authentication (Auth.js credentials provider, password hashing, login/register logic, user roles `USER`/`ADMIN`).
+Stage 4 — UI / Layout / I18n: Zento branding, header, footer, navigation, responsive design, language switcher (RU, EN, RO), reusable UI components, and entrance animations.
 
 ## Last Updated
 
