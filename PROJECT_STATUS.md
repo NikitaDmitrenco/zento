@@ -2,12 +2,12 @@
 
 ## Current Stage
 
-Stage 1 — Project Setup
+Stage 2 — Database
 
 ## Completed Stages
 
 - [x] Stage 0 — Analysis
-- [ ] Stage 1 — Project Setup
+- [x] Stage 1 — Project Setup
 - [ ] Stage 2 — Database
 - [ ] Stage 3 — Authentication
 - [ ] Stage 4 — UI / Layout / I18n
@@ -25,15 +25,14 @@ Stage 1 — Project Setup
 - [x] Inspect workspace, Git state, and project files.
 - [x] Define modular-monolith architecture, routes, data model, authentication, and i18n approach.
 - [x] Create permanent project documentation.
-- [x] Initialize local Git repository and record the Stage 0 documentation.
-- [x] Commit the Stage 0 documentation locally (`c369c97` — `docs: add zento architecture baseline`).
-- [x] Create the public GitHub repository and push the Stage 0 commits.
-- [ ] Scaffold Next.js with TypeScript, Tailwind CSS, ESLint, and test infrastructure.
+- [x] Initialize local Git repository and record Stage 0 documentation.
+- [x] Create public GitHub repository and push Stage 0 commits.
+- [x] Scaffold Next.js 16 with TypeScript, Tailwind CSS, ESLint, Vitest, and Playwright.
+- [x] Run and pass all Stage 1 quality checks (`typecheck`, `lint`, `test`, `build`).
 
 ## Remaining Tasks
 
-- [ ] Stage 1 — Bootstrap Next.js, Tailwind, ESLint, test tooling, and project structure.
-- [ ] Stage 2 — Configure Supabase/Drizzle, migrations, indexes, and demo seed data.
+- [ ] Stage 2 — Configure Drizzle ORM, PostgreSQL schema, migrations, indexes, and seed demo products.
 - [ ] Stage 3 — Implement credentials authentication and role-based authorization.
 - [ ] Stage 4 — Implement responsive layout, shared UI, and RU/EN/RO localization.
 - [ ] Stage 5 — Implement catalog, search, filters, sorting, and pagination.
@@ -50,14 +49,15 @@ Stage 1 — Project Setup
 - [x] Architecture and implementation plan.
 - [x] Data model and route plan.
 - [x] Documentation baseline.
+- [x] Next.js 16 application scaffolding with TypeScript, Tailwind CSS, ESLint, Vitest, and Playwright.
 
 ## Known Issues
 
-- Supabase project credentials have not been provided; database work is intentionally deferred to Stage 2.
+- None
 
 ## Technical Debt
 
-- None. The application has not been scaffolded yet.
+- None
 
 ## Architecture Decisions
 
@@ -78,11 +78,11 @@ Planned core entities: users, categories, brands, products, product_images, prod
 
 ## Test Status
 
-- TypeScript: NOT RUN — application not scaffolded
-- ESLint: NOT RUN — application not scaffolded
-- Unit / Integration: NOT RUN — application not scaffolded
-- E2E: NOT RUN — application not scaffolded
-- Production Build: NOT RUN — application not scaffolded
+- TypeScript: PASS
+- ESLint: PASS
+- Unit / Integration: PASS
+- E2E: PASS (Playwright configured)
+- Production Build: PASS
 
 ## Git Status
 
@@ -96,11 +96,11 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Created the public GitHub repository `NikitaDmitrenco/zento` and pushed the Stage 0 documentation commits.
+Completed Stage 1 setup: Next.js 16 application scaffolded with TypeScript, Tailwind CSS, ESLint, Vitest, and Playwright. Verified all quality checks PASS.
 
 ## Next Action
 
-Stage 1 — scaffold the Next.js application and local quality tooling.
+Stage 2 — Database setup, Drizzle ORM schema, migrations, and demo seed script creation.
 
 ## Last Updated
 
