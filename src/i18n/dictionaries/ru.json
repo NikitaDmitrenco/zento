@@ -1,0 +1,103 @@
+{
+  "common": {
+    "brand": "zento",
+    "tagline": "Премиальная цифровая техника",
+    "searchPlaceholder": "Поиск техники, брендов...",
+    "allCategories": "Все категории",
+    "cart": "Корзина",
+    "admin": "Панель администратора",
+    "login": "Войти",
+    "register": "Регистрация",
+    "logout": "Выйти",
+    "profile": "Профиль",
+    "price": "Цена",
+    "currency": "MDL",
+    "inStock": "В наличии",
+    "outOfStock": "Нет в наличии",
+    "addToCart": "В корзину",
+    "viewDetails": "Подробнее",
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "notFound": "Страница не найдена",
+    "empty": "Ничего не найдено",
+    "language": "Язык"
+  },
+  "nav": {
+    "catalog": "Каталог",
+    "smartphones": "Смартфоны",
+    "laptops": "Ноутбуки",
+    "tablets": "Планшеты",
+    "headphones": "Наушники",
+    "smartWatches": "Смарт-часы",
+    "accessories": "Аксессуары",
+    "about": "О нас",
+    "contacts": "Контакты"
+  },
+  "home": {
+    "heroTitle": "Минимализм. Производительность. Zento.",
+    "heroSubtitle": "Откройте для себя коллекцию избранных гаджетов и премиальной цифровой техники с гарантией качества.",
+    "exploreCatalog": "Смотреть каталог",
+    "featuredTitle": "Популярная техника",
+    "featuredSubtitle": "Флагманские устройства, выбранные нашими экспертами",
+    "categoriesTitle": "Категории",
+    "categoriesSubtitle": "Быстрый переход к интересующим устройствам"
+  },
+  "catalog": {
+    "title": "Каталог техники",
+    "filterBy": "Фильтровать по",
+    "sortBy": "Сортировать",
+    "sortPriceAsc": "Сначала дешевле",
+    "sortPriceDesc": "Сначала дороже",
+    "sortName": "По названию",
+    "sortPopularity": "По популярности",
+    "minPrice": "Мин. цена",
+    "maxPrice": "Макс. цена",
+    "resetFilters": "Сбросить фильтры",
+    "itemsFound": "Найдено товаров",
+    "noProducts": "Товары по выбранным критериям не найдены"
+  },
+  "product": {
+    "specifications": "Характеристики",
+    "description": "Описание",
+    "guarantee": "Официальная гарантия Zento",
+    "freeDelivery": "Быстрая курьерская доставка",
+    "securePayment": "Безопасная оплата при получении"
+  },
+  "cart": {
+    "title": "Ваша корзина",
+    "empty": "Ваша корзина пока пуста",
+    "continueShopping": "Перейти к покупкам",
+    "subtotal": "Промежуточный итог",
+    "total": "Итого к оплате",
+    "checkout": "Оформить заказ",
+    "remove": "Удалить"
+  },
+  "checkout": {
+    "title": "Оформление заказа",
+    "contactInfo": "Контактные данные",
+    "fullName": "Имя и Фамилия",
+    "email": "Электронная почта",
+    "phone": "Номер телефона",
+    "address": "Адрес доставки",
+    "placeOrder": "Подтвердить заказ",
+    "successTitle": "Заказ успешно создан!",
+    "successText": "Спасибо за покупку в Zento. Наш менеджер свяжется с вами в ближайшее время."
+  },
+  "auth": {
+    "loginTitle": "Вход в личный кабинет",
+    "registerTitle": "Создание аккаунта Zento",
+    "email": "Email адрес",
+    "password": "Пароль",
+    "name": "Ваше имя",
+    "submitLogin": "Войти в Zento",
+    "submitRegister": "Зарегистрироваться",
+    "noAccount": "Ещё нет аккаунта?",
+    "hasAccount": "Уже есть аккаунт?"
+  },
+  "footer": {
+    "rights": "Все права защищены.",
+    "support": "Служба поддержки",
+    "privacy": "Политика конфиденциальности",
+    "terms": "Условия обслуживания"
+  }
+}

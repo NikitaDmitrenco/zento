@@ -1,0 +1,103 @@
+{
+  "common": {
+    "brand": "zento",
+    "tagline": "Tehnologie Digitală Premium",
+    "searchPlaceholder": "Căutare tehnică, branduri...",
+    "allCategories": "Toate Categoriile",
+    "cart": "Coș",
+    "admin": "Panou Admin",
+    "login": "Autentificare",
+    "register": "Înregistrare",
+    "logout": "Ieșire",
+    "profile": "Profil",
+    "price": "Preț",
+    "currency": "MDL",
+    "inStock": "În stoc",
+    "outOfStock": "Stoc epuizat",
+    "addToCart": "Adaugă în coș",
+    "viewDetails": "Detalii",
+    "loading": "Se încarcă...",
+    "error": "A apărut o eroare",
+    "notFound": "Pagina nu a fost găsită",
+    "empty": "Niciun rezultat",
+    "language": "Limbă"
+  },
+  "nav": {
+    "catalog": "Catalog",
+    "smartphones": "Smartphones",
+    "laptops": "Laptopuri",
+    "tablets": "Tablete",
+    "headphones": "Căști",
+    "smartWatches": "Ceasuri Inteligente",
+    "accessories": "Accesorii",
+    "about": "Despre noi",
+    "contacts": "Contacte"
+  },
+  "home": {
+    "heroTitle": "Minimalism. Performanță. Zento.",
+    "heroSubtitle": "Descoperiți o colecție selectată de dispozitive digitale premium cu garanție de calitate.",
+    "exploreCatalog": "Vezi catalogul",
+    "featuredTitle": "Tehnică Populară",
+    "featuredSubtitle": "Dispozitive de top selectate de experții noștri",
+    "categoriesTitle": "Categorii",
+    "categoriesSubtitle": "Acces rapid la dispozitivele dorite"
+  },
+  "catalog": {
+    "title": "Catalog Tehnologie",
+    "filterBy": "Filtrează după",
+    "sortBy": "Sortează după",
+    "sortPriceAsc": "Preț: crescător",
+    "sortPriceDesc": "Preț: descrescător",
+    "sortName": "După nume",
+    "sortPopularity": "După popularitate",
+    "minPrice": "Preț min.",
+    "maxPrice": "Preț max.",
+    "resetFilters": "Resetează filtrele",
+    "itemsFound": "Produse găsite",
+    "noProducts": "Nu au fost găsite produse conform criteriilor selectate"
+  },
+  "product": {
+    "specifications": "Specificații",
+    "description": "Descriere",
+    "guarantee": "Garanție oficială Zento",
+    "freeDelivery": "Livrare rapidă prin curier",
+    "securePayment": "Plată sigură la livrare"
+  },
+  "cart": {
+    "title": "Coșul Tău",
+    "empty": "Coșul tău este gol momentan",
+    "continueShopping": "Continuă cumpărăturile",
+    "subtotal": "Subtotal",
+    "total": "Total de plată",
+    "checkout": "Faza de finalizare",
+    "remove": "Șterge"
+  },
+  "checkout": {
+    "title": "Finalizare Comandă",
+    "contactInfo": "Date de Contact",
+    "fullName": "Nume și Prenume",
+    "email": "Adresă Email",
+    "phone": "Număr Telefon",
+    "address": "Adresă Livrare",
+    "placeOrder": "Plasează Comanda",
+    "successTitle": "Comandă Plasată cu Succes!",
+    "successText": "Vă mulțumim pentru cumpărăturile de la Zento. Managerul nostru vă va contacta în curând."
+  },
+  "auth": {
+    "loginTitle": "Autentificare Zento",
+    "registerTitle": "Creare Cont Zento",
+    "email": "Adresă Email",
+    "password": "Parolă",
+    "name": "Numele Tău",
+    "submitLogin": "Autentificare",
+    "submitRegister": "Înregistrare",
+    "noAccount": "Nu ai un cont?",
+    "hasAccount": "Ai deja un cont?"
+  },
+  "footer": {
+    "rights": "Toate drepturile rezervate.",
+    "support": "Suport Clienți",
+    "privacy": "Politica de Confidențialitate",
+    "terms": "Termeni și Condiții"
+  }
+}

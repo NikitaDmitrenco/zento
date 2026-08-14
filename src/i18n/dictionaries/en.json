@@ -1,0 +1,103 @@
+{
+  "common": {
+    "brand": "zento",
+    "tagline": "Premium Digital Technology",
+    "searchPlaceholder": "Search tech, brands...",
+    "allCategories": "All Categories",
+    "cart": "Cart",
+    "admin": "Admin Panel",
+    "login": "Sign In",
+    "register": "Create Account",
+    "logout": "Sign Out",
+    "profile": "Profile",
+    "price": "Price",
+    "currency": "MDL",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page Not Found",
+    "empty": "No items found",
+    "language": "Language"
+  },
+  "nav": {
+    "catalog": "Catalog",
+    "smartphones": "Smartphones",
+    "laptops": "Laptops",
+    "tablets": "Tablets",
+    "headphones": "Headphones",
+    "smartWatches": "Smart Watches",
+    "accessories": "Accessories",
+    "about": "About Us",
+    "contacts": "Contacts"
+  },
+  "home": {
+    "heroTitle": "Minimalism. Performance. Zento.",
+    "heroSubtitle": "Discover a curated collection of premium digital technology with guaranteed quality.",
+    "exploreCatalog": "Explore Catalog",
+    "featuredTitle": "Featured Devices",
+    "featuredSubtitle": "Flagship tech selected by our experts",
+    "categoriesTitle": "Categories",
+    "categoriesSubtitle": "Quick access to your preferred tech"
+  },
+  "catalog": {
+    "title": "Technology Catalog",
+    "filterBy": "Filter By",
+    "sortBy": "Sort By",
+    "sortPriceAsc": "Price: Low to High",
+    "sortPriceDesc": "Price: High to Low",
+    "sortName": "By Name",
+    "sortPopularity": "Popularity",
+    "minPrice": "Min Price",
+    "maxPrice": "Max Price",
+    "resetFilters": "Reset Filters",
+    "itemsFound": "Products Found",
+    "noProducts": "No products match your selected criteria"
+  },
+  "product": {
+    "specifications": "Specifications",
+    "description": "Description",
+    "guarantee": "Official Zento Warranty",
+    "freeDelivery": "Fast Courier Delivery",
+    "securePayment": "Secure Payment on Delivery"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is currently empty",
+    "continueShopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "total": "Total Amount",
+    "checkout": "Proceed to Checkout",
+    "remove": "Remove"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "contactInfo": "Contact Details",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "address": "Delivery Address",
+    "placeOrder": "Place Order",
+    "successTitle": "Order Placed Successfully!",
+    "successText": "Thank you for shopping at Zento. Our manager will contact you shortly."
+  },
+  "auth": {
+    "loginTitle": "Sign In to Zento",
+    "registerTitle": "Create Zento Account",
+    "email": "Email Address",
+    "password": "Password",
+    "name": "Your Name",
+    "submitLogin": "Sign In",
+    "submitRegister": "Register",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "support": "Customer Support",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}
