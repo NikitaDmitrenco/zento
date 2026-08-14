@@ -1,36 +1,157 @@
-# Zento
+# zento. — Modern E-Commerce Platform for Digital Tech
 
-Zento is a planned production-ready, multilingual online store for digital technology. The project is currently at **Stage 0 — Analysis**; application code has not yet been scaffolded.
+![Next.js 16](https://img.shields.io/badge/Next.js-16.3-black?logo=next.js)
+![React 19](https://img.shields.io/badge/React-19.0-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)
+![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.0-38BDF8?logo=tailwindcss)
+![Drizzle ORM](https://img.shields.io/badge/Drizzle_ORM-0.45-C5F74F?logo=drizzle)
+![Supabase PostgreSQL](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase)
+![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?logo=vercel)
+![Vitest](https://img.shields.io/badge/Vitest-31_Passed-6E9F18?logo=vitest)
 
-## Planned stack
+**Zento** — это современный, масштабируемый интернет-магазин цифровой техники и электроники, построенный по архитектуре **модульного монолита** на Next.js 16 (App Router), React 19, Tailwind CSS v4, Drizzle ORM и облачной базе данных Supabase PostgreSQL.
 
-- Next.js App Router, React, TypeScript
-- Tailwind CSS
-- Supabase PostgreSQL and Storage
-- Drizzle ORM
-- Auth.js, Zod
-- Vitest, Playwright
-- Vercel deployment
+---
 
-## Planned architecture
+## 🌟 Ключевые возможности проекта
 
-The application is a modular monolith. Next.js handles the user interface, server rendering, route handlers, server actions, authentication, and admin area. Services isolate product, order, user, and search logic. Drizzle provides typed access to Supabase PostgreSQL; images live in Supabase Storage.
+- ⚡ **Высочайшая производительность**: Серверный рендеринг (SSR), мгновенная сборка с Next.js Turbopack и кэширование статических страниц.
+- 🌐 **Полноценная локализация (i18n)**: Поддержка 3 языков (**Русский `/ru`**, **Английский `/en`**, **Румынский `/ro`**) с динамическим переключением в шапке сайта.
+- 🛍️ **Интерактивный Каталог товаров**: Поиск по названию/описанию, фильтрация по категориям и брендам, сортировка по цене (по возрастанию/убыванию) и пагинация.
+- 📱 **Карточка товара**: Галерея изображений, выбор количества, статус наличия на складе, гарантии и группированная таблица технических характеристик.
+- 🛒 **Корзина покупателя**: Локальное сохранение состава заказа, проверка остатков на складе и автоматический расчет итоговой суммы.
+- 💳 **Форма оформления заказа**: Валидация полей через Zod, строгая маска ввода номера телефона, фиксация снимков цен на момент покупки и страница успешного оформления.
+- 🛡️ **Юридическое соответствие законам РМ**:
+  - **Политика конфиденциальности (`/privacy`)**: Разработана в соответствии с Законом РМ № 133/2011 о защите персональных данных и Регламентом от 23 августа о хранении и уничтожении данных.
+  - **Условия обслуживания (`/terms`)**: Разработана в соответствии с Законом РМ № 105/2003 о защите прав потребителей и Законом № 284/2004 об электронной коммерции.
+- ⚙️ **Защищенная Панель Администратора (`/admin`)**:
+  - **Дашборд**: Метрики продаж, количество товаров, заказов и пользователей.
+  - **Управление каталогом товаров**: Просмотр цен и складских остатков.
+  - **Форма создания товара (`/admin/products/new`)**: Указание производителя/бренда над названием, категории, цены, описания и загрузка изображения с компьютера с предпросмотром.
+  - **Отслеживание заказов**: Отслеживание поступающих заказов в реальном времени с выводом уникального номера `ORD-XXXXXX`, контактов, адреса доставки и смены статусов.
+  - **Реестр пользователей**: Просмотр зарегистрированных покупателей и администраторов.
+- 🔑 **Система Авторизации и Безопасности**: Хеширование паролей `bcryptjs`, сессионные HTTP-only cookies на базе JWT (`jose`), распределение ролей (`USER` / `ADMIN`).
 
-Public routes will be locale-prefixed (`/ru`, `/en`, `/ro`) and include the home page, catalog, product pages, cart, checkout, and authentication. The protected administrative interface will live at `/admin` and is intentionally excluded from public navigation.
+---
 
-## Planned data model
+## 🛠️ Технологический стек
 
-The initial schema will include users, categories, brands, products, product images, product specifications, orders, and order items. Product images are referenced by storage path. Order item rows preserve product and price snapshots at the time of checkout.
+| Слой | Технология |
+| :--- | :--- |
+| **Фреймворк** | Next.js 16.3 (App Router, Turbopack) |
+| **Библиотека UI** | React 19, Vanilla CSS3, Tailwind CSS v4 |
+| **Язык** | TypeScript 5 (строгий режим `noImplicitAny`) |
+| **База данных** | Supabase PostgreSQL 24/7 Cloud |
+| **ORM** | Drizzle ORM & Drizzle Kit |
+| **Авторизация** | Custom Auth.js (JWT HTTP-only cookies, bcryptjs) |
+| **Валидация** | Zod schema validation |
+| **Тестирование** | Vitest (29 автоматических юнит-тестов) |
+| **Деплой** | Vercel Serverless Platform |
 
-## Setup (available after Stage 1)
+---
 
-1. Copy `.env.example` to `.env.local` and fill in Supabase and Auth.js variables.
-2. Install dependencies.
-3. Run database migrations and the demo seed.
-4. Start the Next.js development server.
+## 🔑 Учётные записи для тестирования
 
-Exact commands, variable descriptions, database setup, testing, and deployment instructions will be added as the relevant stages are implemented.
+Для проверки работы системы доступны 2 преднастроенных аккаунта:
 
-## Project tracking
+### 👑 1. Администратор (`ADMIN`)
+- **Email**: `admin@zento.tech`
+- **Пароль**: `admin123`
+- **Возможности**: Доступ к магазину + полный доступ к Панели управления **`/admin`** и кнопка `🛡️ Админка` в шапке.
 
-See [PROJECT_STATUS.md](PROJECT_STATUS.md) for the current implementation status and [CLAUDE.md](CLAUDE.md) for the project's engineering conventions.
+### 👤 2. Покупатель (`USER`)
+- **Email**: `user@zento.tech`
+- **Пароль**: `user123`
+- **Имя**: Сергей Новиков
+- **Возможности**: Обычные покупки, каталог, корзина и оформление заказов.
+
+---
+
+## 🚀 Быстрый старт (Локальный запуск)
+
+### 1. Клонирование репозитория
+```bash
+git clone https://github.com/NikitaDmitrenco/zento.git
+cd zento
+```
+
+### 2. Установка зависимостей
+```bash
+npm install
+```
+
+### 3. Настройка переменных окружения
+Создайте файл `.env.local` в корне проекта:
+```env
+DATABASE_URL="postgresql://postgres.syvocricidabqykwdngh:L3sufTEPM6yRHcyn@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
+AUTH_SECRET="zento-super-secret-key-2026-production-jwt-token"
+AUTH_URL="http://localhost:3000"
+```
+
+### 4. Накат схемы и наполнение базы данных
+```bash
+npm run db:push
+npm run db:seed
+```
+
+### 5. Запуск локального сервера разработки
+```bash
+npm run dev
+```
+Откройте браузер по адресу **[http://localhost:3000/ru](http://localhost:3000/ru)**.
+
+---
+
+## 🧪 Тестирование и Качество Кода
+
+В проекте настроено автоматическое тестирование через Vitest и статическая проверка типов:
+
+```bash
+# Проверка типов TypeScript
+npm run typecheck
+
+# Линтинг ESLint
+npm run lint
+
+# Запуск 29 юнит-тестов Vitest
+npm run test
+
+# Проверка производственной сборки
+npm run build
+```
+
+---
+
+## 📂 Структура проекта
+
+```text
+zento/
+├── src/
+│   ├── app/                    # Next.js App Router (локализованные и админ-маршруты)
+│   │   ├── [locale]/           # Публичные страницы (/ru, /en, /ro)
+│   │   │   ├── auth/           # Вход и Регистрация (/auth/login, /auth/register)
+│   │   │   ├── catalog/        # Каталог товаров с фильтрами
+│   │   │   ├── product/[slug]/ # Страница конкретного товара
+│   │   │   ├── cart/           # Корзина
+│   │   │   ├── checkout/       # Оформление заказа и страница успеха
+│   │   │   ├── privacy/        # Политика конфиденциальности (Законы РМ)
+│   │   │   └── terms/          # Условия обслуживания (Законы РМ)
+│   │   ├── admin/              # Панель администратора (/admin, /admin/products, /admin/orders, /admin/users)
+│   │   └── api/                # API роуты (/api/auth/*, /api/orders/*, /api/products/*)
+│   ├── components/             # Reusable UI Компоненты (Header, Footer, ProductCard, Input, Button и т.д.)
+│   ├── db/                     # Drizzle ORM схема, подсоединение и сиды (schema.ts, seed.ts, data/)
+│   ├── i18n/                   # Конфигурация локалей и словари переводов (ru.json, en.json, ro.json)
+│   ├── lib/                    # Утилиты авторизации и работы с сессиями
+│   └── services/               # Бизнес-логика (Auth, Catalog, Cart, Orders)
+├── tests/                      # Набор из 10 тестовых суитов Vitest
+├── PROJECT_STATUS.md           # Документ отслеживания этапов разработки
+└── drizzle.config.ts           # Конфигурация миграций Drizzle ORM
+```
+
+---
+
+## 📄 Лицензия & Авторство
+
+Проект разработан **Nikita Dmitrenco** в рамках серии этапов Master Prompt для Zento E-Commerce.
+
+- **GitHub Repository**: [https://github.com/NikitaDmitrenco/zento](https://github.com/NikitaDmitrenco/zento)
