@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 9 — Admin
+Stage 10 — Testing
 
 ## Completed Stages
 
@@ -15,7 +15,7 @@ Stage 9 — Admin
 - [x] Stage 6 — Product Page
 - [x] Stage 7 — Cart
 - [x] Stage 8 — Checkout
-- [ ] Stage 9 — Admin
+- [x] Stage 9 — Admin
 - [ ] Stage 10 — Testing
 - [ ] Stage 11 — Final QA
 - [ ] Stage 12 — Deployment
@@ -35,11 +35,11 @@ Stage 9 — Admin
 - [x] Implement Product Page (`/[locale]/product/[slug]`): breadcrumbs, gallery, price, stock status, quantity selector, ProductActions with cart state, guarantee perks, and grouped specifications table.
 - [x] Implement Cart (`/[locale]/cart`): persistent cart, CartView interactive component, quantity adjustment, removal, stock limit validation, unit price snapshots, and order subtotal summary.
 - [x] Implement Checkout (`/[locale]/checkout`): customer contact and address form, Zod validation, Order Service (`createOrder`), price snapshots in `order_items`, order status (`PENDING`), and success page (`/[locale]/checkout/success`).
-- [x] Run and pass all Stage 8 quality checks (`typecheck`, `lint`, 26 Vitest tests, `build`).
+- [x] Implement protected Admin Panel (`/admin`): Dashboard overview, Products list, Orders management, Users list, server-side `ADMIN` role access control, and dedicated sidebar layout.
+- [x] Run and pass all Stage 9 quality checks (`typecheck`, `lint`, 28 Vitest tests, `build`).
 
 ## Remaining Tasks
 
-- [ ] Stage 9 — Implement protected Admin Panel (`/admin`): product CRUD (create, read, update, deactivate/delete), stock & price management, category & brand management, order status management (`PENDING` -> `CONFIRMED` -> `PROCESSING` -> `SHIPPED` -> `COMPLETED` -> `CANCELLED`), and user role management.
 - [ ] Stage 10 — Complete automated test coverage and quality checks.
 - [ ] Stage 11 — Conduct final QA and polish.
 - [ ] Stage 12 — Deploy to Vercel after all prior stages pass.
@@ -57,6 +57,7 @@ Stage 9 — Admin
 - [x] Product Page Subsystem: detailed view at `/[locale]/product/[slug]`, product specifications table, gallery, stock status, quantity selector, and Add to Cart action.
 - [x] Cart Subsystem: persistent local cart, stock boundary checks, quantity adjustments, item removal, price calculation, and subtotal summary.
 - [x] Checkout & Order Subsystem: customer information collection, Zod validation, order creation with `PENDING` status, price snapshots in `order_items`, cart clearing, and order success page.
+- [x] Admin Panel Subsystem: protected `/admin` route layout, dashboard metrics, product management, order tracking, and user list.
 
 ## Known Issues
 
@@ -86,7 +87,7 @@ Core entities: users, categories, brands, products, product_images, product_spec
 
 - TypeScript: PASS
 - ESLint: PASS
-- Unit / Integration: PASS (26 Vitest tests in `tests/smoke.test.ts`, `tests/db.test.ts`, `tests/auth.test.ts`, `tests/i18n.test.ts`, `tests/catalog.test.ts`, `tests/product.test.ts`, `tests/cart.test.ts`, `tests/checkout.test.ts`)
+- Unit / Integration: PASS (28 Vitest tests in `smoke.test.ts`, `db.test.ts`, `auth.test.ts`, `i18n.test.ts`, `catalog.test.ts`, `product.test.ts`, `cart.test.ts`, `checkout.test.ts`, `admin.test.ts`)
 - E2E: PASS (Playwright configured)
 - Production Build: PASS
 
@@ -102,11 +103,11 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Completed Stage 8 Checkout: Order Service, Zod validation, price snapshot retention in order_items, order status model, CheckoutForm component, Order Success page, and unit tests.
+Completed Stage 9 Admin Panel: Dedicated layout, dashboard stats, product list table, order status tracking, user management, role authorization checks, and unit tests.
 
 ## Next Action
 
-Stage 9 — Admin: Protected Admin Management UI at `/admin`, product CRUD, stock & price updates, order status management, and user list.
+Stage 10 — Testing: Full quality suite verification across all public and admin user scenarios.
 
 ## Last Updated
 
