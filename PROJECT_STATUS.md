@@ -2,13 +2,13 @@
 
 ## Current Stage
 
-Stage 2 — Database
+Stage 3 — Authentication
 
 ## Completed Stages
 
 - [x] Stage 0 — Analysis
 - [x] Stage 1 — Project Setup
-- [ ] Stage 2 — Database
+- [x] Stage 2 — Database
 - [ ] Stage 3 — Authentication
 - [ ] Stage 4 — UI / Layout / I18n
 - [ ] Stage 5 — Catalog
@@ -28,12 +28,12 @@ Stage 2 — Database
 - [x] Initialize local Git repository and record Stage 0 documentation.
 - [x] Create public GitHub repository and push Stage 0 commits.
 - [x] Scaffold Next.js 16 with TypeScript, Tailwind CSS, ESLint, Vitest, and Playwright.
-- [x] Run and pass all Stage 1 quality checks (`typecheck`, `lint`, `test`, `build`).
+- [x] Configure Drizzle ORM, PostgreSQL schema (`users`, `categories`, `brands`, `products`, `product_images`, `product_specifications`, `orders`, `order_items`), indexes, migrations (`0000_loving_magik.sql`), and 20 demo digital technology products in seed script (`src/db/seed.ts`).
+- [x] Run and pass all Stage 2 quality checks (`typecheck`, `lint`, `test`, `build`).
 
 ## Remaining Tasks
 
-- [ ] Stage 2 — Configure Drizzle ORM, PostgreSQL schema, migrations, indexes, and seed demo products.
-- [ ] Stage 3 — Implement credentials authentication and role-based authorization.
+- [ ] Stage 3 — Configure Auth.js credentials authentication, password hashing, user registration/login, session management, and server-side role checks (`USER`, `ADMIN`).
 - [ ] Stage 4 — Implement responsive layout, shared UI, and RU/EN/RO localization.
 - [ ] Stage 5 — Implement catalog, search, filters, sorting, and pagination.
 - [ ] Stage 6 — Implement product detail pages.
@@ -50,6 +50,7 @@ Stage 2 — Database
 - [x] Data model and route plan.
 - [x] Documentation baseline.
 - [x] Next.js 16 application scaffolding with TypeScript, Tailwind CSS, ESLint, Vitest, and Playwright.
+- [x] Drizzle ORM PostgreSQL schema, migration files, DB client initialization, and seed database script with 20 demo digital tech items.
 
 ## Known Issues
 
@@ -70,17 +71,17 @@ Stage 2 — Database
 
 ## Database Status
 
-- [ ] Supabase project connected.
-- [ ] Drizzle schema and migrations created.
-- [ ] Seed script and demo catalog created.
+- [x] Drizzle schema and migrations created (`src/db/schema.ts`, `src/db/migrations/0000_loving_magik.sql`).
+- [x] Seed script and demo catalog created (`src/db/seed.ts` with 20 products).
+- [ ] Live Supabase production database connection verified (planned for staging/prod deployment).
 
-Planned core entities: users, categories, brands, products, product_images, product_specifications, orders, and order_items. Product images will reference Supabase Storage paths; order items will retain price snapshots.
+Core entities: users, categories, brands, products, product_images, product_specifications, orders, and order_items. Product images reference Supabase Storage paths; order items retain price snapshots.
 
 ## Test Status
 
 - TypeScript: PASS
 - ESLint: PASS
-- Unit / Integration: PASS
+- Unit / Integration: PASS (5 Vitest tests)
 - E2E: PASS (Playwright configured)
 - Production Build: PASS
 
@@ -96,11 +97,11 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Completed Stage 1 setup: Next.js 16 application scaffolded with TypeScript, Tailwind CSS, ESLint, Vitest, and Playwright. Verified all quality checks PASS.
+Completed Stage 2 Database: Drizzle schema defined, initial SQL migration generated, database client configured, and 20 demo digital technology products created in seed script with unit tests.
 
 ## Next Action
 
-Stage 2 — Database setup, Drizzle ORM schema, migrations, and demo seed script creation.
+Stage 3 — Authentication (Auth.js credentials provider, password hashing, login/register logic, user roles `USER`/`ADMIN`).
 
 ## Last Updated
 
