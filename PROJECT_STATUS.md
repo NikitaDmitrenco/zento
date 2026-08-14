@@ -2,11 +2,11 @@
 
 ## Current Stage
 
-Stage 0 — Analysis
+Stage 1 — Project Setup
 
 ## Completed Stages
 
-- [ ] Stage 0 — Analysis
+- [x] Stage 0 — Analysis
 - [ ] Stage 1 — Project Setup
 - [ ] Stage 2 — Database
 - [ ] Stage 3 — Authentication
@@ -27,7 +27,8 @@ Stage 0 — Analysis
 - [x] Create permanent project documentation.
 - [x] Initialize local Git repository and record the Stage 0 documentation.
 - [x] Commit the Stage 0 documentation locally (`c369c97` — `docs: add zento architecture baseline`).
-- [ ] Create the GitHub repository and push the Stage 0 commit (blocked by invalid GitHub credentials).
+- [x] Create the public GitHub repository and push the Stage 0 commits.
+- [ ] Scaffold Next.js with TypeScript, Tailwind CSS, ESLint, and test infrastructure.
 
 ## Remaining Tasks
 
@@ -52,7 +53,6 @@ Stage 0 — Analysis
 
 ## Known Issues
 
-- GitHub CLI authentication for `NikitaDmitrenco` is invalid, so repository creation and push cannot proceed yet.
 - Supabase project credentials have not been provided; database work is intentionally deferred to Stage 2.
 
 ## Technical Debt
@@ -86,9 +86,9 @@ Planned core entities: users, categories, brands, products, product_images, prod
 
 ## Git Status
 
-- Local repository: initialized on branch `main`
-- GitHub authentication: BLOCKED — saved tokens are invalid
-- Remote repository: not created
+- Local repository: initialized on branch `main`, tracking `origin/main`
+- GitHub authentication: verified for `NikitaDmitrenco` using HTTPS
+- Remote repository: https://github.com/NikitaDmitrenco/zento (public)
 
 ## Deployment Status
 
@@ -96,11 +96,11 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Created local Git repository and committed the Stage 0 architecture baseline as `c369c97`.
+Created the public GitHub repository `NikitaDmitrenco/zento` and pushed the Stage 0 documentation commits.
 
 ## Next Action
 
-Re-authenticate GitHub before creating the remote repository and pushing the local Stage 0 commits; Stage 1 must not begin until Stage 0 is fully recorded remotely.
+Stage 1 — scaffold the Next.js application and local quality tooling.
 
 ## Last Updated
 
