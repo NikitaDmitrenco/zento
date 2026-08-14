@@ -44,6 +44,21 @@ export const demoBrands = [
   { name: "Pulse Lab", slug: "pulse-lab", logoUrl: "brands/pulse-lab.webp" },
 ];
 
+export const demoUsers = [
+  {
+    name: "Администратор Zento",
+    email: "admin@zento.tech",
+    password: "admin123",
+    role: "ADMIN" as const,
+  },
+  {
+    name: "Никита Дмитренко",
+    email: "user@zento.tech",
+    password: "user123",
+    role: "USER" as const,
+  },
+];
+
 export const demoProducts = [
   // Smartphones (4)
   {

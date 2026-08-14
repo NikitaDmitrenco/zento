@@ -81,24 +81,58 @@ export async function loginUser(input: LoginInput): Promise<{
 }> {
   const validated = loginSchema.parse(input);
 
-  const user = await db.query.users.findFirst({
-    where: eq(users.email, validated.email.toLowerCase()),
-  });
+  let foundUser: { id: string; email: string; name: string; role: "USER" | "ADMIN"; passwordHash: string } | null = null;
 
-  if (!user) {
+  try {
+    const user = await db.query.users.findFirst({
+      where: eq(users.email, validated.email.toLowerCase()),
+    });
+    if (user) {
+      foundUser = user;
+    }
+  } catch {
+    // Database offline
+  }
+
+  // Demo accounts fallback if user not in DB or DB offline
+  if (!foundUser) {
+    if (validated.email.toLowerCase() === "admin@zento.tech" && validated.password === "admin123") {
+      const payload: UserSessionPayload = {
+        userId: "usr-admin-demo",
+        email: "admin@zento.tech",
+        name: "Администратор Zento",
+        role: "ADMIN",
+      };
+      const token = await createSessionToken(payload);
+      await setSessionCookie(token);
+      return { user: { id: payload.userId, email: payload.email, name: payload.name, role: payload.role }, token };
+    }
+
+    if (validated.email.toLowerCase() === "user@zento.tech" && validated.password === "user123") {
+      const payload: UserSessionPayload = {
+        userId: "usr-user-demo",
+        email: "user@zento.tech",
+        name: "Никита Дмитренко",
+        role: "USER",
+      };
+      const token = await createSessionToken(payload);
+      await setSessionCookie(token);
+      return { user: { id: payload.userId, email: payload.email, name: payload.name, role: payload.role }, token };
+    }
+
     throw new Error("INVALID_CREDENTIALS");
   }
 
-  const isValidPassword = await comparePassword(validated.password, user.passwordHash);
+  const isValidPassword = await comparePassword(validated.password, foundUser.passwordHash);
   if (!isValidPassword) {
     throw new Error("INVALID_CREDENTIALS");
   }
 
   const payload: UserSessionPayload = {
-    userId: user.id,
-    email: user.email,
-    name: user.name,
-    role: user.role,
+    userId: foundUser.id,
+    email: foundUser.email,
+    name: foundUser.name,
+    role: foundUser.role,
   };
 
   const token = await createSessionToken(payload);
@@ -106,10 +140,10 @@ export async function loginUser(input: LoginInput): Promise<{
 
   return {
     user: {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      role: user.role,
+      id: foundUser.id,
+      email: foundUser.email,
+      name: foundUser.name,
+      role: foundUser.role,
     },
     token,
   };
