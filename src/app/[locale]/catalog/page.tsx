@@ -4,7 +4,7 @@ import { isValidLocale, Locale } from "../../../i18n/config";
 import { getDictionary } from "../../../i18n/get-dictionary";
 import { searchCatalog } from "../../../services/search/search-service";
 import { db } from "../../../db";
-import { demoCategories, demoBrands } from "../../../db/seed";
+import { demoCategories, demoBrands } from "../../../db/data/demo-data";
 import { ProductCard } from "../../../components/catalog/product-card";
 import { CatalogFilters } from "../../../components/catalog/catalog-filters";
 import { Button } from "../../../components/ui/button";

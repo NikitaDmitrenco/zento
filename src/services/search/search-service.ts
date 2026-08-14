@@ -6,7 +6,7 @@ import {
   brands,
   productImages,
 } from "../../db/schema";
-import { demoProducts, demoCategories, demoBrands } from "../../db/seed";
+import { demoProducts, demoCategories, demoBrands } from "../../db/data/demo-data";
 
 export interface CatalogQueryFilters {
   query?: string;

@@ -5,7 +5,7 @@ import { isValidLocale, Locale } from "../../../../i18n/config";
 import { getDictionary } from "../../../../i18n/get-dictionary";
 import { db } from "../../../../db";
 import { products, categories, brands, productImages, productSpecifications } from "../../../../db/schema";
-import { demoProducts } from "../../../../db/seed";
+import { demoProducts } from "../../../../db/data/demo-data";
 import { Badge } from "../../../../components/ui/badge";
 import { ProductActions } from "../../../../components/product/product-actions";
 

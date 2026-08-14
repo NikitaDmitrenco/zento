@@ -4,7 +4,7 @@ import { isValidLocale, Locale } from "../../i18n/config";
 import { getDictionary } from "../../i18n/get-dictionary";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { demoCategories } from "../../db/seed";
+import { demoCategories } from "../../db/data/demo-data";
 
 export default async function HomePage({
   params,
