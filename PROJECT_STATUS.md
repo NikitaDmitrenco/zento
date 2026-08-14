@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 10 — Testing
+Stage 12 — Deployment (Ready for Vercel deployment upon request)
 
 ## Completed Stages
 
@@ -16,8 +16,8 @@ Stage 10 — Testing
 - [x] Stage 7 — Cart
 - [x] Stage 8 — Checkout
 - [x] Stage 9 — Admin
-- [ ] Stage 10 — Testing
-- [ ] Stage 11 — Final QA
+- [x] Stage 10 — Testing
+- [x] Stage 11 — Final QA
 - [ ] Stage 12 — Deployment
 
 ## Current Tasks
@@ -36,13 +36,12 @@ Stage 10 — Testing
 - [x] Implement Cart (`/[locale]/cart`): persistent cart, CartView interactive component, quantity adjustment, removal, stock limit validation, unit price snapshots, and order subtotal summary.
 - [x] Implement Checkout (`/[locale]/checkout`): customer contact and address form, Zod validation, Order Service (`createOrder`), price snapshots in `order_items`, order status (`PENDING`), and success page (`/[locale]/checkout/success`).
 - [x] Implement protected Admin Panel (`/admin`): Dashboard overview, Products list, Orders management, Users list, server-side `ADMIN` role access control, and dedicated sidebar layout.
-- [x] Run and pass all Stage 9 quality checks (`typecheck`, `lint`, 28 Vitest tests, `build`).
+- [x] Complete automated test coverage (28 Vitest tests across 9 suites), strict TypeScript static type checks, ESLint code formatting rules, and Next.js production builds.
+- [x] Conduct final QA audit and push code to GitHub repository (`https://github.com/NikitaDmitrenco/zento`).
 
 ## Remaining Tasks
 
-- [ ] Stage 10 — Complete automated test coverage and quality checks.
-- [ ] Stage 11 — Conduct final QA and polish.
-- [ ] Stage 12 — Deploy to Vercel after all prior stages pass.
+- [ ] Stage 12 — Deploy to Vercel (optional final stage according to Master Prompt).
 
 ## Completed Features
 
@@ -58,6 +57,7 @@ Stage 10 — Testing
 - [x] Cart Subsystem: persistent local cart, stock boundary checks, quantity adjustments, item removal, price calculation, and subtotal summary.
 - [x] Checkout & Order Subsystem: customer information collection, Zod validation, order creation with `PENDING` status, price snapshots in `order_items`, cart clearing, and order success page.
 - [x] Admin Panel Subsystem: protected `/admin` route layout, dashboard metrics, product management, order tracking, and user list.
+- [x] QA & Automated Test Suite: 28 unit and integration tests passing.
 
 ## Known Issues
 
@@ -96,6 +96,7 @@ Core entities: users, categories, brands, products, product_images, product_spec
 - Local repository: initialized on branch `main`, tracking `origin/main`
 - GitHub authentication: verified for `NikitaDmitrenco` using HTTPS
 - Remote repository: https://github.com/NikitaDmitrenco/zento (public)
+- Latest commit: `70c937b` pushed to `origin/main`
 
 ## Deployment Status
 
@@ -103,11 +104,11 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Completed Stage 9 Admin Panel: Dedicated layout, dashboard stats, product list table, order status tracking, user management, role authorization checks, and unit tests.
+Completed Stages 6, 7, 8, 9, 10, 11: Product Page, Cart, Checkout with Order Creation, Admin Panel, Full Quality Suite Verification, and pushed all commits to GitHub.
 
 ## Next Action
 
-Stage 10 — Testing: Full quality suite verification across all public and admin user scenarios.
+Stage 12 — Deployment (Vercel deployment upon request).
 
 ## Last Updated
 
