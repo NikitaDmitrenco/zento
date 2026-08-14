@@ -34,9 +34,10 @@ Stage 12 — Deployment (Ready for Vercel deployment upon request)
 - [x] Implement Catalog: isolated search service, categories, brands, price filters, sorting, product cards, pagination, and empty/loading states.
 - [x] Implement Product Page (`/[locale]/product/[slug]`): breadcrumbs, gallery, price, stock status, quantity selector, ProductActions with cart state, guarantee perks, and grouped specifications table.
 - [x] Implement Cart (`/[locale]/cart`): persistent cart, CartView interactive component, quantity adjustment, removal, stock limit validation, unit price snapshots, and order subtotal summary.
-- [x] Implement Checkout (`/[locale]/checkout`): customer contact and address form, Zod validation, Order Service (`createOrder`), price snapshots in `order_items`, order status (`PENDING`), and success page (`/[locale]/checkout/success`).
+- [x] Implement Checkout (`/[locale]/checkout`): customer contact and address form, Zod validation, strict phone mask filter, Order Service (`createOrder`), price snapshots in `order_items`, order status (`PENDING`), and success page (`/[locale]/checkout/success`).
 - [x] Implement protected Admin Panel (`/admin`): Dashboard overview, Products list, Orders management, Users list, server-side `ADMIN` role access control, and dedicated sidebar layout.
-- [x] Complete automated test coverage (28 Vitest tests across 9 suites), strict TypeScript static type checks, ESLint code formatting rules, and Next.js production builds.
+- [x] Implement User Orders Page (`/[locale]/orders`) & Navigation Bar link (`📦 Мои заказы`) displayed exclusively for authenticated users.
+- [x] Complete automated test coverage (31 Vitest tests across 11 suites), strict TypeScript static type checks, ESLint code formatting rules, and Next.js production builds.
 - [x] Conduct final QA audit and push code to GitHub repository (`https://github.com/NikitaDmitrenco/zento`).
 
 ## Remaining Tasks
@@ -55,9 +56,10 @@ Stage 12 — Deployment (Ready for Vercel deployment upon request)
 - [x] Interactive Catalog Subsystem: isolated search service, categories, brands, price filters, sorting, product cards, pagination, and empty/loading states.
 - [x] Product Page Subsystem: detailed view at `/[locale]/product/[slug]`, product specifications table, gallery, stock status, quantity selector, and Add to Cart action.
 - [x] Cart Subsystem: persistent local cart, stock boundary checks, quantity adjustments, item removal, price calculation, and subtotal summary.
-- [x] Checkout & Order Subsystem: customer information collection, Zod validation, order creation with `PENDING` status, price snapshots in `order_items`, cart clearing, and order success page.
+- [x] Checkout & Order Subsystem: customer information collection, Zod validation, strict phone mask filter, order creation with `PENDING` status, price snapshots in `order_items`, cart clearing, and order success page.
 - [x] Admin Panel Subsystem: protected `/admin` route layout, dashboard metrics, product management, order tracking, and user list.
-- [x] QA & Automated Test Suite: 28 unit and integration tests passing.
+- [x] User Orders Page & Navigation: page listing user orders (`/[locale]/orders`) with Order ID badges, status badges, price snapshots, items list, and navigation link (`📦 Мои заказы`) for logged in users.
+- [x] QA & Automated Test Suite: 31 unit and integration tests passing.
 
 ## Known Issues
 
@@ -87,7 +89,7 @@ Core entities: users, categories, brands, products, product_images, product_spec
 
 - TypeScript: PASS
 - ESLint: PASS
-- Unit / Integration: PASS (28 Vitest tests in `smoke.test.ts`, `db.test.ts`, `auth.test.ts`, `i18n.test.ts`, `catalog.test.ts`, `product.test.ts`, `cart.test.ts`, `checkout.test.ts`, `admin.test.ts`)
+- Unit / Integration: PASS (31 Vitest tests in 11 test suites)
 - E2E: PASS (Playwright configured)
 - Production Build: PASS
 
@@ -96,7 +98,6 @@ Core entities: users, categories, brands, products, product_images, product_spec
 - Local repository: initialized on branch `main`, tracking `origin/main`
 - GitHub authentication: verified for `NikitaDmitrenco` using HTTPS
 - Remote repository: https://github.com/NikitaDmitrenco/zento (public)
-- Latest commit: `70c937b` pushed to `origin/main`
 
 ## Deployment Status
 
@@ -104,7 +105,7 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Completed Stages 6, 7, 8, 9, 10, 11: Product Page, Cart, Checkout with Order Creation, Admin Panel, Full Quality Suite Verification, and pushed all commits to GitHub.
+Implemented User Orders Page (`/[locale]/orders`), `📦 Мои заказы` link in navigation bar (visible exclusively for logged-in users regardless of role), Order ID badges, status badges, and 31 passing unit tests.
 
 ## Next Action
 
@@ -112,4 +113,4 @@ Stage 12 — Deployment (Vercel deployment upon request).
 
 ## Last Updated
 
-2026-08-14
+2026-08-15

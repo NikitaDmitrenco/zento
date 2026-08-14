@@ -66,6 +66,16 @@ export function Header({
             >
               {dict.nav.headphones}
             </Link>
+
+            {/* My Orders Button (Visible ONLY when user is signed in) */}
+            {user && (
+              <Link
+                href={`/${locale}/orders`}
+                className="hover:text-blue-700 transition-colors flex items-center gap-1 font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100"
+              >
+                📦 Мои заказы
+              </Link>
+            )}
           </nav>
 
           {/* Right Actions */}
@@ -203,6 +213,16 @@ export function Header({
             >
               {dict.nav.headphones}
             </Link>
+
+            {user && (
+              <Link
+                href={`/${locale}/orders`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 text-sm font-semibold text-blue-600 bg-blue-50 rounded-lg"
+              >
+                📦 Мои заказы
+              </Link>
+            )}
 
             <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
               {user ? (
