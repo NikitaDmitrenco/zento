@@ -114,6 +114,17 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
     );
   }
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let val = e.target.value;
+    // Strip any non-phone characters (letters, symbols, punctuation except +, digits, spaces, and dashes)
+    val = val.replace(/[^\d+\s()-]/g, "");
+    // Ensure + is only allowed as the leading character
+    if (val.includes("+")) {
+      val = "+" + val.replace(/\+/g, "");
+    }
+    setCustomerPhone(val);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
       
@@ -154,7 +165,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
           required
           placeholder="+373 60 123456"
           value={customerPhone}
-          onChange={(e) => setCustomerPhone(e.target.value)}
+          onChange={handlePhoneChange}
         />
 
         <Input
