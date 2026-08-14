@@ -1,57 +1,9 @@
-import { db } from "../../../db";
+import { getAllAdminOrders } from "../../../services/orders/order-service";
 import { Card } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
 
 export default async function AdminOrdersPage() {
-  let orderList: {
-    id: string;
-    customerName: string;
-    customerEmail: string;
-    customerPhone: string;
-    totalAmount: number;
-    status: string;
-    createdAt: Date;
-  }[] = [];
-
-  try {
-    const ords = await db.query.orders.findMany({
-      orderBy: (orders, { desc }) => [desc(orders.createdAt)],
-    });
-    orderList = ords.map((o) => ({
-      id: o.id,
-      customerName: o.customerName,
-      customerEmail: o.customerEmail,
-      customerPhone: o.customerPhone,
-      totalAmount: o.totalAmount,
-      status: o.status,
-      createdAt: o.createdAt,
-    }));
-  } catch {
-    // Offline fallback demo orders
-  }
-
-  if (orderList.length === 0) {
-    orderList = [
-      {
-        id: "ORD-984123",
-        customerName: "Иван Петров",
-        customerEmail: "ivan@zento.tech",
-        customerPhone: "+373 69 112233",
-        totalAmount: 89900,
-        status: "PENDING",
-        createdAt: new Date(),
-      },
-      {
-        id: "ORD-984122",
-        customerName: "Мария Чебан",
-        customerEmail: "maria@zento.tech",
-        customerPhone: "+373 60 445566",
-        totalAmount: 189900,
-        status: "CONFIRMED",
-        createdAt: new Date(Date.now() - 3600000 * 24),
-      },
-    ];
-  }
+  const orderList = await getAllAdminOrders();
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -80,7 +32,7 @@ export default async function AdminOrdersPage() {
           Управление заказами ({orderList.length})
         </h1>
         <p className="text-xs text-slate-500 mt-1">
-          Отслеживание поступающих заказов и смена статусов отгрузки
+          Отслеживание поступающих заказов в реальном времени и управление статусами отгрузки
         </p>
       </div>
 
@@ -91,10 +43,10 @@ export default async function AdminOrdersPage() {
               <tr>
                 <th className="px-4 py-3">ID Заказа</th>
                 <th className="px-4 py-3">Клиент</th>
-                <th className="px-4 py-3">Контакты</th>
+                <th className="px-4 py-3">Контакты & Адрес</th>
                 <th className="px-4 py-3">Сумма</th>
                 <th className="px-4 py-3">Статус</th>
-                <th className="px-4 py-3">Дата</th>
+                <th className="px-4 py-3">Дата оформления</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 bg-white">
@@ -102,13 +54,22 @@ export default async function AdminOrdersPage() {
                 <tr key={ord.id} className="hover:bg-slate-50 transition-colors">
                   <td className="px-4 py-3 font-mono font-bold text-slate-900">{ord.id}</td>
                   <td className="px-4 py-3 font-semibold text-slate-900">{ord.customerName}</td>
-                  <td className="px-4 py-3 text-slate-500">{ord.customerEmail}<br />{ord.customerPhone}</td>
+                  <td className="px-4 py-3 text-slate-500">
+                    <span className="text-slate-900 font-medium">{ord.customerEmail}</span>
+                    <br />
+                    <span>{ord.customerPhone}</span>
+                    {ord.shippingAddress && (
+                      <span className="block text-[10px] text-slate-400 mt-0.5 truncate max-w-xs">
+                        📍 {ord.shippingAddress}
+                      </span>
+                    )}
+                  </td>
                   <td className="px-4 py-3 font-bold text-slate-900">
                     {(ord.totalAmount / 100).toLocaleString("ru")} MDL
                   </td>
                   <td className="px-4 py-3">{getStatusBadge(ord.status)}</td>
                   <td className="px-4 py-3 text-slate-400">
-                    {new Date(ord.createdAt).toLocaleDateString("ru")}
+                    {new Date(ord.createdAt).toLocaleString("ru")}
                   </td>
                 </tr>
               ))}
