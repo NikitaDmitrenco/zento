@@ -26,7 +26,7 @@ Stage 0 — Analysis
 - [x] Define modular-monolith architecture, routes, data model, authentication, and i18n approach.
 - [x] Create permanent project documentation.
 - [x] Initialize local Git repository and record the Stage 0 documentation.
-- [ ] Commit the Stage 0 documentation locally.
+- [x] Commit the Stage 0 documentation locally (`c369c97` — `docs: add zento architecture baseline`).
 - [ ] Create the GitHub repository and push the Stage 0 commit (blocked by invalid GitHub credentials).
 
 ## Remaining Tasks
@@ -96,11 +96,11 @@ Not deployed. Deployment is intentionally deferred until Stage 12.
 
 ## Last Completed Action
 
-Inspected an empty workspace and captured the architecture, route, database, authentication, and localization plan.
+Created local Git repository and committed the Stage 0 architecture baseline as `c369c97`.
 
 ## Next Action
 
-Review and commit the Stage 0 documentation locally. Re-authenticate GitHub before creating the remote repository or pushing; Stage 1 must not begin until Stage 0 is fully recorded remotely.
+Re-authenticate GitHub before creating the remote repository and pushing the local Stage 0 commits; Stage 1 must not begin until Stage 0 is fully recorded remotely.
 
 ## Last Updated
 
