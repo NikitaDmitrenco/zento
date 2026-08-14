@@ -127,7 +127,7 @@ export const productSpecifications = pgTable(
 export const orders = pgTable(
   "orders",
   {
-    id: uuid("id").defaultRandom().primaryKey(),
+    id: varchar("id", { length: 50 }).primaryKey(),
     userId: uuid("user_id").references(() => users.id, { onDelete: "set null" }),
     customerName: varchar("customer_name", { length: 255 }).notNull(),
     customerEmail: varchar("customer_email", { length: 255 }).notNull(),
@@ -149,7 +149,7 @@ export const orderItems = pgTable(
   "order_items",
   {
     id: uuid("id").defaultRandom().primaryKey(),
-    orderId: uuid("order_id")
+    orderId: varchar("order_id", { length: 50 })
       .references(() => orders.id, { onDelete: "cascade" })
       .notNull(),
     productId: uuid("product_id").references(() => products.id, {

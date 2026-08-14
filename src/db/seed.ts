@@ -1,4 +1,5 @@
 import { eq } from "drizzle-orm";
+import bcrypt from "bcryptjs";
 import { db } from "./index";
 import {
   categories,
@@ -6,13 +7,36 @@ import {
   products,
   productImages,
   productSpecifications,
+  users,
 } from "./schema";
-import { demoCategories, demoBrands, demoProducts } from "./data/demo-data";
+import { demoCategories, demoBrands, demoProducts, demoUsers } from "./data/demo-data";
 
-export { demoCategories, demoBrands, demoProducts };
+export { demoCategories, demoBrands, demoProducts, demoUsers };
 
 export async function seedDatabase() {
   console.log("Starting Zento database seed...");
+
+  // 0. Seed Users
+  for (const usr of demoUsers) {
+    const passwordHash = await bcrypt.hash(usr.password, 10);
+    await db
+      .insert(users)
+      .values({
+        name: usr.name,
+        email: usr.email.toLowerCase(),
+        passwordHash,
+        role: usr.role,
+      })
+      .onConflictDoUpdate({
+        target: users.email,
+        set: {
+          name: usr.name,
+          passwordHash,
+          role: usr.role,
+        },
+      });
+  }
+  console.log(`Seeded ${demoUsers.length} initial users.`);
 
   // 1. Seed Categories
   const categoryMap = new Map<string, string>();

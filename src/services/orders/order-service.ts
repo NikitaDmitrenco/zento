@@ -133,11 +133,13 @@ export async function createOrder(input: CheckoutInput): Promise<CreatedOrderRes
   }
 
   const totalAmount = cart.subtotal;
+  const generatedOrderId = `ORD-${Math.floor(100000 + Math.random() * 900000)}`;
 
   try {
     const [newOrder] = await db
       .insert(orders)
       .values({
+        id: generatedOrderId,
         userId: session?.userId || null,
         customerName: validated.customerName,
         customerEmail: validated.customerEmail.toLowerCase(),
