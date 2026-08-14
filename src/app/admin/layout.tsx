@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSession } from "../../lib/auth/session";
+import { AdminLogoutButton } from "../../components/admin/admin-logout-button";
 
 export const metadata = {
   title: "Zento Admin Panel",
@@ -67,6 +68,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             >
               ← В магазин
             </Link>
+            <AdminLogoutButton />
           </div>
         </aside>
 

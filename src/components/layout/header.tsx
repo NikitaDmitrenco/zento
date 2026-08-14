@@ -19,6 +19,15 @@ export function Header({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      window.location.href = `/${locale}`;
+    } catch {
+      //
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 glass-header">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,20 +100,28 @@ export function Header({
               )}
             </Link>
 
-            {/* User Auth state */}
+            {/* User Auth state & Logout */}
             {user ? (
               <div className="hidden sm:flex items-center gap-3 border-l border-slate-200 pl-3">
-                <span className="text-xs font-semibold text-slate-800">
+                <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                   {user.name}
                 </span>
                 {user.role === "ADMIN" && (
                   <Link
                     href={`/admin`}
-                    className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded hover:bg-blue-100 transition-colors"
+                    className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md hover:bg-blue-100 transition-colors"
                   >
-                    {dict.common.admin}
+                    🛡️ {dict.common.admin}
                   </Link>
                 )}
+                <button
+                  onClick={handleLogout}
+                  className="text-xs font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 px-2.5 py-1.5 rounded-md transition-colors cursor-pointer flex items-center gap-1"
+                  title="Выйти из аккаунта"
+                >
+                  🚪 Выйти
+                </button>
               </div>
             ) : (
               <div className="hidden sm:flex items-center gap-2 border-l border-slate-200 pl-3">
@@ -189,9 +206,26 @@ export function Header({
 
             <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
               {user ? (
-                <span className="text-xs font-semibold text-slate-800">
-                  {user.name} ({user.role})
-                </span>
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-800">
+                    <span>👤 {user.name}</span>
+                    {user.role === "ADMIN" && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded"
+                      >
+                        🛡️ {dict.common.admin}
+                      </Link>
+                    )}
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-center py-2 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors cursor-pointer"
+                  >
+                    🚪 Выйти из аккаунта
+                  </button>
+                </div>
               ) : (
                 <div className="flex gap-2 w-full">
                   <Link
