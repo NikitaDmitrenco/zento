@@ -113,5 +113,22 @@
     "support": "Customer Support",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
+  },
+  "aiAssistant": {
+    "button": "AI Assistant",
+    "title": "Zento AI Assistant",
+    "badge": "DeepSeek",
+    "status": "Online • Ready to help",
+    "welcome": "Hello! I am your personal Zento AI consultant powered by DeepSeek. I can help you pick tech gadgets, compare specs, and find the best price.",
+    "inputPlaceholder": "Ask anything (e.g. «Recommend a lightweight laptop»)...",
+    "thinking": "DeepSeek is thinking...",
+    "quickPrompts": "Quick Prompts",
+    "promptPhone": "📱 Recommend a flagship phone",
+    "promptLaptop": "💻 Laptop for work & study",
+    "promptHeadphones": "🎧 Best noise-cancelling headphones",
+    "promptWatch": "⌚ Smartwatch for fitness",
+    "clearChat": "Clear chat",
+    "viewProduct": "View Product",
+    "disclaimer": "AI consults based on Zento official catalog"
   }
 }

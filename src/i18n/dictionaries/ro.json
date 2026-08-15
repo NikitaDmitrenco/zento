@@ -113,5 +113,22 @@
     "support": "Suport Clienți",
     "privacy": "Politica de Confidențialitate",
     "terms": "Termeni și Condiții"
+  },
+  "aiAssistant": {
+    "button": "Asistent AI",
+    "title": "Asistent AI Zento",
+    "badge": "DeepSeek",
+    "status": "Online • Gata să te ajute",
+    "welcome": "Bună ziua! Sunt consultantul dvs. personal AI Zento, bazat pe DeepSeek. Vă pot ajuta să alegeți gadgeturi, să comparați specificații și să găsiți cel mai bun preț.",
+    "inputPlaceholder": "Adresați o întrebare (de ex: «Recomandă un laptop ușor»)...",
+    "thinking": "DeepSeek generează răspunsul...",
+    "quickPrompts": "Întrebări rapide",
+    "promptPhone": "📱 Recomandă un smartphone de top",
+    "promptLaptop": "💻 Laptop pentru lucru și studii",
+    "promptHeadphones": "🎧 Căști cu anulare superioară a zgomotului",
+    "promptWatch": "⌚ Smartwatch pentru fitness",
+    "clearChat": "Șterge conversația",
+    "viewProduct": "Vezi Produsul",
+    "disclaimer": "AI consultă pe baza catalogului oficial Zento"
   }
 }

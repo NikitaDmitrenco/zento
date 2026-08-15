@@ -5,6 +5,7 @@ import { getDictionary } from "../../i18n/get-dictionary";
 import { getSession } from "../../lib/auth/session";
 import { Header } from "../../components/layout/header";
 import { Footer } from "../../components/layout/footer";
+import { AiAssistantWidget } from "../../components/ai/ai-assistant-widget";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -42,6 +43,7 @@ export default async function LocaleLayout({
         <Header locale={locale} dict={dict} user={session} />
         <div className="flex-grow">{children}</div>
         <Footer locale={locale} dict={dict} />
+        <AiAssistantWidget locale={locale} dict={dict} />
       </body>
     </html>
   );
