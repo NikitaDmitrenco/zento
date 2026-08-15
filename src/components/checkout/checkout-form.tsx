@@ -248,7 +248,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
               label={dict.checkout.fullName}
               type="text"
               required
-              placeholder="Никита Дмитренко"
+              placeholder="Иван Иванов"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
             />
@@ -256,7 +256,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
               label={dict.checkout.email}
               type="email"
               required
-              placeholder="nikita@zento.tech"
+              placeholder="customer@example.com"
               value={customerEmail}
               onChange={(e) => setCustomerEmail(e.target.value)}
             />
@@ -371,7 +371,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
                   <div>
                     <span className="block text-[8px] text-slate-500">CARDHOLDER</span>
                     <span className="font-semibold text-white tracking-wide truncate max-w-[130px] block">
-                      {cardHolder || "NIKITA DMITRENCO"}
+                      {cardHolder || "CARDHOLDER NAME"}
                     </span>
                   </div>
                   <div>
@@ -399,7 +399,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
                     label={dict.checkout.cardExpiry}
                     type="text"
                     required={paymentMethod === "CARD"}
-                    placeholder="08/28"
+                    placeholder="MM/YY"
                     value={cardExpiry}
                     onChange={handleExpiryChange}
                   />
@@ -416,7 +416,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
                     <Input
                       label={dict.checkout.cardHolder}
                       type="text"
-                      placeholder="NIKITA DMITRENCO"
+                      placeholder="CARDHOLDER NAME"
                       value={cardHolder}
                       onChange={handleCardHolderChange}
                     />
