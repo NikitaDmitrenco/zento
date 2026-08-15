@@ -9,6 +9,7 @@ export const checkoutSchema = z.object({
   customerEmail: z.string().email("Invalid email address"),
   customerPhone: z.string().min(6, "Phone number must be at least 6 characters"),
   shippingAddress: z.string().min(5, "Address must be at least 5 characters"),
+  paymentMethod: z.enum(["CASH_ON_DELIVERY", "CARD"]).optional().default("CASH_ON_DELIVERY"),
   items: z.array(
     z.object({
       id: z.string(),
@@ -25,6 +26,7 @@ export interface CreatedOrderResult {
   customerEmail: string;
   shippingAddress: string;
   status: "PENDING" | "CONFIRMED" | "PROCESSING" | "SHIPPED" | "COMPLETED" | "CANCELLED";
+  paymentMethod?: "CASH_ON_DELIVERY" | "CARD";
   totalAmount: number; // in cents/minor units
   items: {
     productName: string;
@@ -42,6 +44,7 @@ export interface AdminOrderRecord {
   shippingAddress: string;
   totalAmount: number;
   status: "PENDING" | "CONFIRMED" | "PROCESSING" | "SHIPPED" | "COMPLETED" | "CANCELLED";
+  paymentMethod?: "CASH_ON_DELIVERY" | "CARD";
   createdAt: Date;
   items?: {
     productName: string;
@@ -59,8 +62,9 @@ const runtimeOrders: AdminOrderRecord[] = [
     customerEmail: "ivan@zento.tech",
     customerPhone: "+373 69 112233",
     shippingAddress: "г. Кишинев, ул. Алба-Юлия 12",
-    totalAmount: 89900,
-    status: "PENDING",
+    totalAmount: 2799900,
+    status: "CONFIRMED",
+    paymentMethod: "CARD",
     createdAt: new Date(),
   },
   {
@@ -70,7 +74,8 @@ const runtimeOrders: AdminOrderRecord[] = [
     customerPhone: "+373 60 445566",
     shippingAddress: "г. Кишинев, ул. Пушкина 4",
     totalAmount: 189900,
-    status: "CONFIRMED",
+    status: "PENDING",
+    paymentMethod: "CASH_ON_DELIVERY",
     createdAt: new Date(Date.now() - 3600000 * 24),
   },
 ];
@@ -89,6 +94,7 @@ export async function getAllAdminOrders(): Promise<AdminOrderRecord[]> {
         shippingAddress: o.shippingAddress,
         totalAmount: o.totalAmount,
         status: o.status,
+        paymentMethod: o.status === "CONFIRMED" ? "CARD" : "CASH_ON_DELIVERY",
         createdAt: o.createdAt,
       }));
       const combined = [...runtimeOrders];
@@ -134,6 +140,7 @@ export async function createOrder(input: CheckoutInput): Promise<CreatedOrderRes
 
   const totalAmount = cart.subtotal;
   const generatedOrderId = `ORD-${Math.floor(100000 + Math.random() * 900000)}`;
+  const initialStatus = validated.paymentMethod === "CARD" ? "CONFIRMED" : "PENDING";
 
   try {
     const [newOrder] = await db
@@ -145,7 +152,7 @@ export async function createOrder(input: CheckoutInput): Promise<CreatedOrderRes
         customerEmail: validated.customerEmail.toLowerCase(),
         customerPhone: validated.customerPhone,
         shippingAddress: validated.shippingAddress,
-        status: "PENDING",
+        status: initialStatus,
         totalAmount,
       })
       .returning();
@@ -167,6 +174,7 @@ export async function createOrder(input: CheckoutInput): Promise<CreatedOrderRes
       customerEmail: newOrder.customerEmail,
       shippingAddress: newOrder.shippingAddress,
       status: newOrder.status,
+      paymentMethod: validated.paymentMethod,
       totalAmount: newOrder.totalAmount,
       items: orderItemsToInsert.map((i) => ({
         productName: i.productName,
@@ -184,6 +192,7 @@ export async function createOrder(input: CheckoutInput): Promise<CreatedOrderRes
       shippingAddress: result.shippingAddress,
       totalAmount: result.totalAmount,
       status: result.status,
+      paymentMethod: validated.paymentMethod,
       createdAt: new Date(),
       items: result.items,
     });
@@ -198,7 +207,8 @@ export async function createOrder(input: CheckoutInput): Promise<CreatedOrderRes
       customerName: validated.customerName,
       customerEmail: validated.customerEmail,
       shippingAddress: validated.shippingAddress,
-      status: "PENDING",
+      status: initialStatus,
+      paymentMethod: validated.paymentMethod,
       totalAmount,
       items: cart.items.map((item) => ({
         productName: item.name,
@@ -216,6 +226,7 @@ export async function createOrder(input: CheckoutInput): Promise<CreatedOrderRes
       shippingAddress: result.shippingAddress,
       totalAmount: result.totalAmount,
       status: result.status,
+      paymentMethod: validated.paymentMethod,
       createdAt: new Date(),
       items: result.items,
     });

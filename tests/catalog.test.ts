@@ -17,14 +17,15 @@ describe("Catalog & Isolated Search Service", () => {
   });
 
   it("should search products by text query", async () => {
-    const result = await searchCatalog({ query: "Nova" });
+    const result = await searchCatalog({ query: "Apple" });
+    expect(result.items.length).toBeGreaterThan(0);
     result.items.forEach((item) => {
       const match =
-        item.name.toLowerCase().includes("nova") ||
-        item.description.toLowerCase().includes("nova");
+        item.name.toLowerCase().includes("apple") ||
+        item.description.toLowerCase().includes("apple");
       expect(match).toBe(true);
     });
-  });
+  }, 10000);
 
   it("should sort products by price ascending", async () => {
     const result = await searchCatalog({ sortBy: "price_asc" });

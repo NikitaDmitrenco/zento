@@ -44,6 +44,7 @@ export default async function AdminOrdersPage() {
                 <th className="px-4 py-3">ID Заказа</th>
                 <th className="px-4 py-3">Клиент</th>
                 <th className="px-4 py-3">Контакты & Адрес</th>
+                <th className="px-4 py-3">Оплата</th>
                 <th className="px-4 py-3">Сумма</th>
                 <th className="px-4 py-3">Статус</th>
                 <th className="px-4 py-3">Дата оформления</th>
@@ -61,6 +62,17 @@ export default async function AdminOrdersPage() {
                     {ord.shippingAddress && (
                       <span className="block text-[10px] text-slate-400 mt-0.5 truncate max-w-xs">
                         📍 {ord.shippingAddress}
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-4 py-3">
+                    {ord.paymentMethod === "CARD" || ord.status === "CONFIRMED" ? (
+                      <span className="inline-flex items-center gap-1 font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md text-[10px] border border-emerald-200">
+                        💳 Картой онлайн
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 font-medium text-slate-700 bg-slate-100 px-2 py-0.5 rounded-md text-[10px] border border-slate-200">
+                        💵 При получении
                       </span>
                     )}
                   </td>
