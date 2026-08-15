@@ -12,25 +12,25 @@ describe("Cart Subsystem & Stock Validation", () => {
 
   it("should evaluate cart items and calculate correct subtotal and quantity bounds", async () => {
     const rawItems = [
-      { id: "zento-nova-pro-5g", quantity: 2 },
-      { id: "zento-audio-pro-wireless", quantity: 1 },
+      { id: "apple-iphone-16-pro-max-2024", quantity: 2 },
+      { id: "sony-wh-1000xm5", quantity: 1 },
     ];
 
     const result = await evaluateCart(rawItems);
     expect(result.items.length).toBeGreaterThan(0);
     expect(result.totalItems).toBe(3);
     
-    // Nova Pro (89900 * 2 = 179800) + Audio Pro (29900 * 1 = 29900) = 209700
-    expect(result.subtotal).toBe(209700);
+    // iPhone 16 Pro Max (2799900 * 2 = 5599800) + Sony WH-1000XM5 (749900 * 1 = 749900) = 6349700
+    expect(result.subtotal).toBe(6349700);
   });
 
   it("should validate and cap quantity when requested quantity exceeds available stock", async () => {
-    const rawItems = [{ id: "zento-nova-pro-5g", quantity: 9999 }];
+    const rawItems = [{ id: "apple-iphone-16-pro-max-2024", quantity: 9999 }];
     const result = await evaluateCart(rawItems);
 
-    const novaItem = result.items.find((i) => i.slug === "zento-nova-pro-5g");
-    expect(novaItem).toBeDefined();
-    // Stock is 25, requested 9999 -> capped to 25
-    expect(novaItem?.quantity).toBe(25);
+    const iphoneItem = result.items.find((i) => i.slug === "apple-iphone-16-pro-max-2024");
+    expect(iphoneItem).toBeDefined();
+    // Stock is 15, requested 9999 -> capped to 15
+    expect(iphoneItem?.quantity).toBe(15);
   });
 });

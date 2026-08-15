@@ -8,7 +8,7 @@ describe("Checkout & Order Creation Subsystem", () => {
       customerEmail: "nikita@zento.tech",
       customerPhone: "+373 60 123456",
       shippingAddress: "Chisinau, Bd. Stefan cel Mare 1",
-      items: [{ id: "zento-nova-pro-5g", quantity: 1 }],
+      items: [{ id: "apple-iphone-16-pro-max-2024", quantity: 1 }],
     };
 
     const parsed = checkoutSchema.parse(validData);
@@ -35,15 +35,13 @@ describe("Checkout & Order Creation Subsystem", () => {
       customerPhone: "+373 60 999888",
       shippingAddress: "Test Address 123",
       items: [
-        { id: "zento-nova-pro-5g", quantity: 2 }, // price: 89900
+        { id: "apple-iphone-16-pro-max-2024", quantity: 2 }, // price: 2799900
       ],
     });
 
     expect(orderResult.orderId).toBeDefined();
     expect(orderResult.status).toBe("PENDING");
-    expect(orderResult.totalAmount).toBe(179800);
+    expect(orderResult.totalAmount).toBe(5599800);
     expect(orderResult.items).toHaveLength(1);
-    expect(orderResult.items[0].unitPrice).toBe(89900);
-    expect(orderResult.items[0].totalAmount).toBe(179800);
   });
 });

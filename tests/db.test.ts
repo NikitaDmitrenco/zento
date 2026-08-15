@@ -8,9 +8,10 @@ describe("Database Schema & Seed Baseline", () => {
     expect(demoCategories.map((c) => c.slug)).toContain("laptops");
   });
 
-  it("should have 4 defined brands", () => {
-    expect(demoBrands).toHaveLength(4);
-    expect(demoBrands.map((b) => b.slug)).toContain("zentotech");
+  it("should have 10 defined brands", () => {
+    expect(demoBrands).toHaveLength(10);
+    expect(demoBrands.map((b) => b.slug)).toContain("apple");
+    expect(demoBrands.map((b) => b.slug)).toContain("samsung");
   });
 
   it("should have at least 20 demo digital technology products", () => {
