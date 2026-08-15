@@ -4,6 +4,7 @@ import { Dictionary } from "../../i18n/get-dictionary";
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { CategoryIcon } from "../ui/category-icon";
 import { CatalogProductItem } from "../../services/search/search-service";
 
 export function ProductCard({
@@ -35,19 +36,10 @@ export function ProductCard({
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-slate-300 transition-transform duration-500 group-hover:scale-105">
-              <svg
+              <CategoryIcon
+                slug={product.category.slug}
                 className="w-16 h-16 text-slate-300 group-hover:text-blue-500 transition-colors duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                ></path>
-              </svg>
+              />
             </div>
           )}
 

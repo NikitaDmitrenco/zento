@@ -4,6 +4,7 @@ import { isValidLocale, Locale } from "../../i18n/config";
 import { getDictionary } from "../../i18n/get-dictionary";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
+import { CategoryIcon } from "../../components/ui/category-icon";
 import { demoCategories } from "../../db/data/demo-data";
 
 export default async function HomePage({
@@ -61,9 +62,7 @@ export default async function HomePage({
             >
               <Card hoverable className="p-4 text-center h-full flex flex-col justify-between">
                 <div className="w-12 h-12 mx-auto bg-slate-100 rounded-xl flex items-center justify-center text-slate-700 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors mb-3">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                  </svg>
+                  <CategoryIcon slug={cat.slug} className="w-6 h-6" />
                 </div>
                 <div>
                   <h3 className="text-xs font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">

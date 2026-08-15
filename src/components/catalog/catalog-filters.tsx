@@ -6,6 +6,7 @@ import { Locale } from "../../i18n/config";
 import { Dictionary } from "../../i18n/get-dictionary";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { CategoryIcon } from "../ui/category-icon";
 
 export function CatalogFilters({
   locale,
@@ -102,11 +103,12 @@ export function CatalogFilters({
               <button
                 key={cat.id}
                 onClick={() => updateParam("category", cat.slug)}
-                className={`w-full text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                className={`w-full flex items-center gap-2 text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
                   isActive ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
                 }`}
               >
-                {cat.name}
+                <CategoryIcon slug={cat.slug} className="w-3.5 h-3.5 flex-shrink-0" />
+                <span>{cat.name}</span>
               </button>
             );
           })}
