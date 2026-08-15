@@ -96,7 +96,7 @@ export const demoProducts = [
     categorySlug: "smartphones",
     brandSlug: "samsung",
     images: [
-      "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80",
+      "/products/samsung-galaxy-s24-ultra.jpg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "6.8\" Dynamic AMOLED 2X 120Hz QHD+" },
@@ -245,7 +245,7 @@ export const demoProducts = [
     categorySlug: "tablets",
     brandSlug: "samsung",
     images: [
-      "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=800&auto=format&fit=crop&q=80",
+      "/products/samsung-galaxy-tab-s10-ultra.jpg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "14.6\" Dynamic AMOLED 2X 120Hz Anti-Reflection" },
@@ -339,7 +339,7 @@ export const demoProducts = [
     categorySlug: "smart-watches",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80",
+      "/products/apple-watch-series-10.jpg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "Wide-Angle Always-On Retina OLED" },
@@ -375,7 +375,7 @@ export const demoProducts = [
     categorySlug: "smart-watches",
     brandSlug: "garmin",
     images: [
-      "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=800&auto=format&fit=crop&q=80",
+      "/products/garmin-fenix-8.jpg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "1.4\" AMOLED Sapphire Glass" },
