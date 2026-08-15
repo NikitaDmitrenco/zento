@@ -1,6 +1,6 @@
-# Zento — Современный интернет-магазин цифровой техники
+# Zento — Modern Digital Electronics E-Commerce Platform
 
-> **Основная цель проекта:** Помочь клиенту быстро, легко и точно найти нужную технику по его персональному запросу и оформить заказ в несколько кликов.
+> **Primary Goal:** Help customers quickly, easily, and accurately find the right electronics based on their personal query and place an order in just a few clicks.
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed_on-Vercel-black?logo=vercel)](https://zento-blue.vercel.app)
 [![Live Demo](https://img.shields.io/badge/Live_Demo-zento--blue.vercel.app-blue?logo=googlechrome)](https://zento-blue.vercel.app)
@@ -15,59 +15,59 @@
 
 ---
 
-## 🌐 Где посмотреть и протестировать (Live Demo)
+## 🌐 Live Demo & Testing
 
-Проект полностью собран, развернут на **Vercel** и подключен к облачной базе данных **Supabase PostgreSQL**:
+The project is fully built, deployed to **Vercel**, and connected to a **Supabase PostgreSQL** cloud database:
 
-* 🛒 **Витрина магазина (Production):** [https://zento-blue.vercel.app](https://zento-blue.vercel.app)
-  * 🇷🇺 Русский язык: [https://zento-blue.vercel.app/ru](https://zento-blue.vercel.app/ru)
+* 🛒 **Storefront (Production):** [https://zento-blue.vercel.app](https://zento-blue.vercel.app)
   * 🇬🇧 English: [https://zento-blue.vercel.app/en](https://zento-blue.vercel.app/en)
-  * 🇲🇩 Română: [https://zento-blue.vercel.app/ro](https://zento-blue.vercel.app/ro)
-* ⚙️ **Панель Администратора:** [https://zento-blue.vercel.app/admin](https://zento-blue.vercel.app/admin)
+  * 🇷🇺 Russian: [https://zento-blue.vercel.app/ru](https://zento-blue.vercel.app/ru)
+  * 🇲🇩 Romanian: [https://zento-blue.vercel.app/ro](https://zento-blue.vercel.app/ro)
+* ⚙️ **Admin Panel:** [https://zento-blue.vercel.app/admin](https://zento-blue.vercel.app/admin)
 
-### 🔑 Данные для входа и тестирования:
+### 🔑 Test Credentials:
 
-| Роль | Email | Пароль | Доступные возможности |
+| Role | Email | Password | Access & Capabilities |
 | :--- | :--- | :--- | :--- |
-| **👑 Администратор** | `admin@zento.tech` | `admin123` | Доступ к админке `/admin`, управление товарами, отслеживание заказов, список пользователей |
-| **👤 Покупатель** | `user@zento.tech` | `user123` | Поиск товаров, корзина, оформление заказов, диалог с AI |
+| **👑 Administrator** | `admin@zento.tech` | `admin123` | Access to `/admin` backoffice, product management, order tracking, user list |
+| **👤 Customer** | `user@zento.tech` | `user123` | Product search, shopping cart, checkout process, AI Assistant consultation |
 
 ---
 
-## 🚀 Основной функционал
+## 🚀 Core Features
 
-### 1. Пользовательская часть (Storefront)
-- 🔍 **Умный поиск и фильтрация**: Мгновенный поиск по названиям, описаниям и популярным брендам (**Apple, Samsung, Xiaomi, Sony, ASUS, Google, Lenovo, Bose, Garmin, Anker**). Фильтры по категориям, ценам и наличию без перезагрузки страниц.
-- 📱 **Каталог и карточки товаров**: Полноразмерные качественные фотографии на белом фоне, подробные матрицы технических характеристик, бейджи топ-товаров.
-- 🛒 **Корзина и расчет**: Быстрое добавление товаров, динамический пересчет количества и стоимости.
-- 💳 **Оформление заказа (Чекаут)**:
-  - Выбор способа оплаты: *«При получении (Курьеру)»* или *«Банковской картой онлайн»*.
-  - Интерактивная виртуальная банковская карта с валидацией номера, срока действия, CVC и симуляцией 3D-Secure 2.0.
-  - Экран успешного заказа с уникальным номером и статусом.
-- 🌐 **Мультиязычность**: Полная локализация на 3 языка (**RU / EN / RO**) на уровне маршрутов (`/ru`, `/en`, `/ro`) без потери производительности.
-- 🔐 **Авторизация и профиль**: Регистрация и вход с безопасными JWT-токенами в `httpOnly` cookies и bcrypt-хешированием паролей.
+### 1. Storefront (Customer Experience)
+- 🔍 **Smart Search & Filtering**: Instant search across titles, descriptions, and top brands (**Apple, Samsung, Xiaomi, Sony, ASUS, Google, Lenovo, Bose, Garmin, Anker**). Category, price, and in-stock filters without page reloads.
+- 📱 **Catalog & Product Pages**: Full-bleed studio photos on clean backgrounds, comprehensive technical specification matrices, and featured badges.
+- 🛒 **Cart & Calculation**: Instant add-to-cart, dynamic item count, and price recalculations.
+- 💳 **Checkout & Payments**:
+  - Payment options: *«Cash/Card on Delivery (Courier)»* or *«Online Bank Card Payment»*.
+  - Interactive virtual credit card with number, expiry, CVC validation, and 3D-Secure 2.0 simulation.
+  - Success confirmation screen with order tracking ID and status.
+- 🌐 **Tri-Lingual Localization**: Route-level internationalization for 3 languages (**EN / RU / RO**) across `/en`, `/ru`, and `/ro` with zero runtime overhead.
+- 🔐 **Authentication & Profiles**: Secure sign-in and registration with stateless JWT stored in `httpOnly` cookies and bcrypt password hashing.
 
-### 2. Панель управления (Admin Panel)
-- 📊 **Дашборд метрик**: Количество активных товаров, заказов и зарегистрированных клиентов.
-- 📦 **Управление заказами**: Мониторинг поступающих заказов со статусами: `Ожидает` → `Оплачен/Подтвержден` → `В обработке` → `Отгружен` → `Завершен`.
-- ➕ **Добавление товаров**: Создание новых позиций с автогенерацией URL-слагов, выбором брендов, категорий и гибкой таблицей характеристик.
-- 👥 **Список пользователей**: Контроль зарегистрированных аккаунтов и их ролей (`USER` / `ADMIN`).
-- 🛡️ **Edge Middleware защита**: Доступ к разделу `/admin` закрыт на уровне CDN-шлюза для неавторизованных пользователей.
+### 2. Admin Backoffice (`/admin`)
+- 📊 **Metrics Dashboard**: Overview of active products, received orders, and registered customers.
+- 📦 **Order Management**: Real-time order monitoring with statuses: `Pending` → `Paid/Confirmed` → `Processing` → `Shipped` → `Completed`.
+- ➕ **Product Creation**: Add new products with automatic URL slug generation, brand/category assignment, and dynamic specification tables.
+- 👥 **User Management**: Overview of registered accounts and role assignments (`USER` / `ADMIN`).
+- 🛡️ **Edge Middleware Protection**: Route-level access restriction to `/admin` enforced at the CDN edge for unauthenticated users.
 
-### 3. Встроенный AI-ассистент
-- ✨ **Умный консультант в правом нижнем углу**:
-  - Работает на базе нейросети **DeepSeek** (`deepseek-chat`).
-  - Знает весь ассортимент магазина, цены в MDL и точные характеристики.
-  - Помогает подобрать технику под бюджет и задачи (*«Посоветуй легкий ноутбук для работы»*, *«Наушники с лучшим шумоподавлением»*).
-  - Выводит **интерактивные карточки рекомендуемых товаров** с фото и кнопкой прямого перехода прямо внутри чата.
-  - Грамотно и спокойно отвечает на сервисные вопросы (почему у магазина нет физ. адреса и как работает курьерская доставка).
-  - Работает на всех 3 языках магазина и имеет автономный режим (fallback).
+### 3. Built-in AI Shopping Assistant
+- ✨ **Smart Consultant (Bottom-Right Widget)**:
+  - Powered by the **DeepSeek** LLM (`deepseek-chat`).
+  - Comprehensive knowledge of the entire store catalog, exact specs, and prices in MDL.
+  - Recommends devices based on customer budgets and needs (*«Recommend a lightweight laptop for work»*, *«Best noise-cancelling headphones»*).
+  - Renders **interactive product recommendation cards** with photos, prices, and direct product links inside the chat.
+  - Politely and clearly explains store policies (online-only courier delivery model, absence of physical showroom).
+  - Operates fluently in English, Russian, and Romanian with an offline fallback mode.
 
 ---
 
-## 🛠️ Технический стек и архитектура
+## 🛠️ Tech Stack & Architecture
 
-Проект спроектирован по стандарту **модульного монолита** с акцентом на скорость, масштабируемость и строгую финансовую безопасность:
+Engineered following the **Modular Monolith** architecture with a focus on speed, scalability, and strict financial security:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -89,114 +89,114 @@
 │ Auth & Security              │ Stateless JWT (jose HS256),  │
 │                              │ bcryptjs, Edge Middleware    │
 ├──────────────────────────────┼──────────────────────────────┤
-│ Quality & Testing            │ Vitest (34 теста), ESLint,   │
+│ Quality & Testing            │ Vitest (34 tests), ESLint,   │
 │                              │ Playwright E2E               │
 └──────────────────────────────┴──────────────────────────────┘
 ```
 
-* **Безопасность цен**: Все финансовые вычисления (цены, скидки, суммы заказов) хранятся и пересчитываются на сервере в минимальных единицах (центы/бани), исключая ошибки округления и подмену цен на клиенте.
-* **Serverless готовность**: Архитектура адаптирована для мгновенного масштабирования на Vercel, AWS или собственных VPS-серверах (Docker / Ubuntu).
+* **Financial Integrity**: All financial calculations (prices, discounts, order totals) are stored and calculated on the server in minor integer units (cents/bani), eliminating floating-point rounding errors and client-side price tampering.
+* **Serverless Ready**: Architecture is optimized for instant scalability on Vercel, AWS, or self-hosted VPS servers (Docker / Ubuntu).
 
 ---
 
-## 💻 Как клонировать и запустить проект своими руками
+## 💻 How to Clone and Run Locally
 
-Вы можете развернуть и протестировать проект локально через командную строку (CMD / PowerShell / Terminal).
+You can deploy and test the project locally using the command line (CMD / PowerShell / Terminal).
 
-### Шаг 1. Клонировать репозиторий с GitHub
+### Step 1. Clone the repository from GitHub
 ```bash
 git clone https://github.com/NikitaDmitrenco/zento.git
 cd zento
 ```
 
-### Шаг 2. Установить зависимости
+### Step 2. Install dependencies
 ```bash
 npm install
 ```
 
-### Шаг 3. Настроить переменные окружения
-Создайте файл `.env.local` в корневой папке проекта:
+### Step 3. Configure environment variables
+Create a `.env.local` file in the root directory:
 ```env
-# Подключение к базе данных (Supabase PostgreSQL или локальный Postgres)
+# Database connection string (Supabase PostgreSQL or local Postgres)
 DATABASE_URL="postgresql://postgres.syvocricidabqykwdngh:L3sufTEPM6yRHcyn@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
 
-# Секретный ключ для авторизации JWT (любая случайная строка от 32 символов)
+# Secret key for stateless JWT authentication (any random string >= 32 chars)
 AUTH_SECRET="supersecret_production_auth_key_zento_2024_secure"
 AUTH_URL="http://localhost:3000"
 
-# Ключ DeepSeek API (опционально, есть встроенный автономный режим)
+# DeepSeek API Key (optional, offline fallback mode is built-in)
 DEEPSEEK_API_KEY=""
 ```
 
-### Шаг 4. Наполнить базу данных товарами (Сид)
+### Step 4. Seed the database with products
 ```bash
-# Применить схему таблиц
+# Push table schema to database
 npm run db:push
 
-# Заполнить базу категориями, брендами и 20 реальными товарами
+# Seed database with categories, brands, and 20 real tech products
 npm run db:seed
 ```
 
-### Шаг 5. Запустить сервер разработки
+### Step 5. Start the development server
 ```bash
 npm run dev
 ```
 
-Откройте в браузере: **[http://localhost:3000/ru](http://localhost:3000/ru)**
+Open in your browser: **[http://localhost:3000/en](http://localhost:3000/en)**
 
 ---
 
-## 🧪 Запуск автоматических тестов
+## 🧪 Running Automated Tests
 
-В проекте настроен полный набор автотестов, покрывающих базу данных, поиск, корзину, оформление заказов, безопасность и AI-ассистента:
+The project includes a comprehensive automated test suite covering database queries, search indexing, shopping cart, checkout, auth, and the AI Assistant:
 
 ```bash
-# Запуск всех 34 автотестов (Vitest)
+# Run all 34 automated unit & integration tests (Vitest)
 npm run test
 
-# Проверка строгой типизации TypeScript
+# Validate strict TypeScript types
 npm run typecheck
 
-# Проверка качества кода линтером
+# Check code quality with ESLint
 npm run lint
 
-# Сборка готового продакшн-бандла
+# Build optimized production bundle
 npm run build
 ```
 
 ---
 
-## 📁 Структура проекта
+## 📁 Project Structure
 
 ```
 zento/
 ├── src/
 │   ├── app/                      # Next.js App Router
-│   │   ├── [locale]/             # Мультиязычные страницы витрины (/, /catalog, /product, /cart, /checkout)
-│   │   ├── admin/                # Защищенная панель администратора (/admin/orders, /admin/products, /admin/users)
-│   │   └── api/                  # Серверные API-эндпоинты (/api/ai/chat, /api/auth/*, /api/orders/*)
-│   ├── components/               # Модульные React-компоненты
-│   │   ├── ai/                   # Интерактивный виджет AI-ассистента
-│   │   ├── catalog/              # Карточки товаров, фильтры, поисковая панель
-│   │   ├── checkout/             # Форма чекаута с виртуальной банковской картой
-│   │   └── ui/                   # Базовые UI-элементы (кнопки, инпуты, бейджи, иконки)
-│   ├── db/                       # Слой базы данных
-│   │   ├── schema.ts             # Drizzle PostgreSQL схема
-│   │   ├── seed.ts               # Скрипт наполнения базы
-│   │   └── data/                 # Реальный каталог техники, категорий и брендов
-│   ├── i18n/                     # Модуль локализации (словари ru.json, en.json, ro.json)
-│   ├── lib/                      # Утилиты авторизации (JWT, сессии, cookies)
-│   ├── services/                 # Бизнес-логика (AI сервис, каталог, заказы, корзина, auth)
-│   └── middleware.ts             # Edge Middleware для защиты админки
-├── tests/                        # Набор 34 модульных и интеграционных тестов
-├── public/                       # Статические файлы, логотипы брендов и фотографии товаров
-├── README.md                     # Документация проекта
-└── package.json                  # Зависимости и npm-скрипты
+│   │   ├── [locale]/             # Localized storefront pages (/, /catalog, /product, /cart, /checkout)
+│   │   ├── admin/                # Protected admin backoffice (/admin/orders, /admin/products, /admin/users)
+│   │   └── api/                  # Server Route Handlers (/api/ai/chat, /api/auth/*, /api/orders/*)
+│   ├── components/               # Modular React UI Components
+│   │   ├── ai/                   # Interactive AI Assistant Widget
+│   │   ├── catalog/              # Product cards, catalog filters, search bar
+│   │   ├── checkout/             # Checkout form with virtual bank card
+│   │   └── ui/                   # Primitive UI components (buttons, inputs, badges, icons)
+│   ├── db/                       # Database Layer
+│   │   ├── schema.ts             # Drizzle PostgreSQL Schema
+│   │   ├── seed.ts               # Database Seeding Script
+│   │   └── data/                 # Real catalog data: products, categories, brands
+│   ├── i18n/                     # Internationalization (dictionaries: en.json, ru.json, ro.json)
+│   ├── lib/                      # Auth utilities (JWT, sessions, cookies)
+│   ├── services/                 # Domain Business Services (AI, catalog, orders, cart, auth)
+│   └── middleware.ts             # Edge Middleware for admin route protection
+├── tests/                        # 34 Unit and Integration Tests (Vitest)
+├── public/                       # Static assets, brand logos, product photos
+├── README.md                     # Project Documentation
+└── package.json                  # Dependencies and npm scripts
 ```
 
 ---
 
-### 👨‍💻 Автор проекта
+### 👨‍💻 Project Author
 **Nikita Dmitrenco**  
 GitHub: [@NikitaDmitrenco](https://github.com/NikitaDmitrenco)  
-Репозиторий: [https://github.com/NikitaDmitrenco/zento](https://github.com/NikitaDmitrenco/zento)
+Repository: [https://github.com/NikitaDmitrenco/zento](https://github.com/NikitaDmitrenco/zento)
