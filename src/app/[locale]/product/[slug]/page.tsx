@@ -122,13 +122,13 @@ export default async function ProductPage({
         
         {/* Left Gallery */}
         <div className="space-y-4">
-          <div className="aspect-4/3 bg-white border border-slate-200 rounded-2xl flex items-center justify-center p-6 shadow-xs overflow-hidden">
+          <div className="aspect-4/3 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center p-0 shadow-xs overflow-hidden">
             {product.images && product.images.length > 0 && product.images[0] ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 src={product.images[0]}
                 alt={product.name}
-                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             ) : (
               <div className="w-32 h-32 text-slate-300 flex items-center justify-center">

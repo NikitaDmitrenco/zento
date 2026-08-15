@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, ilike } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { db } from "./index";
 import {
@@ -67,6 +67,11 @@ export async function seedDatabase() {
     brandMap.set(inserted.slug, inserted.id);
   }
   console.log(`Seeded ${brandMap.size} brands.`);
+
+  // Clean up any legacy mock products with 'zento' in their name or slug
+  await db.delete(products).where(ilike(products.name, "%zento%"));
+  await db.delete(products).where(ilike(products.slug, "%zento%"));
+  await db.delete(brands).where(ilike(brands.slug, "%zento%"));
 
   // 3. Seed Products + Images + Specs
   let productCount = 0;
