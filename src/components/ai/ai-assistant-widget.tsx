@@ -173,7 +173,7 @@ export function AiAssistantWidget({
                     {dict.aiAssistant.title}
                   </h3>
                   <span className="text-[9px] bg-blue-500/30 text-blue-300 border border-blue-400/30 px-1.5 py-0.2 rounded-full font-mono uppercase">
-                    DeepSeek
+                    {dict.aiAssistant.badge}
                   </span>
                 </div>
                 <p className="text-[10px] text-emerald-400 font-medium flex items-center gap-1 mt-0.5">
