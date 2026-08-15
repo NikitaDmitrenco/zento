@@ -1,4 +1,4 @@
-import { eq, and, gte, lte, ilike, or, asc, desc, count } from "drizzle-orm";
+import { eq, and, gte, lte, ilike, or, inArray, asc, desc, count } from "drizzle-orm";
 import { db } from "../../db";
 import {
   products,
@@ -55,9 +55,24 @@ export async function searchCatalog(
 
     if (filters.query && filters.query.trim()) {
       const q = `%${filters.query.trim()}%`;
-      conditions.push(
-        or(ilike(products.name, q), ilike(products.description, q))!
-      );
+      const matchingBrands = await db.query.brands.findMany({
+        where: or(ilike(brands.name, q), ilike(brands.slug, q)),
+      });
+      const matchingBrandIds = matchingBrands.map((b) => b.id);
+
+      if (matchingBrandIds.length > 0) {
+        conditions.push(
+          or(
+            ilike(products.name, q),
+            ilike(products.description, q),
+            inArray(products.brandId, matchingBrandIds)
+          )!
+        );
+      } else {
+        conditions.push(
+          or(ilike(products.name, q), ilike(products.description, q))!
+        );
+      }
     }
 
     if (filters.minPrice !== undefined && filters.minPrice > 0) {
@@ -227,7 +242,10 @@ function searchCatalogInMemory(
     const q = filters.query.trim().toLowerCase();
     filtered = filtered.filter(
       (p) =>
-        p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)
+        p.name.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q) ||
+        p.brand.name.toLowerCase().includes(q) ||
+        p.brand.slug.toLowerCase().includes(q)
     );
   }
 

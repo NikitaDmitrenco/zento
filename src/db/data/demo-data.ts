@@ -40,14 +40,14 @@ export const demoCategories = [
 export const demoBrands = [
   { name: "Apple", slug: "apple", logoUrl: "brands/apple.webp" },
   { name: "Samsung", slug: "samsung", logoUrl: "brands/samsung.webp" },
+  { name: "Xiaomi", slug: "xiaomi", logoUrl: "brands/xiaomi.webp" },
   { name: "Sony", slug: "sony", logoUrl: "brands/sony.webp" },
   { name: "ASUS", slug: "asus", logoUrl: "brands/asus.webp" },
-  { name: "Xiaomi", slug: "xiaomi", logoUrl: "brands/xiaomi.webp" },
+  { name: "Google", slug: "google", logoUrl: "brands/google.webp" },
+  { name: "Lenovo", slug: "lenovo", logoUrl: "brands/lenovo.webp" },
   { name: "Bose", slug: "bose", logoUrl: "brands/bose.webp" },
   { name: "Garmin", slug: "garmin", logoUrl: "brands/garmin.webp" },
   { name: "Anker", slug: "anker", logoUrl: "brands/anker.webp" },
-  { name: "Google", slug: "google", logoUrl: "brands/google.webp" },
-  { name: "Lenovo", slug: "lenovo", logoUrl: "brands/lenovo.webp" },
 ];
 
 export const demoUsers = [

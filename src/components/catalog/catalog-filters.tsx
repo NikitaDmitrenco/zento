@@ -120,14 +120,15 @@ export function CatalogFilters({
         <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
           Бренды
         </label>
-        <div className="space-y-1.5 max-h-36 overflow-y-auto pr-1">
+        <div className="space-y-1 max-h-52 overflow-y-auto pr-1">
           <button
             onClick={() => updateParam("brand", "")}
-            className={`w-full text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-              !currentBrand ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
+            className={`w-full flex items-center justify-between text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+              !currentBrand ? "bg-slate-900 text-white font-bold" : "text-slate-700 hover:bg-slate-100"
             }`}
           >
-            Все бренды
+            <span>Все бренды</span>
+            {!currentBrand && <span className="text-[10px]">✓</span>}
           </button>
           {brands.map((br) => {
             const isActive = currentBrand === br.slug;
@@ -135,11 +136,12 @@ export function CatalogFilters({
               <button
                 key={br.id}
                 onClick={() => updateParam("brand", br.slug)}
-                className={`w-full text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-                  isActive ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
+                className={`w-full flex items-center justify-between text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                  isActive ? "bg-slate-900 text-white font-bold" : "text-slate-700 hover:bg-slate-100"
                 }`}
               >
-                {br.name}
+                <span>{br.name}</span>
+                {isActive && <span className="text-[10px]">✓</span>}
               </button>
             );
           })}

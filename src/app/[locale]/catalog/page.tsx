@@ -41,6 +41,17 @@ export default async function CatalogPage({
     brandsList = demoBrands.map((b, i) => ({ id: `br-${i}`, name: b.name, slug: b.slug }));
   }
 
+  // Sort brands by popularity order
+  const brandOrder = ["apple", "samsung", "xiaomi", "sony", "asus", "google", "lenovo", "bose", "garmin", "anker"];
+  brandsList.sort((a, b) => {
+    const idxA = brandOrder.indexOf(a.slug);
+    const idxB = brandOrder.indexOf(b.slug);
+    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+    if (idxA !== -1) return -1;
+    if (idxB !== -1) return 1;
+    return a.name.localeCompare(b.name);
+  });
+
   const currentPage = parseInt(queryParams.page || "1", 10);
   const result = await searchCatalog({
     query: queryParams.query,
