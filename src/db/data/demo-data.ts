@@ -3,37 +3,37 @@ export const demoCategories = [
     name: "Smartphones",
     slug: "smartphones",
     description: "Modern smartphones with vibrant screens, powerful cameras, and fast connectivity.",
-    imageUrl: "products/placeholders/category-smartphones.webp",
+    imageUrl: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
   },
   {
     name: "Laptops",
     slug: "laptops",
     description: "High-performance laptops for work, creative tasks, and mobile productivity.",
-    imageUrl: "products/placeholders/category-laptops.webp",
+    imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80",
   },
   {
     name: "Tablets",
     slug: "tablets",
     description: "Versatile tablets with responsive displays for entertainment and notes.",
-    imageUrl: "products/placeholders/category-tablets.webp",
+    imageUrl: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&auto=format&fit=crop&q=80",
   },
   {
     name: "Headphones",
     slug: "headphones",
     description: "Premium wireless and studio headphones with active noise cancellation.",
-    imageUrl: "products/placeholders/category-headphones.webp",
+    imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80",
   },
   {
     name: "Smart Watches",
     slug: "smart-watches",
     description: "Smart wearables for fitness tracking, notifications, and health monitoring.",
-    imageUrl: "products/placeholders/category-watches.webp",
+    imageUrl: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80",
   },
   {
     name: "Accessories",
     slug: "accessories",
     description: "Essential chargers, power banks, and ergonomic stands for modern tech.",
-    imageUrl: "products/placeholders/category-accessories.webp",
+    imageUrl: "https://images.unsplash.com/photo-1609592424074-2ef5336bf7b1?w=800&auto=format&fit=crop&q=80",
   },
 ];
 
@@ -70,7 +70,10 @@ export const demoProducts = [
     isFeatured: true,
     categorySlug: "smartphones",
     brandSlug: "zentotech",
-    images: ["products/nova-pro/main.webp", "products/nova-pro/back.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "6.7 inch OLED 120Hz" },
       { groupName: "Performance", name: "Processor", value: "Octa-core 3.2GHz" },
@@ -87,7 +90,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "smartphones",
     brandSlug: "pulse-lab",
-    images: ["products/pulse-one/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "6.1 inch AMOLED 90Hz" },
       { groupName: "Memory", name: "RAM / Storage", value: "8GB RAM / 128GB" },
@@ -103,7 +108,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "smartphones",
     brandSlug: "nova-electronics",
-    images: ["products/aura-se/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "6.4 inch FHD+ IPS" },
       { groupName: "Memory", name: "RAM / Storage", value: "6GB RAM / 128GB" },
@@ -118,7 +125,9 @@ export const demoProducts = [
     isFeatured: true,
     categorySlug: "smartphones",
     brandSlug: "zentotech",
-    images: ["products/hyperx-12/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "6.8 inch AMOLED 144Hz" },
       { groupName: "Performance", name: "Cooling", value: "Vapor Chamber Liquid Cooling" },
@@ -136,7 +145,10 @@ export const demoProducts = [
     isFeatured: true,
     categorySlug: "laptops",
     brandSlug: "zentotech",
-    images: ["products/book-pro-16/main.webp", "products/book-pro-16/angle.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "16-inch 3.2K Mini-LED 120Hz" },
       { groupName: "Performance", name: "CPU", value: "14-core Processor" },
@@ -152,7 +164,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "laptops",
     brandSlug: "zentotech",
-    images: ["products/book-air-14/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "14-inch Retina 60Hz" },
       { groupName: "Weight", name: "Weight", value: "1.24 kg" },
@@ -168,7 +182,9 @@ export const demoProducts = [
     isFeatured: true,
     categorySlug: "laptops",
     brandSlug: "nova-electronics",
-    images: ["products/studio-max-15/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "15.6-inch 4K OLED Touch" },
       { groupName: "Graphics", name: "GPU", value: "Dedicated 8GB VRAM" },
@@ -184,7 +200,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "laptops",
     brandSlug: "pulse-lab",
-    images: ["products/craft-13/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "13.3-inch FHD IPS" },
       { groupName: "Memory", name: "RAM / SSD", value: "8GB RAM / 256GB SSD" },
@@ -201,7 +219,9 @@ export const demoProducts = [
     isFeatured: true,
     categorySlug: "tablets",
     brandSlug: "zentotech",
-    images: ["products/tab-pro-11/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "11-inch 120Hz Liquid Retina" },
       { groupName: "Audio", name: "Speakers", value: "Quad Stereo Speakers" },
@@ -217,7 +237,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "tablets",
     brandSlug: "pulse-lab",
-    images: ["products/slate-air/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "10.5-inch 2K IPS" },
       { groupName: "Memory", name: "Storage", value: "128GB" },
@@ -232,7 +254,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "tablets",
     brandSlug: "nova-electronics",
-    images: ["products/pad-lite-10/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "10.1-inch HD LCD" },
       { groupName: "Memory", name: "Storage", value: "64GB" },
@@ -249,7 +273,9 @@ export const demoProducts = [
     isFeatured: true,
     categorySlug: "headphones",
     brandSlug: "aura-audio",
-    images: ["products/audio-pro-wireless/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Audio", name: "Driver Size", value: "40mm Dynamic Driver" },
       { groupName: "Noise Control", name: "ANC", value: "Hybrid Active Noise Cancellation" },
@@ -265,7 +291,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "headphones",
     brandSlug: "aura-audio",
-    images: ["products/studio-sound-anc/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Audio", name: "Frequency Response", value: "10Hz - 40kHz" },
       { groupName: "Codec", name: "Supported Codecs", value: "LDAC, AAC, SBC" },
@@ -280,7 +308,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "headphones",
     brandSlug: "pulse-lab",
-    images: ["products/airbuds-neo/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Connectivity", name: "Bluetooth", value: "Bluetooth 5.3" },
       { groupName: "Protection", name: "Water Resistance", value: "IPX5" },
@@ -298,7 +328,9 @@ export const demoProducts = [
     isFeatured: true,
     categorySlug: "smart-watches",
     brandSlug: "zentotech",
-    images: ["products/horizon-watch-gt/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "1.43-inch Always-On AMOLED" },
       { groupName: "Sensors", name: "Health", value: "Heart Rate, SpO2, ECG, Sleep" },
@@ -314,7 +346,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "smart-watches",
     brandSlug: "pulse-lab",
-    images: ["products/fit-band-3/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Battery", name: "Life", value: "14 Days Typical Use" },
       { groupName: "Waterproof", name: "Rating", value: "5 ATM (50m)" },
@@ -329,7 +363,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "smart-watches",
     brandSlug: "nova-electronics",
-    images: ["products/watch-active/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Display", name: "Screen Size", value: "1.39-inch HD Screen" },
       { groupName: "Features", name: "Calling", value: "Bluetooth Voice Calling" },
@@ -346,7 +382,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "accessories",
     brandSlug: "zentotech",
-    images: ["products/powerbank-20000/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1609592424074-2ef5336bf7b1?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Capacity", name: "Battery Size", value: "20,000 mAh" },
       { groupName: "Power", name: "Max Output", value: "65W USB-C PD" },
@@ -361,7 +399,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "accessories",
     brandSlug: "nova-electronics",
-    images: ["products/gan-charger-65w/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Technology", name: "Semiconductor", value: "GaN Fast Charge" },
       { groupName: "Ports", name: "Total Ports", value: "2x USB-C + 1x USB-A" },
@@ -376,7 +416,9 @@ export const demoProducts = [
     isFeatured: false,
     categorySlug: "accessories",
     brandSlug: "aura-audio",
-    images: ["products/magstand-pro/main.webp"],
+    images: [
+      "https://images.unsplash.com/photo-1622445268465-843d3a8a3a27?w=800&auto=format&fit=crop&q=80",
+    ],
     specs: [
       { groupName: "Output", name: "Wireless Output", value: "15W Fast Wireless" },
       { groupName: "Compatibility", name: "Devices", value: "Phone, Watch, Earbuds 3-in-1" },

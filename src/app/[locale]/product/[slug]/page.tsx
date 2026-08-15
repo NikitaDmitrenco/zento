@@ -122,13 +122,36 @@ export default async function ProductPage({
         
         {/* Left Gallery */}
         <div className="space-y-4">
-          <div className="aspect-4/3 bg-white border border-slate-200 rounded-2xl flex items-center justify-center p-8 shadow-xs">
-            <div className="w-32 h-32 text-slate-300 flex items-center justify-center">
-              <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-              </svg>
-            </div>
+          <div className="aspect-4/3 bg-white border border-slate-200 rounded-2xl flex items-center justify-center p-6 shadow-xs overflow-hidden">
+            {product.images && product.images.length > 0 && product.images[0] ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+              />
+            ) : (
+              <div className="w-32 h-32 text-slate-300 flex items-center justify-center">
+                <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            )}
           </div>
+
+          {product.images && product.images.length > 1 && (
+            <div className="flex gap-3 overflow-x-auto pb-2">
+              {product.images.map((img, idx) => (
+                <div
+                  key={idx}
+                  className="w-16 h-16 bg-white border border-slate-200 rounded-xl p-1.5 flex items-center justify-center flex-shrink-0"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-contain" />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right Product Details */}

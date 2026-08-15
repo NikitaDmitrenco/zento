@@ -25,22 +25,31 @@ export function ProductCard({
     <Card hoverable className="overflow-hidden flex flex-col justify-between h-full group">
       <div>
         {/* Image & Badges Container */}
-        <div className="relative aspect-4/3 bg-slate-100 overflow-hidden flex items-center justify-center p-6">
-          <div className="w-full h-full flex items-center justify-center text-slate-300 transition-transform duration-500 group-hover:scale-105">
-            <svg
-              className="w-16 h-16 text-slate-300 group-hover:text-blue-500 transition-colors duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1"
-                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-              ></path>
-            </svg>
-          </div>
+        <div className="relative aspect-4/3 bg-slate-100/80 overflow-hidden flex items-center justify-center p-4">
+          {product.primaryImage ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={product.primaryImage}
+              alt={product.name}
+              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-slate-300 transition-transform duration-500 group-hover:scale-105">
+              <svg
+                className="w-16 h-16 text-slate-300 group-hover:text-blue-500 transition-colors duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1"
+                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+          )}
 
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             {product.isFeatured && (
