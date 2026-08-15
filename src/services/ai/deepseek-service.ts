@@ -98,28 +98,60 @@ function generateSmartLocalReply(
 
   // Russian responses
   if (locale === "ru" || !locale) {
-    if (lastUserMsg.includes("телефон") || lastUserMsg.includes("смартфон") || lastUserMsg.includes("iphone") || lastUserMsg.includes("samsung")) {
-      return "В каталоге Zento отличный выбор флагманских смартфонов 2024 года! Если вам нужна максимальная экосистема и лучшая видеосъемка — рекомендую **Apple iPhone 16 Pro Max** на чипе A18 Pro. Если вы предпочитаете Android с искусственным интеллектом Galaxy AI и пером S Pen — обратите внимание на **Samsung Galaxy S24 Ultra**.";
+    // Physical address / offline store questions
+    if (
+      lastUserMsg.includes("адрес") ||
+      lastUserMsg.includes("находит") ||
+      lastUserMsg.includes("магазин") ||
+      lastUserMsg.includes("шоурум") ||
+      lastUserMsg.includes("самовывоз") ||
+      lastUserMsg.includes("физическ") ||
+      lastUserMsg.includes("где вы")
+    ) {
+      return "У нас нет физического магазина или шоурума — мы работаем исключительно как онлайн-магазин. Все заказы доставляются курьером прямо до вашей двери, а оплатить покупку можно наличными или картой при получении.";
     }
-    if (lastUserMsg.includes("ноутбук") || lastUserMsg.includes("macbook") || lastUserMsg.includes("thinkpad") || lastUserMsg.includes("asus") || lastUserMsg.includes("работы")) {
-      return "Для продуктивной работы и учебы отлично подойдут: ультратонкий и автономный **Apple MacBook Air 15 M3** (до 18 часов работы без подзарядки) или надежный корпоративный ультрабук **Lenovo ThinkPad X1 Carbon Gen 12** из карбонового волокна. Для тяжелого видеомонтажа и 3D-графики — флагманский **MacBook Pro 16 M3 Max**.";
+
+    // Delivery & payment questions
+    if (lastUserMsg.includes("доставк") || lastUserMsg.includes("оплат") || lastUserMsg.includes("как купить") || lastUserMsg.includes("гаранти")) {
+      return "Мы доставляем технику курьером по всей стране. Вы можете оплатить заказ при получении (наличными или картой курьеру) либо банковской картой онлайн на сайте с защитой 3D-Secure. На все товары действует официальная гарантия.";
+    }
+
+    // Contact & support questions
+    if (lastUserMsg.includes("контакт") || lastUserMsg.includes("телефон") || lastUserMsg.includes("поддержк") || lastUserMsg.includes("почт")) {
+      return "Служба поддержки Zento работает онлайн. Вы можете задать любой вопрос по характеристикам и подбору прямо здесь в чате или написать нам на support@zento.tech.";
+    }
+
+    // Product categories
+    if (lastUserMsg.includes("телефон") || lastUserMsg.includes("смартфон") || lastUserMsg.includes("iphone") || lastUserMsg.includes("samsung") || lastUserMsg.includes("xiaomi") || lastUserMsg.includes("pixel")) {
+      return "В каталоге Zento отличный выбор флагманских смартфонов 2024 года! Если вам нужна лучшая видеосъемка и экосистема — рекомендую **Apple iPhone 16 Pro Max** на чипе A18 Pro. Если вы предпочитаете Android с искусственным интеллектом Galaxy AI и пером S Pen — обратите внимание на **Samsung Galaxy S24 Ultra** или фотофлагман **Xiaomi 14 Ultra**.";
+    }
+    if (lastUserMsg.includes("ноутбук") || lastUserMsg.includes("macbook") || lastUserMsg.includes("thinkpad") || lastUserMsg.includes("asus") || lastUserMsg.includes("работы") || lastUserMsg.includes("учеб")) {
+      return "Для продуктивной работы и учебы отлично подойдут: ультратонкий и автономный **Apple MacBook Air 15 M3** (до 18 часов работы) или надежный ультрабук **Lenovo ThinkPad X1 Carbon Gen 12** из карбонового волокна. Для тяжелых задач и 3D-графики — флагманский **MacBook Pro 16 M3 Max** или игровой **ASUS ROG Zephyrus G16**.";
     }
     if (lastUserMsg.includes("наушник") || lastUserMsg.includes("звук") || lastUserMsg.includes("sony") || lastUserMsg.includes("airpods") || lastUserMsg.includes("bose")) {
-      return "Среди наушников с топовым шумоподавлением безусловные лидеры — **Sony WH-1000XM5** (с поддержкой Hi-Res LDAC и 8 микрофонами ANC) и премиальные **Apple AirPods Max (USB-C)** с пространственным аудио. Также великолепный объемный звук предлагают **Bose QuietComfort Ultra**.";
+      return "Среди наушников с лучшим шумоподавлением безусловные лидеры — **Sony WH-1000XM5** (с поддержкой Hi-Res LDAC) и премиальные **Apple AirPods Max (USB-C)** с пространственным аудио. Также чистый объемный звук предлагают **Bose QuietComfort Ultra**.";
     }
     if (lastUserMsg.includes("час") || lastUserMsg.includes("watch") || lastUserMsg.includes("garmin") || lastUserMsg.includes("спорт")) {
-      return "Для спорта, экстремального туризма и автономности до 16 дней идеально подходят титановые **Garmin Fenix 8 Sapphire AMOLED**. Для повседневного мониторинга здоровья и интеграции с iPhone — тонкие **Apple Watch Series 10**, а для Android — **Samsung Galaxy Watch 7**.";
+      return "Для спорта, туризма и автономности до 16 дней идеально подходят титановые **Garmin Fenix 8 Sapphire AMOLED**. Для повседневного мониторинга здоровья — тонкие **Apple Watch Series 10**, а для смартфонов Samsung — **Samsung Galaxy Watch 7**.";
     }
-    return "В интернет-магазине Zento представлена оригинальная цифровая техника ведущих мировых брендов: Apple, Samsung, Xiaomi, Sony, ASUS, Lenovo, Garmin и Bose с официальной гарантией. Что именно вас интересует — смартфоны, ноутбуки, планшеты, наушники или смарт-часы?";
+
+    // Default polite out-of-scope response
+    return "Я — виртуальный консультант интернет-магазина Zento и специализируюсь на подборе техники из нашего каталога. У меня нет точной информации по этому вопросу, но я с удовольствием помогу вам выбрать смартфон, ноутбук, планшет, наушники или смарт-часы!";
   }
 
   // Romanian responses
   if (locale === "ro") {
-    return "În magazinul Zento găsiți tehnică digitală originală de la cele mai bune branduri: Apple, Samsung, Sony, ASUS, Garmin și Bose. Vă pot ajuta să alegeți laptopuri, smartphone-uri, căști sau ceasuri inteligente adaptate bugetului dvs.";
+    if (lastUserMsg.includes("adres") || lastUserMsg.includes("magazin") || lastUserMsg.includes("unde")) {
+      return "Nu avem un magazin fizic sau showroom — funcționăm exclusiv ca magazin online. Toate comenzile sunt livrate prin curier direct la ușa dvs., cu posibilitatea de a plăti la livrare sau online cu cardul.";
+    }
+    return "Sunt consultantul virtual Zento și vă ajut cu alegerea tehnicii din catalogul nostru. Dacă aveți întrebări despre smartphone-uri, laptopuri, căști sau ceasuri inteligente — vă ajut cu mare drag!";
   }
 
   // English responses
-  return "Welcome to Zento! We offer top-tier flagship tech from Apple, Samsung, Sony, ASUS, Lenovo, Garmin, and Bose with official warranty. How can I assist you with choosing the right device today?";
+  if (lastUserMsg.includes("address") || lastUserMsg.includes("store") || lastUserMsg.includes("location") || lastUserMsg.includes("where")) {
+    return "We operate exclusively as an online store with fast courier delivery to your door. We do not have a physical showroom, and all items can be purchased online with payment on delivery or via card.";
+  }
+  return "I am your Zento AI shopping assistant. While I might not have information on out-of-scope topics, I'd be glad to help you pick the best smartphone, laptop, tablet, headphones, or smartwatch from our catalog!";
 }
 
 /**
@@ -142,12 +174,15 @@ export async function processAiChat(
       const systemPrompt = `Ты — профессиональный, дружелюбный и экспертный AI-консультант интернет-магазина цифровой техники Zento.
 Твоя цель: помогать клиентам подбирать товары под их задачи и бюджет, сравнивать устройства, объяснять сложные технические характеристики простым языком.
 
-Правила:
+Правила поведения:
 1. Рекомендуй ТОЛЬКО товары, которые есть в каталоге Zento (список ниже).
 2. Цены указывай в MDL (молдавских леях).
 3. Отвечай на том языке, на котором пишет клиент (${locale === "ro" ? "румынский" : locale === "en" ? "английский" : "русский"}).
 4. Выделяй названия ключевых рекомендуемых моделей жирным шрифтом (например: **Apple iPhone 16 Pro Max**).
 5. Будь кратким, полезным и вежливым. Не пиши слишком длинных простыней текста.
+6. ЕСЛИ СПРАШИВАЮТ ПРО ФИЗИЧЕСКИЙ АДРЕС / ШОУРУМ / САМОВЫВОЗ: ответь вежливо и понятно: «У нас нет физического магазина или шоурума — мы работаем исключительно как онлайн-магазин с быстрой доставкой курьером прямо до вашей двери. Заказ можно оформить на сайте с оплатой при получении или картой онлайн.»
+7. ЕСЛИ СПРАШИВАЮТ ПРО ТОВАР, КОТОРОГО НЕТ В КАТАЛОГЕ: вежливо объясни, что магазин специализируется на флагманской цифровой технике (смартфоны, ноутбуки, планшеты, аудио, часы, аксессуары), и предложи подходящий аналог из нашего каталога.
+8. ЕСЛИ ВОПРОС НЕ ОТНОСИТСЯ К МАГАЗИНУ И ТЫ НЕ ЗНАЕШЬ ОТВЕТ: вежливо и спокойно объясни: «У меня нет информации по этому вопросу, так как я специализируюсь на консультации по каталогу техники Zento. Буду рад помочь вам с выбором гаджета или характеристиками!»
 
 КАТАЛОГ ТОВАРОВ ZENTO:
 ${catalogKnowledge}`;

@@ -27,6 +27,26 @@ describe("DeepSeek AI Assistant Subsystem", () => {
     expect(result.products.length).toBeGreaterThan(0);
   });
 
+  it("should politely explain online-only delivery when asked about store address", async () => {
+    const result = await processAiChat(
+      [{ role: "user", content: "По какому адресу вы находитесь?" }],
+      "ru"
+    );
+
+    expect(result.reply).toContain("онлайн-магазин");
+    expect(result.reply).toContain("достав");
+  });
+
+  it("should gracefully handle out-of-scope unknown questions", async () => {
+    const result = await processAiChat(
+      [{ role: "user", content: "Какая завтра погода на Марсе?" }],
+      "ru"
+    );
+
+    expect(result.reply.length).toBeGreaterThan(20);
+    expect(result.reply).toContain("Zento");
+  });
+
   it("should extract relevant products from text and query", async () => {
     const products = await extractRelevantProducts(
       "Рекомендую отличные часы Garmin Fenix 8",
