@@ -8,11 +8,13 @@ dotenv.config({ path: ".env.local" });
 
 const connectionString = process.env.DATABASE_URL || "postgres://postgres:postgres@localhost:5432/zento";
 
-// Disable prefetch for serverless environments and enforce SSL on Supabase
+// Disable prefetch for serverless environments, enforce SSL on Supabase, and set 3s connect timeout
 const client = postgres(connectionString, {
   prepare: false,
   ssl: connectionString.includes("supabase.com") ? "require" : undefined,
   max: 5,
+  connect_timeout: 3, // 3-second timeout to prevent request hanging and enable instant graceful fallback
+  idle_timeout: 10,
 });
 export const db = drizzle(client, { schema });
 
