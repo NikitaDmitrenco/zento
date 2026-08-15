@@ -66,7 +66,7 @@ export function RegisterForm({ locale, dict }: { locale: Locale; dict: Dictionar
         label="Email"
         type="email"
         required
-        placeholder="ivan@zento.tech"
+        placeholder="ivanpetrov@example.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />

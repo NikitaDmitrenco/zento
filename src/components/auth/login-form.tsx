@@ -63,7 +63,7 @@ export function LoginForm({ locale, dict }: { locale: Locale; dict: Dictionary }
         label="Email"
         type="email"
         required
-        placeholder="admin@zento.tech"
+        placeholder="ivanpetrov@example.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
