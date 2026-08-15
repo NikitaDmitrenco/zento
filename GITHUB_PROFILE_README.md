@@ -1,112 +1,99 @@
 <div align="center">
 
-# ⚡ Nikita Dmitrenco
+# 👋 Hi, I'm Nikita
 
-### 👨‍💻 Full-Stack Software Engineer
+### 🚀 Full-Stack AI-Augmented Engineer & Web Architect
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=38BDF8&center=true&vCenter=true&width=500&lines=Full-Stack+Software+Engineer;Next.js+16+%26+React+19+Architect;TypeScript+%26+PostgreSQL+Specialist;Building+Scalable+Web+Platforms)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=38BDF8&center=true&vCenter=true&width=600&lines=Hi%2C+I'm+Nikita+%E2%80%94+Full-Stack+Engineer;Building+High-Speed+Web+Platforms;Next.js+16+%2B+React+19+%2B+TypeScript;PostgreSQL+%2B+AI+Integrations+%2B+Security;Turning+Ideas+into+Scalable+Products)](https://git.io/typing-svg)
 
 <br/>
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NikitaDmitrenco)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/)
-[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:nikita@dmitrenco.dev)
+[![Live Projects](https://img.shields.io/badge/Live_Demo-zento--blue.vercel.app-blue?style=for-the-badge&logo=googlechrome)](https://zento-blue.vercel.app)
+[![GitHub Profile](https://img.shields.io/badge/GitHub-NikitaDmitrenco-181717?style=for-the-badge&logo=github)](https://github.com/NikitaDmitrenco)
+[![Tech Stack](https://img.shields.io/badge/Stack-Next.js_16_|_TS_|_Postgres_|_AI-61DAFB?style=for-the-badge)](https://github.com/NikitaDmitrenco/zento)
 
 </div>
 
 ---
 
-### 🌟 About Me
+## 🎯 Какой результат я приношу (Business Impact & Value)
 
-```typescript
-const engineer: DeveloperProfile = {
-  name: "Nikita Dmitrenco",
-  role: "Full-Stack Software Engineer",
-  coreFocus: ["Modular Monolith Architecture", "Type-Safe Web Applications", "Database Engineering"],
-  currentStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "PostgreSQL", "Drizzle ORM"],
-  principles: [
-    "Clean code & strict separation of concerns",
-    "Defensive server-side validation & zero IEEE-754 financial bugs",
-    "High-speed SSR & sub-second page performance"
-  ]
-};
-```
+Я разрабатываю **высокоскоростные, масштабируемые и финансово защищенные веб-приложения «под ключ»**, используя искусственный интеллект как мощный инженерный рычаг для сокращения сроков разработки в разы без потери качества:
+
+* ⚡ **Субсекундная скорость и высокий конверт:** Проектирую интерфейсы на Server-Side Rendering (Next.js 16 App Router & Turbopack) с мгновенной загрузкой каталогов и страниц.
+* 🛡️ **Финансовая и серверная безопасность:** Строю отказоустойчивые системы с целочисленной валютной математикой (minor units), защитой от подмены цен, JWT-авторизацией и Edge Middleware.
+* 🤖 **Практический AI (LLM / RAG):** Внедряю умных AI-консультантов и чат-ботов, подключенных к базам данных компаний (DeepSeek / OpenAI / Gemini), которые автоматизируют продажи и поддержку клиентов 24/7.
+* 🧪 **Инженерная надежность:** Покрываю ключевую бизнес-логику автотестами (Vitest / Playwright) и использую 100% строгую типизацию TypeScript.
 
 ---
 
-### 🛠️ Tech Stack & Tooling
+## 🛠️ Технологический стек и навыки
 
 <div align="center">
 
 <a href="https://skillicons.dev">
-  <img src="https://skillicons.dev/icons?i=ts,js,react,nextjs,tailwind,nodejs,postgres,supabase,git,github,vitest,playwright,vscode,postman,docker" />
+  <img src="https://skillicons.dev/icons?i=ts,js,react,nextjs,tailwind,nodejs,postgres,supabase,git,github,vitest,playwright,vscode,docker,vercel" />
 </a>
 
 <br/><br/>
 
-| Category | Technologies & Tools |
+| Категория | Стек и инструменты |
 | :--- | :--- |
-| **Frontend** | `React 19` • `Next.js 16 (App Router)` • `TypeScript` • `Tailwind CSS v4` • `HTML5 / CSS3` |
-| **Backend & APIs** | `Node.js` • `Next.js Route Handlers` • `Server Actions` • `REST APIs` • `Zod v4` |
-| **Databases & ORM** | `PostgreSQL` • `Supabase` • `Drizzle ORM` • `Drizzle Kit` • `SQL Migrations & Indexing` |
-| **Security & Auth** | `JWT (jose)` • `bcryptjs` • `Edge Middleware RBAC` • `httpOnly Cookie Sessions` |
-| **Testing & DevOps** | `Vitest` • `Playwright E2E` • `ESLint` • `Git / GitHub` • `Vercel` |
+| **Frontend & UI** | `React 19` • `Next.js 16 (App Router, SSR/SSG)` • `TypeScript` • `Tailwind CSS v4` • `Responsive UX` |
+| **Backend & Architecture** | `Node.js` • `REST APIs` • `Route Handlers` • `Modular Monolith` • `Zod Validation` |
+| **Базы данных & ORM** | `PostgreSQL` • `Supabase Cloud` • `Drizzle ORM` • `Schema Migrations & Seeding` |
+| **AI & Интеграции** | `DeepSeek API` • `LLM Integration` • `RAG / Catalog Knowledge` • `Streaming & Function Calling` |
+| **Безопасность & Auth** | `Stateless JWT (jose)` • `bcryptjs` • `httpOnly Cookie Sessions` • `Edge Middleware RBAC` |
+| **Тестирование & DevOps** | `Vitest (34+ Tests)` • `Playwright E2E` • `ESLint` • `Vercel Cloud CI/CD` • `Git / GitHub` |
 
 </div>
 
 ---
 
-### 🚀 Featured Project: **Zento E-Commerce**
+## 🌟 Демонстрационный проект: [Zento — Интернет-магазин техники с AI](https://github.com/NikitaDmitrenco/zento)
 
 <div align="center">
 
-### [🛍️ Zento — Modern Multilingual Tech Store](https://github.com/NikitaDmitrenco/zento)
-*A high-performance digital electronics e-commerce platform built as a modular monolith.*
-
-[![Next.js 16](https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![React 19](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind v4](https://img.shields.io/badge/Tailwind-v4.0-38BDF8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
-[![Drizzle ORM](https://img.shields.io/badge/Drizzle-0.45-C5F74F?style=flat-square&logo=drizzle)](https://orm.drizzle.team/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supabase-3ECF8E?style=flat-square&logo=postgresql)](https://supabase.com/)
-[![Vitest](https://img.shields.io/badge/Vitest-29_Passed-6E9F18?style=flat-square&logo=vitest)](https://vitest.dev/)
+[![Live Storefront](https://img.shields.io/badge/Live_Storefront-zento--blue.vercel.app-blue?style=for-the-badge&logo=vercel)](https://zento-blue.vercel.app)
+[![Admin Panel](https://img.shields.io/badge/Admin_Panel-Protected_RBAC-black?style=for-the-badge&logo=auth0)](https://zento-blue.vercel.app/admin)
+[![GitHub Repo](https://img.shields.io/badge/GitHub_Repo-NikitaDmitrenco/zento-181717?style=for-the-badge&logo=github)](https://github.com/NikitaDmitrenco/zento)
 
 </div>
 
-- 🌐 **Tri-Lingual Localization**: Route-based i18n (`/ru`, `/en`, `/ro`) with zero runtime overhead and typed dictionaries.
-- 🛡️ **Financial Integrity**: Minor-unit integer currency calculations (`2799900` MDL) eliminating floating-point rounding errors.
-- 🔐 **Edge-Guarded RBAC**: Strict Next.js Edge Middleware protecting `/admin` backoffice via signed JWT verification.
-- 📦 **Server-Authoritative Checkout**: Live stock and price re-evaluation at order time with immutable snapshot records.
-- 🧪 **Complete Test Suite**: 29 automated Vitest tests across 10 suites + Playwright E2E scenarios.
+### 🛍️ О проекте Zento:
+**Zento** — это полнофункциональная, коммерческая e-commerce платформа для продажи электроники мировых брендов (Apple, Samsung, Xiaomi, Sony, Garmin и др.), созданная как модульный монолит на самом передовом стеке 2024–2026 годов.
+
+* 🌐 **Истинная мультиязычность (i18n):** Роутинг на 3 языка (`/ru`, `/en`, `/ro`) с нулевым оверхедом и типизированными словарями.
+* 🤖 **Встроенный AI-ассистент DeepSeek:** Консультант в реальном времени подбирает гаджеты под бюджет, знает всю базу товаров и выдает интерактивные карточки товаров прямо в чате.
+* 💳 **Умный чекаут и онлайн-оплата:** Поддержка оплаты курьеру и банковскими картами с валидацией, генерацией масок и симуляцией 3D-Secure 2.0.
+* ⚙️ **Защищенная панель администратора (`/admin`):** Мониторинг заказов, создание товаров с матрицами спецификаций и учет пользователей, защищенный Next.js Edge Middleware.
+* 🧪 **34 автоматизированных теста (Vitest):** 100% стабильность работы корзины, базы данных, заказов, авторизации и AI-модуля.
+
+> 🔗 **Посмотреть проект вживую:** [https://zento-blue.vercel.app](https://zento-blue.vercel.app)  
+> 🔑 **Тестовый вход администратора:** `admin@zento.tech` / `admin123`
 
 ---
 
-### 📈 GitHub Stats & Activity
+## 📈 Активность на GitHub
 
 <div align="center">
 
 <img src="https://github-readme-stats.vercel.app/api?username=NikitaDmitrenco&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="150" alt="GitHub Stats" />
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NikitaDmitrenco&layout=compact&theme=tokyonight&hide_border=true" height="150" alt="Top Languages" />
 
-<br/>
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=NikitaDmitrenco&theme=tokyonight&hide_border=true" height="150" alt="GitHub Streak" />
-
 </div>
 
 ---
 
 <div align="center">
 
-### 🤝 Let's Connect
+### 🤝 Открыт к сотрудничеству и интересным проектам!
 
-[![Telegram](https://img.shields.io/badge/Telegram-Chat_with_me-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/)
-[![Email](https://img.shields.io/badge/Gmail-Send_Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:nikita@dmitrenco.dev)
+[![GitHub](https://img.shields.io/badge/GitHub-NikitaDmitrenco-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NikitaDmitrenco)
+[![Email](https://img.shields.io/badge/Email-Contact_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:nikita@zento.tech)
 
 <br/>
 
-<sub><i>Designed with ❤️ by Nikita Dmitrenco</i></sub>
+<sub><i>© 2026 Nikita Dmitrenco • Built with passion for high performance & clean code</i></sub>
 
 </div>
