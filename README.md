@@ -2,6 +2,8 @@
 
 > A high-performance, multilingual digital electronics e-commerce platform built with Next.js 16 App Router, React 19, TypeScript, Tailwind CSS v4, Drizzle ORM, and PostgreSQL.
 
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed_on-Vercel-black?logo=vercel)](https://zento-blue.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-zento--blue.vercel.app-blue?logo=googlechrome)](https://zento-blue.vercel.app)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.3-black?logo=next.js)](https://nextjs.org/)
 [![React 19](https://img.shields.io/badge/React-19.2-61DAFB?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?logo=typescript)](https://www.typescriptlang.org/)
@@ -11,7 +13,22 @@
 [![Vitest](https://img.shields.io/badge/Vitest-29_Passed-6E9F18?logo=vitest)](https://vitest.dev/)
 [![Playwright](https://img.shields.io/badge/Playwright-E2E_Ready-45BA4B?logo=playwright)](https://playwright.dev/)
 
+> 🌐 **Live Production Deployment**: [https://zento-blue.vercel.app](https://zento-blue.vercel.app)  
+> You can visit, test the catalog, interactive cart, multi-language switching (`RU` / `EN` / `RO`), card payment flow, and protected admin panel in real-time.
+
 Zento is an end-to-end digital technology e-commerce application engineered as a modular monolith. It provides a localized customer storefront across three languages (RU, EN, RO), server-evaluated cart and checkout pipelines, secure role-based administrative backoffice tooling, and integer-precision financial accounting.
+
+---
+
+## 🌐 Live Production Demo
+
+The project is live and deployed on **Vercel** with full database integration on **Supabase Cloud**:
+
+- 🔗 **Production URL**: [https://zento-blue.vercel.app](https://zento-blue.vercel.app)
+- 🛒 **Storefront (Russian)**: [https://zento-blue.vercel.app/ru](https://zento-blue.vercel.app/ru)
+- 🛒 **Storefront (English)**: [https://zento-blue.vercel.app/en](https://zento-blue.vercel.app/en)
+- 🛒 **Storefront (Romanian)**: [https://zento-blue.vercel.app/ro](https://zento-blue.vercel.app/ro)
+- ⚙️ **Admin Backoffice**: [https://zento-blue.vercel.app/admin](https://zento-blue.vercel.app/admin) (Log in with `admin@zento.tech` / `admin123`)
 
 ---
 
