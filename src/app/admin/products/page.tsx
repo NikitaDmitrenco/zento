@@ -4,8 +4,8 @@ import { db } from "../../../db";
 import { products, categories, brands } from "../../../db/schema";
 import { demoProducts } from "../../../db/data/demo-data";
 import { Button } from "../../../components/ui/button";
-import { Card } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
+import { SectionHead } from "../../../components/ui/section-head";
 
 export default async function AdminProductsPage() {
   let productList: {
@@ -64,69 +64,60 @@ export default async function AdminProductsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-            Управление товарами ({productList.length})
-          </h1>
-          <p className="text-xs text-slate-500 mt-1">
-            Просмотр, редактирование цен и остатков цифровой техники
-          </p>
-        </div>
+    <div className="space-y-10">
 
-        <Link href="/admin/products/new">
-          <Button size="sm" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold">
-            + Создать товар
-          </Button>
-        </Link>
-      </div>
+      <SectionHead
+        as="h1"
+        index="—"
+        title={`Управление товарами (${productList.length})`}
+        subtitle="Просмотр, редактирование цен и остатков цифровой техники"
+        aside={
+          <Link href="/admin/products/new">
+            <Button size="sm">+ Создать товар</Button>
+          </Link>
+        }
+      />
 
-      <Card className="overflow-hidden border border-slate-200">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-700">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase font-semibold">
-              <tr>
-                <th className="px-4 py-3">Название</th>
-                <th className="px-4 py-3">Категория</th>
-                <th className="px-4 py-3">Бренд</th>
-                <th className="px-4 py-3">Цена</th>
-                <th className="px-4 py-3">Склад</th>
-                <th className="px-4 py-3">Статус</th>
-                <th className="px-4 py-3 text-right">Действия</th>
+      <div className="bg-surface border border-line rounded-md overflow-x-auto">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Название</th>
+              <th>Категория</th>
+              <th>Бренд</th>
+              <th>Цена</th>
+              <th>Склад</th>
+              <th>Статус</th>
+              <th className="text-right">Действия</th>
+            </tr>
+          </thead>
+          <tbody>
+            {productList.map((prod) => (
+              <tr key={prod.id}>
+                <td className="font-medium text-ink">{prod.name}</td>
+                <td className="text-ink-2">{prod.categorySlug}</td>
+                <td className="text-ink-2">{prod.brandSlug}</td>
+                <td className="data font-medium text-ink whitespace-nowrap">
+                  {(prod.price / 100).toLocaleString("ru")} MDL
+                </td>
+                <td className="data text-ink-2 whitespace-nowrap">{prod.stock} шт.</td>
+                <td>
+                  {prod.isActive ? (
+                    <Badge variant="success">Активен</Badge>
+                  ) : (
+                    <Badge variant="danger">Неактивен</Badge>
+                  )}
+                </td>
+                <td className="text-right py-2 align-middle">
+                  <Link href={`/ru/product/${prod.slug}`} target="_blank">
+                    <Button size="sm" variant="ghost">Просмотр</Button>
+                  </Link>
+                </td>
               </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100 bg-white">
-              {productList.map((prod) => (
-                <tr key={prod.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-4 py-3 font-bold text-slate-900">{prod.name}</td>
-                  <td className="px-4 py-3">{prod.categorySlug}</td>
-                  <td className="px-4 py-3">{prod.brandSlug}</td>
-                  <td className="px-4 py-3 font-semibold text-slate-900">
-                    {(prod.price / 100).toLocaleString("ru")} MDL
-                  </td>
-                  <td className="px-4 py-3 font-mono">{prod.stock} шт.</td>
-                  <td className="px-4 py-3">
-                    {prod.isActive ? (
-                      <Badge variant="success">Активен</Badge>
-                    ) : (
-                      <Badge variant="danger">Неактивен</Badge>
-                    )}
-                  </td>
-                  <td className="px-4 py-3 text-right space-x-2">
-                    <Link href={`/ru/product/${prod.slug}`} target="_blank">
-                      <Button size="sm" variant="ghost" className="text-[11px] py-1 px-2">
-                        👁 Просмотр
-                      </Button>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Card>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
     </div>
   );

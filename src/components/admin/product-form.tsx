@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
+import { Alert } from "../ui/alert";
+import { SectionHead } from "../ui/section-head";
 
 export function ProductForm() {
   const router = useRouter();
@@ -88,152 +90,155 @@ export function ProductForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-            ➕ Добавление нового товара
-          </h1>
-          <p className="text-xs text-slate-500 mt-1">
-            Заполните данные карточки товара для публикации в каталоге
-          </p>
-        </div>
+    <form onSubmit={handleSubmit} className="space-y-10 max-w-3xl">
+      <SectionHead
+        as="h1"
+        index="—"
+        title="Добавление нового товара"
+        subtitle="Заполните данные карточки товара для публикации в каталоге"
+        aside={
+          <Link href="/admin/products">
+            <Button type="button" variant="outline" size="sm">
+              ← К списку товаров
+            </Button>
+          </Link>
+        }
+      />
 
-        <Link href="/admin/products">
-          <Button variant="outline" size="sm">
-            ← К списку товаров
-          </Button>
-        </Link>
-      </div>
+      {errorMsg && <Alert tone="error">{errorMsg}</Alert>}
 
-      {errorMsg && (
-        <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-xs font-medium text-red-700">
-          {errorMsg}
-        </div>
-      )}
+      {successMsg && <Alert tone="success">{successMsg}</Alert>}
 
-      {successMsg && (
-        <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-medium text-emerald-700">
-          {successMsg}
-        </div>
-      )}
+      <Card tone="surface" className="p-6 sm:p-8 space-y-6">
 
-      <Card className="p-6 space-y-6">
-        
-        {/* Basic Info */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Input
-            label="Название товара *"
-            type="text"
-            required
-            placeholder="Zento Nova Pro 5G"
-            value={name}
-            onChange={handleNameChange}
-          />
+        {/* 01 — Basic Info */}
+        <div className="space-y-4">
+          <span className="label block">01</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Input
+              label="Название товара *"
+              type="text"
+              required
+              placeholder="Zento Nova Pro 5G"
+              value={name}
+              onChange={handleNameChange}
+            />
 
-          <Input
-            label="Служебная ссылка (Slug) *"
-            type="text"
-            required
-            placeholder="zento-nova-pro-5g"
-            value={slug}
-            onChange={(e) => setSlug(e.target.value)}
-          />
-        </div>
-
-        {/* Brand & Category Selectors */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          
-          {/* Brand Selector (What appears ABOVE the product title) */}
-          <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-slate-700">
-              Бренд (над названием) *
-            </label>
-            <select
-              value={brandSlug}
-              onChange={(e) => setBrandSlug(e.target.value)}
-              className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all text-slate-900"
-            >
-              <option value="zentotech">ZentoTech</option>
-              <option value="aura-audio">Aura Audio</option>
-              <option value="nova-electronics">Nova Electronics</option>
-              <option value="pulse-lab">Pulse Lab</option>
-            </select>
+            <Input
+              label="Служебная ссылка (Slug) *"
+              type="text"
+              required
+              placeholder="zento-nova-pro-5g"
+              value={slug}
+              onChange={(e) => setSlug(e.target.value)}
+            />
           </div>
+        </div>
 
-          {/* Category Selector */}
-          <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-slate-700">
-              Категория товара *
-            </label>
-            <select
-              value={categorySlug}
-              onChange={(e) => setCategorySlug(e.target.value)}
-              className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all text-slate-900"
-            >
-              <option value="smartphones">Смартфоны (Smartphones)</option>
-              <option value="laptops">Ноутбуки (Laptops)</option>
-              <option value="tablets">Планшеты (Tablets)</option>
-              <option value="headphones">Наушники (Headphones)</option>
-              <option value="smart-watches">Смарт-часы (Smart Watches)</option>
-              <option value="accessories">Аксессуары (Accessories)</option>
-            </select>
+        {/* 02 — Brand & Category Selectors */}
+        <div className="border-t border-line pt-6 space-y-4">
+          <span className="label block">02</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            {/* Brand Selector (What appears ABOVE the product title) */}
+            <div className="w-full">
+              <label htmlFor="brandSlug" className="label block mb-2 text-ink-2">
+                Бренд (над названием) *
+              </label>
+              <select
+                id="brandSlug"
+                value={brandSlug}
+                onChange={(e) => setBrandSlug(e.target.value)}
+                className="field"
+              >
+                <option value="zentotech">ZentoTech</option>
+                <option value="aura-audio">Aura Audio</option>
+                <option value="nova-electronics">Nova Electronics</option>
+                <option value="pulse-lab">Pulse Lab</option>
+              </select>
+            </div>
+
+            {/* Category Selector */}
+            <div className="w-full">
+              <label htmlFor="categorySlug" className="label block mb-2 text-ink-2">
+                Категория товара *
+              </label>
+              <select
+                id="categorySlug"
+                value={categorySlug}
+                onChange={(e) => setCategorySlug(e.target.value)}
+                className="field"
+              >
+                <option value="smartphones">Смартфоны (Smartphones)</option>
+                <option value="laptops">Ноутбуки (Laptops)</option>
+                <option value="tablets">Планшеты (Tablets)</option>
+                <option value="headphones">Наушники (Headphones)</option>
+                <option value="smart-watches">Смарт-часы (Smart Watches)</option>
+                <option value="accessories">Аксессуары (Accessories)</option>
+              </select>
+            </div>
+
           </div>
-
         </div>
 
-        {/* Price & Stock */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Input
-            label="Цена в MDL *"
-            type="number"
-            required
-            min="1"
-            placeholder="899"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
+        {/* 03 — Price & Stock */}
+        <div className="border-t border-line pt-6 space-y-4">
+          <span className="label block">03</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Input
+              label="Цена в MDL *"
+              type="number"
+              required
+              min="1"
+              placeholder="899"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
 
-          <Input
-            label="Остаток на складе (шт) *"
-            type="number"
-            required
-            min="0"
-            placeholder="25"
-            value={stock}
-            onChange={(e) => setStock(e.target.value)}
-          />
+            <Input
+              label="Остаток на складе (шт) *"
+              type="number"
+              required
+              min="0"
+              placeholder="25"
+              value={stock}
+              onChange={(e) => setStock(e.target.value)}
+            />
+          </div>
         </div>
 
-        {/* Description */}
-        <div className="space-y-1.5">
-          <label className="block text-xs font-semibold text-slate-700">
-            Описание товара *
-          </label>
-          <textarea
-            required
-            rows={4}
-            placeholder="Флагманский смартфон с 6.7-дюймовым OLED экраном 120 Гц..."
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-3 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all text-slate-900"
-          />
+        {/* 04 — Description */}
+        <div className="border-t border-line pt-6 space-y-4">
+          <span className="label block">04</span>
+          <div className="w-full">
+            <label htmlFor="description" className="label block mb-2 text-ink-2">
+              Описание товара *
+            </label>
+            <textarea
+              id="description"
+              required
+              rows={4}
+              placeholder="Флагманский смартфон с 6.7-дюймовым OLED экраном 120 Гц..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="field"
+            />
+          </div>
         </div>
 
-        {/* Image Upload & URL */}
-        <div className="space-y-3 pt-3 border-t border-slate-100">
-          <label className="block text-xs font-semibold text-slate-700">
-            Фотография товара
-          </label>
-          
+        {/* 05 — Image Upload & URL */}
+        <div className="border-t border-line pt-6 space-y-4">
+          <span className="label block">05</span>
+          <span className="label block text-ink-2">Фотография товара</span>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
             <div className="space-y-2">
-              <span className="text-[11px] text-slate-500 block">Загрузить фото с компьютера:</span>
+              <span className="text-[12px] text-ink-3 block">Загрузить фото с компьютера:</span>
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageFileChange}
-                className="block w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+                className="block w-full text-small text-ink-3 cursor-pointer file:mr-3 file:h-9 file:px-3 file:rounded-sm file:border file:border-line file:bg-surface file:text-[13px] file:font-medium file:text-ink file:cursor-pointer file:transition-colors hover:file:border-ink"
               />
             </div>
 
@@ -248,47 +253,48 @@ export function ProductForm() {
 
           {/* Live Thumbnail Preview */}
           {imageUrl && (
-            <div className="pt-2 flex items-center gap-3">
-              <span className="text-xs font-medium text-slate-500">Предпросмотр фото:</span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={imageUrl}
-                alt="Product preview"
-                className="w-16 h-16 object-contain rounded-lg border border-slate-200 bg-white p-1"
-              />
+            <div className="pt-2 flex items-center gap-4">
+              <span className="text-[12px] text-ink-3">Предпросмотр фото:</span>
+              <div className="plate w-20 h-20 rounded-sm shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={imageUrl}
+                  alt="Product preview"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           )}
         </div>
 
-        {/* Options */}
-        <div className="pt-3 border-t border-slate-100 flex items-center gap-2">
-          <input
-            type="checkbox"
-            id="isFeatured"
-            checked={isFeatured}
-            onChange={(e) => setIsFeatured(e.target.checked)}
-            className="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer"
-          />
-          <label htmlFor="isFeatured" className="text-xs font-medium text-slate-700 cursor-pointer">
-            Выводить товар в блоке «Рекомендуемые» на главной странице
-          </label>
+        {/* 06 — Options */}
+        <div className="border-t border-line pt-6 space-y-4">
+          <span className="label block">06</span>
+          <div className="flex items-center gap-2.5">
+            <input
+              type="checkbox"
+              id="isFeatured"
+              checked={isFeatured}
+              onChange={(e) => setIsFeatured(e.target.checked)}
+              className="w-4 h-4 accent-signal cursor-pointer"
+            />
+            <label htmlFor="isFeatured" className="text-small text-ink-2 cursor-pointer">
+              Выводить товар в блоке «Рекомендуемые» на главной странице
+            </label>
+          </div>
         </div>
 
         {/* Form Actions */}
-        <div className="pt-4 flex justify-end gap-3">
+        <div className="border-t border-line pt-6 flex justify-end gap-3">
           <Link href="/admin/products">
             <Button type="button" variant="outline" size="md">
               Отмена
             </Button>
           </Link>
 
-          <Button
-            type="submit"
-            isLoading={loading}
-            size="md"
-            className="bg-blue-600 hover:bg-blue-500 text-white font-semibold"
-          >
-            Сохранить товар в каталог →
+          <Button type="submit" isLoading={loading} size="md">
+            Сохранить товар в каталог
+            <span className="arrow" aria-hidden="true">→</span>
           </Button>
         </div>
 

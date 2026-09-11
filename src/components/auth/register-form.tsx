@@ -7,6 +7,7 @@ import { Locale } from "../../i18n/config";
 import { Dictionary } from "../../i18n/get-dictionary";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { Alert } from "../ui/alert";
 
 export function RegisterForm({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const router = useRouter();
@@ -46,12 +47,8 @@ export function RegisterForm({ locale, dict }: { locale: Locale; dict: Dictionar
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {errorMsg && (
-        <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-xs font-medium">
-          {errorMsg}
-        </div>
-      )}
+    <form onSubmit={handleSubmit} className="space-y-5">
+      {errorMsg && <Alert tone="error">{errorMsg}</Alert>}
 
       <Input
         label="Имя"
@@ -80,18 +77,14 @@ export function RegisterForm({ locale, dict }: { locale: Locale; dict: Dictionar
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <Button
-        type="submit"
-        isLoading={loading}
-        size="lg"
-        className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 text-sm mt-2"
-      >
-        Зарегистрироваться →
+      <Button type="submit" isLoading={loading} size="lg" className="w-full mt-2">
+        Зарегистрироваться
+        <span className="arrow" aria-hidden="true">→</span>
       </Button>
 
-      <div className="text-center pt-2 text-xs text-slate-500">
+      <div className="text-center pt-2 text-small text-ink-2">
         Уже есть аккаунт?{" "}
-        <Link href={`/${locale}/auth/login`} className="font-semibold text-blue-600 hover:underline">
+        <Link href={`/${locale}/auth/login`} className="link text-ink">
           Войти
         </Link>
       </div>

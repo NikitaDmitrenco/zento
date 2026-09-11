@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isValidLocale, Locale } from "../../i18n/config";
 import { getDictionary } from "../../i18n/get-dictionary";
 import { getSession } from "../../lib/auth/session";
+import { fontClassName } from "../../lib/fonts";
 import { Header } from "../../components/layout/header";
 import { Footer } from "../../components/layout/footer";
 import { AiAssistantWidget } from "../../components/ai/ai-assistant-widget";
@@ -38,8 +39,8 @@ export default async function LocaleLayout({
   const session = await getSession();
 
   return (
-    <html lang={locale} className="h-full">
-      <body className="flex flex-col min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
+    <html lang={locale} className={`h-full ${fontClassName}`}>
+      <body className="flex flex-col min-h-screen bg-paper text-ink font-sans">
         <Header locale={locale} dict={dict} user={session} />
         <div className="flex-grow">{children}</div>
         <Footer locale={locale} dict={dict} />

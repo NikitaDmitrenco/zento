@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isValidLocale, Locale } from "../../../i18n/config";
 import { getDictionary } from "../../../i18n/get-dictionary";
-import { Card } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -16,6 +14,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+const sections = [
+  { id: "s1", index: "01", title: "1. Общие положения" },
+  { id: "s2", index: "02", title: "2. Цены и Оплата в Молдавских Леях (MDL)" },
+  { id: "s3", index: "03", title: "3. Право на возврат товара в течение 14 дней" },
+  { id: "s4", index: "04", title: "4. Гарантийные обязательства" },
+  { id: "s5", index: "05", title: "5. Доставка по Республике Молдова" },
+];
+
+function SectionTitle({ index, title }: { index: string; title: string }) {
+  return (
+    <div className="flex items-baseline gap-4">
+      <span className="label pt-1 min-w-8">{index}</span>
+      <h2 className="text-h3 text-ink">{title}</h2>
+    </div>
+  );
+}
+
 export default async function TermsPage({
   params,
 }: {
@@ -27,89 +42,102 @@ export default async function TermsPage({
   const dict = await getDictionary(locale as Locale);
 
   return (
-    <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
-      
+    <main className="container-x pt-10 sm:pt-14 pb-8 space-y-10">
       {/* Header */}
-      <div className="border-b border-slate-200 pb-6 space-y-3">
-        <div className="flex items-center gap-2">
-          <Badge variant="success">Закон РМ № 105/2003 о защите прав потребителей</Badge>
-          <span className="text-xs text-slate-400 font-mono">Версия: 2026 г.</span>
+      <header className="border-b border-line-strong pb-8 space-y-4">
+        <div className="label flex flex-wrap items-center gap-3">
+          <Badge variant="outline">Закон РМ № 105/2003 о защите прав потребителей</Badge>
+          <span className="data">Версия: 2026 г.</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-          Условия обслуживания
-        </h1>
-        <p className="text-sm text-slate-600 leading-relaxed">
+        <h1 className="text-h1 text-ink">Условия обслуживания</h1>
+        <p className="text-body text-ink-2 max-w-prose">
           Правила покупки, гарантийные обязательства, условия доставки и возврата товаров цифровой техники Zento в Республике Молдова.
         </p>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-10 items-start">
+        {/* Table of contents */}
+        <nav className="lg:col-span-3 lg:sticky lg:top-24">
+          <ol className="border-t border-line divide-y divide-line">
+            {sections.map((s) => (
+              <li key={s.id}>
+                <a href={`#${s.id}`} className="group flex items-baseline gap-3 py-2.5 text-small text-ink-2 hover:text-ink transition-colors">
+                  <span className="label w-6 shrink-0">{s.index}</span>
+                  <span>{s.title}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        {/* Document */}
+        <div className="lg:col-span-9 space-y-12">
+          {/* Section 1 */}
+          <section id="s1" className="border-t border-line pt-8 space-y-5 scroll-mt-24">
+            <SectionTitle index={sections[0].index} title={sections[0].title} />
+            <div className="text-body text-ink-2 max-w-prose space-y-4">
+              <p>
+                Настоящее Пользовательское соглашение регулирует порядок взаимоотношений между покупателями и интернет-магазином <strong className="text-ink font-medium">Zento Tech SRL</strong> на территории Республики Молдова в соответствии со следующими актами:
+              </p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li><strong className="text-ink font-medium">Закон РМ № 105 от 13.03.2003 г.</strong> «О защите прав потребителей» (Legea privind protecţia consumatorilor);</li>
+                <li><strong className="text-ink font-medium">Закон РМ № 284 от 22.07.2004 г.</strong> «Об электронной коммерции»;</li>
+                <li>Гражданский кодекс Республики Молдова № 1107/2002.</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Section 2 */}
+          <section id="s2" className="border-t border-line pt-8 space-y-5 scroll-mt-24">
+            <SectionTitle index={sections[1].index} title={sections[1].title} />
+            <div className="text-body text-ink-2 max-w-prose space-y-4">
+              <p>
+                Все цены на товары на сайте Zento указаны в молдавских леях (MDL) с учётом НДС. Оплата производится наличными или банковской картой при получении заказа.
+              </p>
+            </div>
+            <div className="rule-grid grid-cols-1 max-w-prose">
+              <div className="p-4 text-small text-ink-2">
+                Официальный чек выдается курьером в момент передачи товара клиента.
+              </div>
+            </div>
+          </section>
+
+          {/* Section 3 */}
+          <section id="s3" className="border-t border-line pt-8 space-y-5 scroll-mt-24">
+            <SectionTitle index={sections[2].index} title={sections[2].title} />
+            <div className="text-body text-ink-2 max-w-prose space-y-4">
+              <p>
+                В соответствии со ст. 19 Закона РМ № 105/2003, покупатель имеет право вернуть или обменять качественную цифровую технику надлежащего качества в течение <strong className="text-ink font-medium">14 календарных дней</strong> со дня покупки при соблюдении следующих условий:
+              </p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Сохранён первоначальный товарный вид, заводские пломбы и оригинальная упаковка;</li>
+                <li>Товар не был в активной эксплуатации и не содержат следов установки/активации;</li>
+                <li>Имеется в наличии кассовый чек или документ, подтверждающий факт покупки.</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Section 4 */}
+          <section id="s4" className="border-t border-line pt-8 space-y-5 scroll-mt-24">
+            <SectionTitle index={sections[3].index} title={sections[3].title} />
+            <div className="text-body text-ink-2 max-w-prose space-y-4">
+              <p>
+                На всю сложную цифровую технику Zento предоставляется официальная заводская гарантия сроком от 12 до 24 месяцев. В случае возникновения гарантийного случая клиент имеет право на бесплатный ремонт в авторизованных сервисных центрах Кишинева или замену товара.
+              </p>
+            </div>
+          </section>
+
+          {/* Section 5 */}
+          <section id="s5" className="border-t border-line pt-8 space-y-5 scroll-mt-24">
+            <SectionTitle index={sections[4].index} title={sections[4].title} />
+            <div className="text-body text-ink-2 max-w-prose space-y-4">
+              <p>
+                Доставка курьером по г. Кишинев и районам Республики Молдова осуществляется в течение 24–48 часов после подтверждения заказа. При сумме заказа от 1000 MDL доставка осуществляется бесплатно.
+              </p>
+            </div>
+          </section>
+        </div>
       </div>
-
-      <div className="space-y-8 text-sm text-slate-700 leading-relaxed">
-        
-        {/* Section 1 */}
-        <section className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <span>📜</span> 1. Общие положения
-          </h2>
-          <p>
-            Настоящее Пользовательское соглашение регулирует порядок взаимоотношений между покупателями и интернет-магазином <strong>Zento Tech SRL</strong> на территории Республики Молдова в соответствии со следующими актами:
-          </p>
-          <ul className="list-disc list-inside space-y-1 text-slate-600 pl-2">
-            <li><strong>Закон РМ № 105 от 13.03.2003 г.</strong> «О защите прав потребителей» (Legea privind protecţia consumatorilor);</li>
-            <li><strong>Закон РМ № 284 от 22.07.2004 г.</strong> «Об электронной коммерции»;</li>
-            <li>Гражданский кодекс Республики Молдова № 1107/2002.</li>
-          </ul>
-        </section>
-
-        {/* Section 2 */}
-        <section className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <span>🏷️</span> 2. Цены и Оплата в Молдавских Леях (MDL)
-          </h2>
-          <p>
-            Все цены на товары на сайте Zento указаны в молдавских леях (MDL) с учётом НДС. Оплата производится наличными или банковской картой при получении заказа.
-          </p>
-          <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600">
-            Официальный чек выдается курьером в момент передачи товара клиента.
-          </div>
-        </section>
-
-        {/* Section 3 */}
-        <section className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <span>🔄</span> 3. Право на возврат товара в течение 14 дней
-          </h2>
-          <p>
-            В соответствии со ст. 19 Закона РМ № 105/2003, покупатель имеет право вернуть или обменять качественную цифровую технику надлежащего качества в течение <strong>14 календарных дней</strong> со дня покупки при соблюдении следующих условий:
-          </p>
-          <ul className="list-disc list-inside space-y-1 text-slate-600 pl-2">
-            <li>Сохранён первоначальный товарный вид, заводские пломбы и оригинальная упаковка;</li>
-            <li>Товар не был в активной эксплуатации и не содержат следов установки/активации;</li>
-            <li>Имеется в наличии кассовый чек или документ, подтверждающий факт покупки.</li>
-          </ul>
-        </section>
-
-        {/* Section 4 */}
-        <section className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <span>🛡️</span> 4. Гарантийные обязательства
-          </h2>
-          <p>
-            На всю сложную цифровую технику Zento предоставляется официальная заводская гарантия сроком от 12 до 24 месяцев. В случае возникновения гарантийного случая клиент имеет право на бесплатный ремонт в авторизованных сервисных центрах Кишинева или замену товара.
-          </p>
-        </section>
-
-        {/* Section 5 */}
-        <section className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <span>🚚</span> 5. Доставка по Республике Молдова
-          </h2>
-          <p>
-            Доставка курьером по г. Кишинев и районам Республики Молдова осуществляется в течение 24–48 часов после подтверждения заказа. При сумме заказа от 1000 MDL доставка осуществляется бесплатно.
-          </p>
-        </section>
-
-      </div>
-
     </main>
   );
 }

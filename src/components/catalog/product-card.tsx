@@ -1,93 +1,77 @@
 import Link from "next/link";
 import { Locale } from "../../i18n/config";
 import { Dictionary } from "../../i18n/get-dictionary";
-import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
+import { Price } from "../ui/price";
 import { CategoryIcon } from "../ui/category-icon";
 import { CatalogProductItem } from "../../services/search/search-service";
 
+/**
+ * A cell in a shared-hairline grid (see `.rule-grid`): no border of its own, no shadow.
+ * The image sits on a sunken plate; text and data are set below it.
+ */
 export function ProductCard({
   product,
   locale,
   dict,
+  index,
 }: {
   product: CatalogProductItem;
   locale: Locale;
   dict: Dictionary;
+  index?: number;
 }) {
-  // Format integer cents to currency e.g. 89900 -> 899.00 MDL or 899 MDL
-  const formattedPrice = (product.price / 100).toLocaleString(locale, {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  });
+  const href = `/${locale}/product/${product.slug}`;
 
   return (
-    <Card hoverable className="overflow-hidden flex flex-col justify-between h-full group">
-      <div>
-        {/* Image & Badges Container */}
-        <div className="relative aspect-4/3 bg-slate-100/50 overflow-hidden flex items-center justify-center p-0">
-          {product.primaryImage ? (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={product.primaryImage}
-              alt={product.name}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-slate-300 transition-transform duration-500 group-hover:scale-105">
-              <CategoryIcon
-                slug={product.category.slug}
-                className="w-16 h-16 text-slate-300 group-hover:text-blue-500 transition-colors duration-300"
-              />
-            </div>
-          )}
-
-          <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
-            {product.isFeatured && (
-              <Badge variant="success" className="shadow-xs font-semibold">
-                ★ Top
-              </Badge>
-            )}
-            <Badge variant="outline" className="bg-white/90 backdrop-blur-xs text-[10px]">
-              {product.category.name}
-            </Badge>
+    <article className="group relative flex flex-col h-full p-4 sm:p-5">
+      {/* Plate */}
+      <Link href={href} className="plate block aspect-[5/4] rounded-sm relative" tabIndex={-1} aria-hidden="true">
+        {product.primaryImage ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={product.primaryImage}
+            alt=""
+            className="w-full h-full object-cover transition-transform duration-500 ease-[var(--ease-out-quart)] group-hover:scale-[1.03]"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-ink-3/60">
+            <CategoryIcon slug={product.category.slug} className="w-14 h-14" />
           </div>
-        </div>
+        )}
 
-        {/* Content */}
-        <div className="p-4 space-y-2">
-          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-            {product.brand.name}
-          </span>
-          <Link href={`/${locale}/product/${product.slug}`}>
-            <h3 className="text-sm font-bold text-slate-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
-              {product.name}
-            </h3>
-          </Link>
-          <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
-            {product.description}
-          </p>
+        <div className="absolute top-2.5 left-2.5 flex gap-1.5">
+          {product.isFeatured && <Badge variant="signal">Top</Badge>}
         </div>
-      </div>
+        {typeof index === "number" && (
+          <span className="absolute top-2.5 right-2.5 label text-ink-3">{String(index).padStart(2, "0")}</span>
+        )}
+      </Link>
 
-      {/* Footer / Price & Button */}
-      <div className="p-4 pt-0 flex items-center justify-between gap-2 border-t border-slate-100 mt-2 pt-3">
-        <div>
-          <span className="text-lg font-black text-slate-900 tracking-tight">
-            {formattedPrice}
-          </span>
-          <span className="text-xs font-medium text-slate-500 ml-1">
-            {dict.common.currency}
-          </span>
+      {/* Copy */}
+      <div className="pt-4 flex-1 flex flex-col">
+        <div className="flex items-center justify-between gap-2">
+          <span className="label">{product.brand.name}</span>
+          <span className="label text-ink-3/80">{product.category.name}</span>
         </div>
-
-        <Link href={`/${locale}/product/${product.slug}`}>
-          <Button size="sm" variant="secondary" className="text-xs font-medium">
-            {dict.common.viewDetails}
-          </Button>
+        <Link href={href} className="mt-2 block">
+          <h3 className="text-[15px] leading-snug font-medium text-ink line-clamp-2 decoration-1 underline-offset-4 decoration-line group-hover:underline group-hover:decoration-ink">
+            {product.name}
+          </h3>
         </Link>
+        <p className="mt-1.5 text-[13px] leading-relaxed text-ink-3 line-clamp-2">{product.description}</p>
+
+        <div className="mt-auto pt-4 flex items-end justify-between gap-3">
+          <Price amount={product.price} currency={dict.common.currency} locale={locale} size="md" />
+          <Link
+            href={href}
+            className="inline-flex items-center gap-1.5 text-[13px] font-medium text-ink-2 hover:text-ink transition-colors"
+          >
+            {dict.common.viewDetails}
+            <span className="arrow" aria-hidden="true">→</span>
+          </Link>
+        </div>
       </div>
-    </Card>
+    </article>
   );
 }

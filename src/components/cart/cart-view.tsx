@@ -6,7 +6,8 @@ import { Locale } from "../../i18n/config";
 import { Dictionary } from "../../i18n/get-dictionary";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
-import { Badge } from "../ui/badge";
+import { EmptyState } from "../ui/empty-state";
+import { Price, formatPrice } from "../ui/price";
 import { demoProducts } from "../../db/data/demo-data";
 
 interface StoredCartItem {
@@ -24,6 +25,10 @@ interface CartItemDisplay {
   image: string;
 }
 
+const stepper =
+  "w-9 h-full inline-flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-2 " +
+  "disabled:opacity-30 disabled:hover:bg-transparent transition-colors duration-180 cursor-pointer text-base leading-none";
+
 export function CartView({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [items, setItems] = useState<CartItemDisplay[]>([]);
   const [loaded, setLoaded] = useState(false);
@@ -33,7 +38,7 @@ export function CartView({ locale, dict }: { locale: Locale; dict: Dictionary })
       const stored = localStorage.getItem("zento_cart");
       if (stored) {
         const raw: StoredCartItem[] = JSON.parse(stored);
-        
+
         // Map stored items to product details
         const mapped: CartItemDisplay[] = raw
           .map((item) => {
@@ -89,147 +94,155 @@ export function CartView({ locale, dict }: { locale: Locale; dict: Dictionary })
   };
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const formattedSubtotal = (subtotal / 100).toLocaleString(locale, {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  });
 
   if (!loaded) {
     return (
-      <div className="py-20 text-center text-slate-400">
-        <p className="text-sm font-medium">{dict.common.loading}</p>
+      <div className="py-16 border-t border-line">
+        <p className="label">{dict.common.loading}</p>
       </div>
     );
   }
 
   if (items.length === 0) {
     return (
-      <div className="bg-white p-12 text-center rounded-2xl border border-slate-200 space-y-4 my-8">
-        <div className="w-16 h-16 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-2xl">
-          🛒
-        </div>
-        <h2 className="text-xl font-bold text-slate-900">{dict.cart.empty}</h2>
-        <p className="text-xs text-slate-500 max-w-sm mx-auto">
-          {dict.home.heroSubtitle}
-        </p>
-        <Link href={`/${locale}/catalog`}>
-          <Button size="md" className="bg-slate-900 text-white">
-            {dict.cart.continueShopping} →
-          </Button>
-        </Link>
-      </div>
+      <EmptyState
+        index="00"
+        title={dict.cart.empty}
+        text={dict.home.heroSubtitle}
+        action={
+          <Link href={`/${locale}/catalog`}>
+            <Button variant="outline" size="md">
+              {dict.cart.continueShopping}
+              <span className="arrow" aria-hidden="true">→</span>
+            </Button>
+          </Link>
+        }
+      />
     );
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-      
-      {/* Items List */}
-      <div className="lg:col-span-2 space-y-4">
-        {items.map((item) => {
-          const itemTotal = ((item.price * item.quantity) / 100).toLocaleString(locale, {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 2,
-          });
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-10 items-start">
 
-          return (
-            <Card key={item.id} className="p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-              
-              {/* Product Info */}
-              <div className="flex items-center gap-4 w-full sm:w-auto">
-                <div className="w-16 h-16 bg-slate-100 rounded-lg flex items-center justify-center p-2 flex-shrink-0">
-                  <svg className="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <Link href={`/${locale}/product/${item.slug}`}>
-                    <h3 className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">
-                      {item.name}
-                    </h3>
-                  </Link>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    {(item.price / 100).toLocaleString(locale)} {dict.common.currency}
-                  </p>
-                </div>
+      {/* Items List: one ruled list, no cards */}
+      <ul className="lg:col-span-8 border-t border-line-strong divide-y divide-line">
+        {items.map((item, i) => (
+          <li key={item.id} className="py-4 flex flex-col sm:flex-row sm:items-center gap-4">
+
+            {/* Product Info */}
+            <div className="flex items-center gap-4 flex-1 min-w-0">
+              <Link
+                href={`/${locale}/product/${item.slug}`}
+                className="plate w-[72px] h-[72px] rounded-sm shrink-0 relative"
+                tabIndex={-1}
+                aria-hidden="true"
+              >
+                {item.image ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={item.image} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-ink-3/60">
+                    <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                )}
+              </Link>
+              <div className="min-w-0">
+                <span className="label">{String(i + 1).padStart(2, "0")}</span>
+                <Link href={`/${locale}/product/${item.slug}`} className="block mt-1">
+                  <h3 className="text-[15px] leading-snug font-medium text-ink decoration-1 underline-offset-4 decoration-line hover:underline hover:decoration-ink">
+                    {item.name}
+                  </h3>
+                </Link>
+                <p className="data text-small text-ink-3 mt-1">
+                  {formatPrice(item.price, locale)} {dict.common.currency}
+                </p>
               </div>
+            </div>
 
-              {/* Quantity & Actions */}
-              <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
-                
-                {/* Quantity Buttons */}
-                <div className="inline-flex items-center border border-slate-200 rounded-lg bg-slate-50 p-0.5">
-                  <button
-                    onClick={() => handleUpdateQuantity(item.id, -1)}
-                    disabled={item.quantity <= 1}
-                    className="w-7 h-7 flex items-center justify-center text-slate-600 hover:bg-white rounded disabled:opacity-30 cursor-pointer text-xs"
-                  >
-                    -
-                  </button>
-                  <span className="w-8 text-center text-xs font-semibold text-slate-900">
-                    {item.quantity}
-                  </span>
-                  <button
-                    onClick={() => handleUpdateQuantity(item.id, 1)}
-                    disabled={item.quantity >= item.stock}
-                    className="w-7 h-7 flex items-center justify-center text-slate-600 hover:bg-white rounded disabled:opacity-30 cursor-pointer text-xs"
-                  >
-                    +
-                  </button>
-                </div>
+            {/* Quantity & Actions */}
+            <div className="flex items-center justify-between sm:justify-end gap-5 sm:gap-6 pl-[88px] sm:pl-0">
 
-                {/* Subtotal */}
-                <div className="text-right">
-                  <span className="text-sm font-bold text-slate-900">
-                    {itemTotal} {dict.common.currency}
-                  </span>
-                </div>
-
-                {/* Delete button */}
+              {/* Quantity stepper */}
+              <div className="inline-flex items-stretch h-10 border border-line rounded-sm bg-surface divide-x divide-line">
                 <button
-                  onClick={() => handleRemoveItem(item.id)}
-                  className="text-slate-400 hover:text-red-600 transition-colors text-xs font-bold p-1 cursor-pointer"
-                  title={dict.cart.remove}
+                  onClick={() => handleUpdateQuantity(item.id, -1)}
+                  disabled={item.quantity <= 1}
+                  className={stepper}
+                  aria-label="−"
                 >
-                  ✕
+                  −
+                </button>
+                <span className="data w-11 inline-flex items-center justify-center text-[13px] font-medium text-ink" aria-live="polite">
+                  {String(item.quantity).padStart(2, "0")}
+                </span>
+                <button
+                  onClick={() => handleUpdateQuantity(item.id, 1)}
+                  disabled={item.quantity >= item.stock}
+                  className={stepper}
+                  aria-label="+"
+                >
+                  +
                 </button>
               </div>
 
-            </Card>
-          );
-        })}
-      </div>
+              {/* Line total */}
+              <Price
+                amount={item.price * item.quantity}
+                currency={dict.common.currency}
+                locale={locale}
+                size="sm"
+                className="sm:min-w-28 sm:justify-end"
+              />
+
+              {/* Remove */}
+              <button
+                onClick={() => handleRemoveItem(item.id)}
+                className="inline-flex items-center justify-center w-8 h-8 -mr-2 rounded-sm text-ink-3 hover:text-danger hover:bg-paper-2 transition-colors duration-180 cursor-pointer"
+                title={dict.cart.remove}
+                aria-label={dict.cart.remove}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+          </li>
+        ))}
+      </ul>
 
       {/* Cart Summary */}
-      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
-        <h3 className="text-base font-bold text-slate-900 pb-3 border-b border-slate-100">
-          {dict.cart.subtotal}
-        </h3>
+      <Card tone="surface" className="lg:col-span-4 lg:sticky lg:top-24 p-6">
+        <h3 className="label text-ink-2">{dict.cart.subtotal}</h3>
 
-        <div className="space-y-3 text-xs text-slate-600">
-          <div className="flex justify-between">
-            <span>{dict.cart.subtotal}</span>
-            <span className="font-semibold text-slate-900">{formattedSubtotal} {dict.common.currency}</span>
+        <dl className="mt-4 border-t border-line-strong divide-y divide-line">
+          <div className="flex items-center justify-between gap-4 py-3">
+            <dt className="text-small text-ink-2">{dict.cart.subtotal}</dt>
+            <dd>
+              <Price amount={subtotal} currency={dict.common.currency} locale={locale} size="sm" />
+            </dd>
           </div>
-          <div className="flex justify-between">
-            <span>{dict.product.freeDelivery}</span>
-            <Badge variant="success">0 {dict.common.currency}</Badge>
+          <div className="flex items-center justify-between gap-4 py-3">
+            <dt className="text-small text-ink-2">{dict.product.freeDelivery}</dt>
+            <dd className="data text-small text-ok">0 {dict.common.currency}</dd>
           </div>
-        </div>
+          <div className="flex items-baseline justify-between gap-4 pt-4 pb-1">
+            <dt className="text-[15px] font-medium text-ink">{dict.cart.total}</dt>
+            <dd>
+              <Price amount={subtotal} currency={dict.common.currency} locale={locale} size="lg" />
+            </dd>
+          </div>
+        </dl>
 
-        <div className="pt-4 border-t border-slate-200 flex justify-between items-baseline">
-          <span className="text-sm font-bold text-slate-900">{dict.cart.total}</span>
-          <span className="text-2xl font-black text-slate-900 tracking-tight">
-            {formattedSubtotal} <span className="text-xs font-medium text-slate-500">{dict.common.currency}</span>
-          </span>
-        </div>
-
-        <Link href={`/${locale}/checkout`}>
-          <Button size="lg" className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 text-sm mt-2">
-            {dict.cart.checkout} →
+        <Link href={`/${locale}/checkout`} className="block mt-6">
+          <Button size="lg" className="w-full">
+            {dict.cart.checkout}
+            <span className="arrow" aria-hidden="true">→</span>
           </Button>
         </Link>
-      </div>
+      </Card>
 
     </div>
   );

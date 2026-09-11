@@ -7,6 +7,9 @@ import { Dictionary } from "../../i18n/get-dictionary";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
+import { Alert } from "../ui/alert";
+import { EmptyState } from "../ui/empty-state";
+import { Price, formatPrice } from "../ui/price";
 import { demoProducts } from "../../db/data/demo-data";
 
 interface StoredCartItem {
@@ -21,6 +24,8 @@ interface OrderItemPreview {
   quantity: number;
 }
 
+const tileBase = "text-left w-full border rounded-sm p-4 transition-colors duration-180 cursor-pointer";
+
 export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const router = useRouter();
 
@@ -28,7 +33,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
-  
+
   // Payment method: "CASH_ON_DELIVERY" | "CARD"
   const [paymentMethod, setPaymentMethod] = useState<"CASH_ON_DELIVERY" | "CARD">("CARD");
 
@@ -191,37 +196,40 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
 
   if (cartItems.length === 0) {
     return (
-      <div className="bg-white p-12 text-center rounded-2xl border border-slate-200 space-y-4 my-8">
-        <h2 className="text-xl font-bold text-slate-900">{dict.cart.empty}</h2>
-        <Button onClick={() => router.push(`/${locale}/catalog`)} size="md">
-          {dict.cart.continueShopping}
-        </Button>
-      </div>
+      <EmptyState
+        index="00"
+        title={dict.cart.empty}
+        action={
+          <Button onClick={() => router.push(`/${locale}/catalog`)} variant="outline" size="md">
+            {dict.cart.continueShopping}
+            <span className="arrow" aria-hidden="true">→</span>
+          </Button>
+        }
+      />
     );
   }
 
   const detectedCard = getCardType(cardNumber);
+  const isCard = paymentMethod === "CARD";
 
   return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start relative">
-      
+    <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-10 items-start relative">
+
       {/* 3D-Secure Processing Overlay */}
       {isProcessing3DS && (
-        <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-8 max-w-sm w-full text-center space-y-5 shadow-2xl border border-slate-100">
-            <div className="w-16 h-16 mx-auto bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-blue-600 animate-pulse">
-              <svg className="w-8 h-8 animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-              </svg>
+        <div className="fixed inset-0 z-50 bg-ink/60 flex items-center justify-center p-4" role="status" aria-live="polite">
+          <div className="bg-surface rounded-lg shadow-float p-8 max-w-sm w-full text-center space-y-5">
+            <svg className="animate-spin h-6 w-6 mx-auto text-ink" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
+              <path className="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V1.5C6.2 1.5 1.5 6.2 1.5 12H4z" />
+            </svg>
+            <div className="space-y-1.5">
+              <h4 className="text-h3 text-ink">3D-Secure 2.0</h4>
+              <p className="text-small text-ink-2">{dict.checkout.orderProcessing}</p>
             </div>
-            <div className="space-y-1">
-              <h4 className="text-base font-bold text-slate-900">3D-Secure 2.0</h4>
-              <p className="text-xs text-slate-500">{dict.checkout.orderProcessing}</p>
-            </div>
-            <div className="flex justify-center items-center gap-3 pt-2 text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+            <div className="label flex justify-center items-center gap-3 pt-4 border-t border-line">
               <span>Verified by VISA</span>
-              <span>•</span>
+              <span aria-hidden="true">•</span>
               <span>Mastercard ID Check</span>
             </div>
           </div>
@@ -229,21 +237,18 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
       )}
 
       {/* Form Fields */}
-      <div className="lg:col-span-2 space-y-8 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200">
-        
+      <div className="lg:col-span-8 space-y-10">
+
         {/* Contact Info Block */}
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold text-slate-900 pb-3 border-b border-slate-100">
-            1. {dict.checkout.contactInfo}
-          </h2>
+        <section className="border-t border-line pt-8 space-y-6">
+          <div className="flex items-baseline gap-4">
+            <span className="label min-w-8">01</span>
+            <h2 className="text-h3 text-ink">{dict.checkout.contactInfo}</h2>
+          </div>
 
-          {errorMsg && (
-            <div className="p-3.5 bg-red-50 border border-red-200 rounded-lg text-xs font-medium text-red-700">
-              {errorMsg}
-            </div>
-          )}
+          {errorMsg && <Alert tone="error">{errorMsg}</Alert>}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <Input
               label={dict.checkout.fullName}
               type="text"
@@ -262,7 +267,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <Input
               label={dict.checkout.phone}
               type="tel"
@@ -280,126 +285,118 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
               onChange={(e) => setShippingAddress(e.target.value)}
             />
           </div>
-        </div>
+        </section>
 
         {/* Payment Method Block */}
-        <div className="space-y-5 pt-4 border-t border-slate-100">
-          <h2 className="text-lg font-bold text-slate-900">
-            2. {dict.checkout.paymentMethod}
-          </h2>
+        <section className="border-t border-line pt-8 space-y-6">
+          <div className="flex items-baseline gap-4">
+            <span className="label min-w-8">02</span>
+            <h2 className="text-h3 text-ink">{dict.checkout.paymentMethod}</h2>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" role="radiogroup" aria-label={dict.checkout.paymentMethod}>
             {/* Card Online Option */}
-            <div
+            <button
+              type="button"
+              role="radio"
+              aria-checked={isCard}
               onClick={() => setPaymentMethod("CARD")}
-              className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                paymentMethod === "CARD"
-                  ? "border-blue-600 bg-blue-50/40 shadow-xs"
-                  : "border-slate-200 hover:border-slate-300 bg-white"
-              }`}
+              className={`${tileBase} ${isCard ? "border-ink bg-surface" : "border-line bg-transparent hover:border-ink-3"}`}
             >
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                    paymentMethod === "CARD" ? "border-blue-600 bg-blue-600" : "border-slate-300"
-                  }`}>
-                    {paymentMethod === "CARD" && <div className="w-2 h-2 rounded-full bg-white" />}
-                  </div>
-                  <div>
-                    <span className="text-sm font-bold text-slate-900 block">
-                      {dict.checkout.cardOnline}
-                    </span>
-                    <span className="text-xs text-slate-500 block mt-0.5">
-                      {dict.checkout.cardOnlineDesc}
-                    </span>
-                  </div>
+              <div className="flex items-start gap-3">
+                <span
+                  className={`mt-[7px] w-1.5 h-1.5 shrink-0 ${isCard ? "bg-signal" : "border border-ink-3"}`}
+                  aria-hidden="true"
+                />
+                <div className="flex-1 min-w-0">
+                  <span className="block text-[15px] font-medium text-ink">{dict.checkout.cardOnline}</span>
+                  <span className="block text-small text-ink-3 mt-0.5">{dict.checkout.cardOnlineDesc}</span>
                 </div>
-                <span className="text-xl">💳</span>
+                <svg className="w-5 h-5 shrink-0 text-ink-3" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="2.5" y="5.5" width="19" height="13" rx="2" />
+                  <path strokeLinecap="round" d="M2.5 10h19M6 14.5h4" />
+                </svg>
               </div>
-            </div>
+            </button>
 
             {/* Cash on Delivery Option */}
-            <div
+            <button
+              type="button"
+              role="radio"
+              aria-checked={!isCard}
               onClick={() => setPaymentMethod("CASH_ON_DELIVERY")}
-              className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                paymentMethod === "CASH_ON_DELIVERY"
-                  ? "border-blue-600 bg-blue-50/40 shadow-xs"
-                  : "border-slate-200 hover:border-slate-300 bg-white"
-              }`}
+              className={`${tileBase} ${!isCard ? "border-ink bg-surface" : "border-line bg-transparent hover:border-ink-3"}`}
             >
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                    paymentMethod === "CASH_ON_DELIVERY" ? "border-blue-600 bg-blue-600" : "border-slate-300"
-                  }`}>
-                    {paymentMethod === "CASH_ON_DELIVERY" && <div className="w-2 h-2 rounded-full bg-white" />}
-                  </div>
-                  <div>
-                    <span className="text-sm font-bold text-slate-900 block">
-                      {dict.checkout.cashOnDelivery}
-                    </span>
-                    <span className="text-xs text-slate-500 block mt-0.5">
-                      {dict.checkout.cashOnDeliveryDesc}
-                    </span>
-                  </div>
+              <div className="flex items-start gap-3">
+                <span
+                  className={`mt-[7px] w-1.5 h-1.5 shrink-0 ${!isCard ? "bg-signal" : "border border-ink-3"}`}
+                  aria-hidden="true"
+                />
+                <div className="flex-1 min-w-0">
+                  <span className="block text-[15px] font-medium text-ink">{dict.checkout.cashOnDelivery}</span>
+                  <span className="block text-small text-ink-3 mt-0.5">{dict.checkout.cashOnDeliveryDesc}</span>
                 </div>
-                <span className="text-xl">💵</span>
+                <svg className="w-5 h-5 shrink-0 text-ink-3" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="2.5" y="6.5" width="19" height="11" rx="1.5" />
+                  <circle cx="12" cy="12" r="2.5" />
+                  <path strokeLinecap="round" d="M6 12h.01M18 12h.01" />
+                </svg>
               </div>
-            </div>
+            </button>
           </div>
 
           {/* Interactive Card Form when CARD is selected */}
           {paymentMethod === "CARD" && (
-            <div className="p-6 bg-gradient-to-b from-slate-50 to-slate-100/70 border border-slate-200 rounded-2xl space-y-6">
-              
-              {/* Virtual Credit Card Display */}
-              <div className="max-w-xs mx-auto p-5 rounded-2xl bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-950 text-white shadow-lg space-y-4">
-                <div className="flex justify-between items-center">
-                  <div className="w-9 h-7 rounded-md bg-amber-400/80 flex items-center justify-center border border-amber-300/40">
-                    <div className="w-6 h-4 border border-slate-800/40 rounded-xs" />
-                  </div>
-                  <span className="text-xs font-black tracking-widest text-slate-300">
-                    {detectedCard}
-                  </span>
-                </div>
-                
-                <div className="font-mono text-base sm:text-lg tracking-widest py-1">
-                  {cardNumber || "•••• •••• •••• ••••"}
-                </div>
+            <div className="pt-6 border-t border-line grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 items-start">
 
-                <div className="flex justify-between items-end text-[10px] uppercase font-mono text-slate-400">
-                  <div>
-                    <span className="block text-[8px] text-slate-500">CARDHOLDER</span>
-                    <span className="font-semibold text-white tracking-wide truncate max-w-[130px] block">
-                      {cardHolder || "CARDHOLDER NAME"}
-                    </span>
+              {/* Virtual Credit Card Display */}
+              <div className="md:col-span-5">
+                <div className="max-w-xs w-full aspect-[1.586] p-5 rounded-md bg-ink text-ink-inverse flex flex-col justify-between">
+                  <div className="flex justify-between items-center">
+                    <span className="w-2 h-2 bg-signal" aria-hidden="true" />
+                    <span className="label text-ink-inverse/70">{detectedCard}</span>
                   </div>
-                  <div>
-                    <span className="block text-[8px] text-slate-500">EXPIRES</span>
-                    <span className="font-semibold text-white">
-                      {cardExpiry || "MM/YY"}
-                    </span>
+
+                  <div className="data text-base sm:text-lg tracking-[0.12em] whitespace-nowrap">
+                    {cardNumber || "•••• •••• •••• ••••"}
+                  </div>
+
+                  <div className="flex justify-between items-end gap-4">
+                    <div className="min-w-0">
+                      <span className="label block text-ink-inverse/50">CARDHOLDER</span>
+                      <span className="data block mt-1 text-[12px] uppercase tracking-[0.06em] truncate">
+                        {cardHolder || "CARDHOLDER NAME"}
+                      </span>
+                    </div>
+                    <div className="shrink-0 text-right">
+                      <span className="label block text-ink-inverse/50">EXPIRES</span>
+                      <span className="data block mt-1 text-[12px] tracking-[0.06em]">
+                        {cardExpiry || "MM/YY"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Card Inputs */}
-              <div className="space-y-4">
+              <div className="md:col-span-7 space-y-5">
                 <Input
                   label={dict.checkout.cardNumber}
                   type="text"
                   required={paymentMethod === "CARD"}
                   placeholder="4111 2222 3333 4444"
+                  className="data"
                   value={cardNumber}
                   onChange={handleCardNumberChange}
                 />
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
                   <Input
                     label={dict.checkout.cardExpiry}
                     type="text"
                     required={paymentMethod === "CARD"}
                     placeholder="MM/YY"
+                    className="data"
                     value={cardExpiry}
                     onChange={handleExpiryChange}
                   />
@@ -409,6 +406,7 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
                     maxLength={4}
                     required={paymentMethod === "CARD"}
                     placeholder="•••"
+                    className="data"
                     value={cardCvc}
                     onChange={handleCvcChange}
                   />
@@ -422,62 +420,72 @@ export function CheckoutForm({ locale, dict }: { locale: Locale; dict: Dictionar
                     />
                   </div>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-2 text-[11px] text-slate-500 pt-1">
-                <span className="text-emerald-600 font-bold">🔒</span>
-                <span>{dict.checkout.cardSecureNotice}</span>
+                <p className="label flex items-start gap-2 pt-1">
+                  <svg className="w-3.5 h-3.5 shrink-0 mt-px text-ok" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                    <path strokeLinecap="round" d="M8 11V7a4 4 0 018 0v4" />
+                  </svg>
+                  <span>{dict.checkout.cardSecureNotice}</span>
+                </p>
               </div>
             </div>
           )}
 
-        </div>
+        </section>
       </div>
 
       {/* Summary Sidebar */}
-      <Card className="p-6 space-y-6 lg:sticky lg:top-24">
-        <h3 className="text-base font-bold text-slate-900 pb-3 border-b border-slate-100">
+      <Card tone="surface" className="lg:col-span-4 lg:sticky lg:top-24 p-6">
+        <h3 className="label text-ink-2">
           Состав заказа ({cartItems.length})
         </h3>
 
-        <div className="space-y-3 max-h-60 overflow-y-auto pr-1 divide-y divide-slate-100">
+        <ul className="mt-4 border-t border-line-strong divide-y divide-line max-h-60 overflow-y-auto">
           {cartItems.map((item) => (
-            <div key={item.id} className="pt-2 flex justify-between items-center text-xs">
-              <div>
-                <span className="font-semibold text-slate-900 block">{item.name}</span>
-                <span className="text-slate-500">{item.quantity} × {((item.price) / 100).toLocaleString(locale)} {dict.common.currency}</span>
+            <li key={item.id} className="py-3 flex justify-between items-start gap-4">
+              <div className="min-w-0">
+                <span className="block text-small font-medium text-ink truncate">{item.name}</span>
+                <span className="data block text-[12px] text-ink-3 mt-0.5">
+                  {item.quantity} × {formatPrice(item.price, locale)} {dict.common.currency}
+                </span>
               </div>
-              <span className="font-bold text-slate-900">
-                {((item.price * item.quantity) / 100).toLocaleString(locale)} {dict.common.currency}
-              </span>
-            </div>
+              <Price
+                amount={item.price * item.quantity}
+                currency={dict.common.currency}
+                locale={locale}
+                size="sm"
+                className="shrink-0"
+              />
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <div className="pt-4 border-t border-slate-200 space-y-2">
-          <div className="flex justify-between items-center text-xs text-slate-500">
-            <span>{dict.checkout.paymentMethod}</span>
-            <span className="font-semibold text-slate-800">
-              {paymentMethod === "CARD" ? "💳 Онлайн картой" : "💵 При получении"}
-            </span>
+        <dl className="mt-4 pt-4 border-t border-line space-y-3">
+          <div className="flex justify-between items-center gap-4">
+            <dt className="text-small text-ink-2">{dict.checkout.paymentMethod}</dt>
+            <dd className="text-small font-medium text-ink text-right">
+              {paymentMethod === "CARD" ? "Онлайн картой" : "При получении"}
+            </dd>
           </div>
-          <div className="flex justify-between items-baseline pt-1">
-            <span className="text-sm font-bold text-slate-900">{dict.cart.total}</span>
-            <span className="text-2xl font-black text-slate-900 tracking-tight">
-              {formattedSubtotal} <span className="text-xs font-medium text-slate-500">{dict.common.currency}</span>
-            </span>
+          <div className="flex justify-between items-baseline gap-4 pt-1">
+            <dt className="text-[15px] font-medium text-ink">{dict.cart.total}</dt>
+            <dd>
+              <Price amount={subtotal} currency={dict.common.currency} locale={locale} size="lg" />
+            </dd>
           </div>
-        </div>
+        </dl>
 
         <Button
           type="submit"
           isLoading={loading}
           size="lg"
-          className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3.5 text-sm shadow-md"
+          className="w-full mt-6"
         >
           {paymentMethod === "CARD"
-            ? `${dict.checkout.payAmount} ${formattedSubtotal} ${dict.common.currency} →`
-            : `${dict.checkout.placeOrder} →`}
+            ? `${dict.checkout.payAmount} ${formattedSubtotal} ${dict.common.currency}`
+            : dict.checkout.placeOrder}
+          <span className="arrow" aria-hidden="true">→</span>
         </Button>
       </Card>
 

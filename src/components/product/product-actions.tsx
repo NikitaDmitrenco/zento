@@ -4,6 +4,10 @@ import { useState } from "react";
 import { Dictionary } from "../../i18n/get-dictionary";
 import { Button } from "../ui/button";
 
+const stepper =
+  "w-11 h-full inline-flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-2 " +
+  "disabled:opacity-30 disabled:hover:bg-transparent transition-colors duration-180 cursor-pointer text-lg leading-none";
+
 export function ProductActions({
   productId,
   stock,
@@ -33,7 +37,7 @@ export function ProductActions({
     try {
       const stored = localStorage.getItem("zento_cart");
       const cartItems: { id: string; quantity: number }[] = stored ? JSON.parse(stored) : [];
-      
+
       const existingIdx = cartItems.findIndex((item) => item.id === productId);
       if (existingIdx >= 0) {
         cartItems[existingIdx].quantity = Math.min(
@@ -53,45 +57,28 @@ export function ProductActions({
   };
 
   return (
-    <div className="space-y-4 pt-4 border-t border-slate-200">
-      <div className="flex items-center gap-4">
-        {/* Quantity selector */}
-        <div className="inline-flex items-center border border-slate-300 rounded-lg bg-white p-1">
-          <button
-            onClick={handleDecrease}
-            disabled={quantity <= 1 || isOutOfStock}
-            className="w-8 h-8 flex items-center justify-center text-slate-700 hover:bg-slate-100 rounded disabled:opacity-30 cursor-pointer"
-          >
-            -
-          </button>
-          <span className="w-10 text-center text-sm font-semibold text-slate-900">
-            {quantity}
-          </span>
-          <button
-            onClick={handleIncrease}
-            disabled={quantity >= stock || isOutOfStock}
-            className="w-8 h-8 flex items-center justify-center text-slate-700 hover:bg-slate-100 rounded disabled:opacity-30 cursor-pointer"
-          >
-            +
-          </button>
-        </div>
-
-        <span className="text-xs text-slate-500">
-          {stock > 0 ? `${dict.common.inStock}: ${stock}` : dict.common.outOfStock}
+    <div className="mt-6 flex flex-col sm:flex-row gap-3">
+      {/* Quantity stepper */}
+      <div className="inline-flex items-stretch h-13 border border-line rounded-sm bg-surface divide-x divide-line self-start">
+        <button onClick={handleDecrease} disabled={quantity <= 1 || isOutOfStock} className={stepper} aria-label="−">
+          −
+        </button>
+        <span className="data w-14 inline-flex items-center justify-center text-[15px] font-medium text-ink" aria-live="polite">
+          {String(quantity).padStart(2, "0")}
         </span>
+        <button onClick={handleIncrease} disabled={quantity >= stock || isOutOfStock} className={stepper} aria-label="+">
+          +
+        </button>
       </div>
 
       <Button
         onClick={handleAddToCart}
         disabled={isOutOfStock}
         size="lg"
-        className={`w-full text-sm font-semibold py-3.5 ${
-          added
-            ? "bg-emerald-600 hover:bg-emerald-700 text-white"
-            : "bg-slate-900 hover:bg-slate-800 text-white"
-        }`}
+        className={`flex-1 ${added ? "bg-ok hover:bg-ok" : ""}`}
       >
         {added ? "✓ Добавлено в корзину" : dict.common.addToCart}
+        {!added && <span className="arrow" aria-hidden="true">→</span>}
       </Button>
     </div>
   );

@@ -1,6 +1,6 @@
 import { db } from "../../../db";
-import { Card } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
+import { SectionHead } from "../../../components/ui/section-head";
 
 export default async function AdminUsersPage() {
   let userList: {
@@ -46,49 +46,45 @@ export default async function AdminUsersPage() {
   }
 
   return (
-    <div className="space-y-6">
-      
-      <div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-          Пользователи системы ({userList.length})
-        </h1>
-        <p className="text-xs text-slate-500 mt-1">
-          Список зарегистрированных покупателей и администраторов
-        </p>
-      </div>
+    <div className="space-y-10">
 
-      <Card className="overflow-hidden border border-slate-200">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-700">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase font-semibold">
-              <tr>
-                <th className="px-4 py-3">Имя</th>
-                <th className="px-4 py-3">Email</th>
-                <th className="px-4 py-3">Роль</th>
-                <th className="px-4 py-3">Дата регистрации</th>
+      <SectionHead
+        as="h1"
+        index="—"
+        title={`Пользователи системы (${userList.length})`}
+        subtitle="Список зарегистрированных покупателей и администраторов"
+      />
+
+      <div className="bg-surface border border-line rounded-md overflow-x-auto">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Имя</th>
+              <th>Email</th>
+              <th>Роль</th>
+              <th>Дата регистрации</th>
+            </tr>
+          </thead>
+          <tbody>
+            {userList.map((usr) => (
+              <tr key={usr.id}>
+                <td className="font-medium text-ink">{usr.name}</td>
+                <td className="data text-ink-2">{usr.email}</td>
+                <td>
+                  {usr.role === "ADMIN" ? (
+                    <Badge variant="signal">ADMIN</Badge>
+                  ) : (
+                    <Badge variant="default">USER</Badge>
+                  )}
+                </td>
+                <td className="data text-ink-3 whitespace-nowrap">
+                  {new Date(usr.createdAt).toLocaleDateString("ru")}
+                </td>
               </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100 bg-white">
-              {userList.map((usr) => (
-                <tr key={usr.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-4 py-3 font-bold text-slate-900">{usr.name}</td>
-                  <td className="px-4 py-3 text-slate-600">{usr.email}</td>
-                  <td className="px-4 py-3">
-                    {usr.role === "ADMIN" ? (
-                      <Badge variant="success">ADMIN</Badge>
-                    ) : (
-                      <Badge variant="default">USER</Badge>
-                    )}
-                  </td>
-                  <td className="px-4 py-3 text-slate-400">
-                    {new Date(usr.createdAt).toLocaleDateString("ru")}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Card>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
     </div>
   );

@@ -4,9 +4,37 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Locale } from "../../i18n/config";
 import { Dictionary } from "../../i18n/get-dictionary";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { CategoryIcon } from "../ui/category-icon";
+
+/** A filter row: a signal marker slides in when active. */
+function FilterRow({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      aria-pressed={active}
+      className={`group w-full flex items-center gap-2.5 text-left text-[13px] py-1.5 cursor-pointer transition-colors duration-180 ${
+        active ? "text-ink font-medium" : "text-ink-2 hover:text-ink"
+      }`}
+    >
+      <span
+        aria-hidden="true"
+        className={`w-1.5 h-1.5 shrink-0 transition-[background-color,transform] duration-180 ${
+          active ? "bg-signal scale-100" : "bg-line scale-75 group-hover:bg-ink-3"
+        }`}
+      />
+      {children}
+    </button>
+  );
+}
 
 export function CatalogFilters({
   locale,
@@ -50,31 +78,42 @@ export function CatalogFilters({
     router.push(`/${locale}/catalog`);
   };
 
+  const hasFilters = currentSearch || currentCat || currentBrand || currentSort !== "featured";
+
   return (
-    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs space-y-6">
-      
-      {/* Search Bar */}
-      <form onSubmit={handleSearchSubmit} className="flex gap-2">
-        <Input
-          type="text"
+    <aside className="space-y-7 lg:sticky lg:top-24">
+      {/* Search */}
+      <form onSubmit={handleSearchSubmit} className="relative">
+        <input
+          type="search"
           placeholder={dict.common.searchPlaceholder}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          className="field pr-11"
+          aria-label={dict.common.searchPlaceholder}
         />
-        <Button type="submit" variant="primary" size="md">
-          🔍
-        </Button>
+        <button
+          type="submit"
+          className="absolute right-1 top-1 bottom-1 w-9 inline-flex items-center justify-center rounded-xs text-ink-2 hover:bg-ink hover:text-ink-inverse transition-colors duration-180 cursor-pointer"
+          aria-label={dict.common.searchPlaceholder}
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" />
+            <path strokeLinecap="round" d="M16 16l4.5 4.5" />
+          </svg>
+        </button>
       </form>
 
       {/* Sorting */}
-      <div>
-        <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+      <div className="pt-5 border-t border-line">
+        <label htmlFor="catalog-sort" className="label block mb-2.5">
           {dict.catalog.sortBy}
         </label>
         <select
+          id="catalog-sort"
           value={currentSort}
           onChange={(e) => updateParam("sortBy", e.target.value)}
-          className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-400"
+          className="field h-10"
         >
           <option value="featured">{dict.catalog.sortPopularity}</option>
           <option value="price_asc">{dict.catalog.sortPriceAsc}</option>
@@ -84,76 +123,44 @@ export function CatalogFilters({
       </div>
 
       {/* Categories */}
-      <div>
-        <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
-          {dict.home.categoriesTitle}
-        </label>
-        <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
-          <button
-            onClick={() => updateParam("category", "")}
-            className={`w-full text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-              !currentCat ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
-            }`}
-          >
+      <div className="pt-5 border-t border-line">
+        <p className="label mb-2.5">{dict.home.categoriesTitle}</p>
+        <div className="max-h-56 overflow-y-auto pr-1">
+          <FilterRow active={!currentCat} onClick={() => updateParam("category", "")}>
             {dict.common.allCategories}
-          </button>
-          {categories.map((cat) => {
-            const isActive = currentCat === cat.slug;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => updateParam("category", cat.slug)}
-                className={`w-full flex items-center gap-2 text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-                  isActive ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
-                }`}
-              >
-                <CategoryIcon slug={cat.slug} className="w-3.5 h-3.5 flex-shrink-0" />
-                <span>{cat.name}</span>
-              </button>
-            );
-          })}
+          </FilterRow>
+          {categories.map((cat) => (
+            <FilterRow key={cat.id} active={currentCat === cat.slug} onClick={() => updateParam("category", cat.slug)}>
+              <CategoryIcon slug={cat.slug} className="w-3.5 h-3.5 shrink-0 text-ink-3" />
+              <span>{cat.name}</span>
+            </FilterRow>
+          ))}
         </div>
       </div>
 
       {/* Brands */}
-      <div>
-        <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
-          Бренды
-        </label>
-        <div className="space-y-1 max-h-52 overflow-y-auto pr-1">
-          <button
-            onClick={() => updateParam("brand", "")}
-            className={`w-full flex items-center justify-between text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-              !currentBrand ? "bg-slate-900 text-white font-bold" : "text-slate-700 hover:bg-slate-100"
-            }`}
-          >
-            <span>Все бренды</span>
-            {!currentBrand && <span className="text-[10px]">✓</span>}
-          </button>
-          {brands.map((br) => {
-            const isActive = currentBrand === br.slug;
-            return (
-              <button
-                key={br.id}
-                onClick={() => updateParam("brand", br.slug)}
-                className={`w-full flex items-center justify-between text-left text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-                  isActive ? "bg-slate-900 text-white font-bold" : "text-slate-700 hover:bg-slate-100"
-                }`}
-              >
-                <span>{br.name}</span>
-                {isActive && <span className="text-[10px]">✓</span>}
-              </button>
-            );
-          })}
+      <div className="pt-5 border-t border-line">
+        <p className="label mb-2.5">Бренды</p>
+        <div className="max-h-64 overflow-y-auto pr-1">
+          <FilterRow active={!currentBrand} onClick={() => updateParam("brand", "")}>
+            Все бренды
+          </FilterRow>
+          {brands.map((br) => (
+            <FilterRow key={br.id} active={currentBrand === br.slug} onClick={() => updateParam("brand", br.slug)}>
+              {br.name}
+            </FilterRow>
+          ))}
         </div>
       </div>
 
-      {/* Reset Filters */}
-      {(currentSearch || currentCat || currentBrand || currentSort !== "featured") && (
-        <Button onClick={handleReset} variant="outline" size="sm" className="w-full text-xs">
-          {dict.catalog.resetFilters}
-        </Button>
+      {/* Reset */}
+      {hasFilters && (
+        <div className="pt-5 border-t border-line">
+          <Button onClick={handleReset} variant="outline" size="sm" className="w-full">
+            {dict.catalog.resetFilters}
+          </Button>
+        </div>
       )}
-    </div>
+    </aside>
   );
 }

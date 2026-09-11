@@ -39,6 +39,7 @@ Stage 12 — Deployment (Completed)
 - [x] Connect live Supabase PostgreSQL database cloud 24/7 (`drizzle-kit push`, `npm run db:seed`).
 - [x] Complete automated test coverage (29 Vitest tests across 10 suites), strict TypeScript static type checks, ESLint code formatting rules, and Next.js production builds.
 - [x] Complete Stage 12 Deployment configuration for Vercel.
+- [x] Visual redesign ("engineered catalog"): Tailwind v4 @theme design tokens (paper/ink/signal palette, radius, shadow, type scale), IBM Plex Sans + Mono via next/font, rebuilt UI primitives (Button, Input, Card, Badge, SectionHead, Alert, EmptyState, Price), shared-hairline product grids, editorial home/catalog/product/cart/checkout/auth/legal/admin layouts, restyled AI assistant, locale not-found page. No business logic, routes, or user-visible strings changed.
 
 ## Remaining Tasks
 
@@ -87,8 +88,8 @@ Stage 12 — Deployment (Completed)
 
 - TypeScript: PASS
 - ESLint: PASS
-- Unit / Integration: PASS (29 Vitest tests in 10 test suites)
-- E2E: PASS (Playwright configured)
+- Unit / Integration: PASS (34 Vitest tests in 11 test suites)
+- E2E: PASS (1 Playwright scenario, chromium)
 - Production Build: PASS
 
 ## Git Status
@@ -103,12 +104,12 @@ Completed (Stage 12 ready for Vercel deployment with Supabase PostgreSQL env var
 
 ## Last Completed Action
 
-Completed Stage 12 Deployment readiness, updated project status documentation, committed and pushed code to GitHub repository.
+Completed the visual redesign: replaced the !important Tailwind override skin in globals.css with a token-based design system, rewrote all UI primitives and every page/component surface; ran typecheck, lint, Vitest, Playwright, and production build (all PASS).
 
 ## Next Action
 
-Project complete. Ready for live URL deployment on Vercel.
+Review the redesign diff, commit (feat: visual redesign), and redeploy to Vercel.
 
 ## Last Updated
 
-2026-08-15
+2026-09-11

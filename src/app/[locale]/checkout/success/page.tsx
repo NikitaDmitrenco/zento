@@ -18,68 +18,59 @@ export default async function OrderSuccessPage({
   const query = await searchParams;
   const dict = await getDictionary(locale as Locale);
   const isPaidCard = query.paymentMethod === "CARD";
+  const orderId = query.orderId || "ORD-000000";
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-16 text-center space-y-8">
-      
-      {/* Success Badge */}
-      <div className="w-20 h-20 mx-auto bg-emerald-50 border-2 border-emerald-200 rounded-full flex items-center justify-center text-3xl shadow-sm animate-bounce">
-        🎉
-      </div>
+    <main className="container-x pt-14 sm:pt-20 pb-16">
+      <div className="max-w-xl mx-auto space-y-8 reveal">
 
-      <div className="space-y-3">
-        <div className="flex justify-center items-center gap-2">
+        {/* Meta line + payment badge */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="label">N° {orderId}</p>
           {isPaidCard ? (
-            <Badge variant="success" className="px-3 py-1 text-xs">
-              ✓ {dict.checkout.paidOnline} (3D-Secure)
-            </Badge>
+            <Badge variant="success">✓ {dict.checkout.paidOnline} (3D-Secure)</Badge>
           ) : (
-            <Badge variant="outline" className="px-3 py-1 text-xs bg-slate-100">
-              💵 {dict.checkout.payOnDelivery}
-            </Badge>
+            <Badge variant="outline">{dict.checkout.payOnDelivery}</Badge>
           )}
         </div>
 
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-          {dict.checkout.successTitle}
-        </h1>
-        <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-          {dict.checkout.successText}
-        </p>
-      </div>
-
-      {/* Order Info Card */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs max-w-md mx-auto space-y-4 text-left text-xs">
-        <div className="flex justify-between items-center pb-3 border-b border-slate-100">
-          <span className="text-slate-500 font-medium">Номер заказа:</span>
-          <span className="font-mono font-bold text-slate-900 bg-slate-100 px-2.5 py-1 rounded-md">
-            {query.orderId || "ORD-000000"}
-          </span>
+        <div className="space-y-4">
+          <h1 className="text-h1 text-ink">{dict.checkout.successTitle}</h1>
+          <p className="text-body text-ink-2 max-w-md">{dict.checkout.successText}</p>
         </div>
 
-        <div className="flex justify-between items-center pb-3 border-b border-slate-100">
-          <span className="text-slate-500 font-medium">Способ оплаты:</span>
-          <span className="font-semibold text-slate-900 flex items-center gap-1.5">
-            {isPaidCard ? "💳 Банковская карта (Оплачен)" : "💵 При получении (Курьеру)"}
-          </span>
+        {/* Order Info */}
+        <dl className="border-t border-line-strong divide-y divide-line">
+          <div className="grid grid-cols-12 gap-x-4 py-3.5 text-small">
+            <dt className="col-span-5 sm:col-span-4 text-ink-3">Номер заказа:</dt>
+            <dd className="col-span-7 sm:col-span-8 data text-ink font-medium">{orderId}</dd>
+          </div>
+
+          <div className="grid grid-cols-12 gap-x-4 py-3.5 text-small">
+            <dt className="col-span-5 sm:col-span-4 text-ink-3">Способ оплаты:</dt>
+            <dd className="col-span-7 sm:col-span-8 text-ink font-medium">
+              {isPaidCard ? "Банковская карта (Оплачен)" : "При получении (Курьеру)"}
+            </dd>
+          </div>
+
+          <div className="grid grid-cols-12 gap-x-4 py-3.5 text-small">
+            <dt className="col-span-5 sm:col-span-4 text-ink-3">Статус заказа:</dt>
+            <dd className={`col-span-7 sm:col-span-8 font-medium ${isPaidCard ? "text-ok" : "text-ink-2"}`}>
+              {isPaidCard ? "✓ Оплачен и передан на сборку" : "Ожидает подтверждения менеджера"}
+            </dd>
+          </div>
+        </dl>
+
+        <div className="pt-2">
+          <Link href={`/${locale}/catalog`} className="inline-block w-full sm:w-auto">
+            <Button size="lg" className="w-full sm:w-auto">
+              {dict.cart.continueShopping}
+              <span className="arrow" aria-hidden="true">→</span>
+            </Button>
+          </Link>
         </div>
 
-        <div className="flex justify-between items-center">
-          <span className="text-slate-500 font-medium">Статус заказа:</span>
-          <span className={`font-bold ${isPaidCard ? "text-emerald-600" : "text-blue-600"}`}>
-            {isPaidCard ? "✓ Оплачен и передан на сборку" : "Ожидает подтверждения менеджера"}
-          </span>
-        </div>
       </div>
-
-      <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
-        <Link href={`/${locale}/catalog`}>
-          <Button size="lg" className="bg-slate-900 hover:bg-slate-800 text-white font-semibold w-full sm:w-auto">
-            {dict.cart.continueShopping} →
-          </Button>
-        </Link>
-      </div>
-
     </main>
   );
 }

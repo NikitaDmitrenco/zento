@@ -2,8 +2,7 @@ import Link from "next/link";
 import { db } from "../../db";
 import { demoProducts } from "../../db/data/demo-data";
 import { Button } from "../../components/ui/button";
-import { Card } from "../../components/ui/card";
-import { Badge } from "../../components/ui/badge";
+import { SectionHead } from "../../components/ui/section-head";
 
 export default async function AdminDashboardPage() {
   let productCount = demoProducts.length;
@@ -23,85 +22,68 @@ export default async function AdminDashboardPage() {
     // Offline fallback
   }
 
+  const stats = [
+    { caption: "Всего товаров", value: productCount },
+    { caption: "Активные заказы", value: orderCount },
+    { caption: "Пользователи", value: userCount },
+  ];
+
   return (
-    <div className="space-y-8">
-      
+    <div className="space-y-10">
+
       {/* Title & Action */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-            Панель управления Zento
-          </h1>
-          <p className="text-xs text-slate-500 mt-1">
-            Обзор состояния магазина, товаров и заказов
-          </p>
-        </div>
+      <SectionHead
+        as="h1"
+        index="—"
+        title="Панель управления Zento"
+        subtitle="Обзор состояния магазина, товаров и заказов"
+        aside={
+          <Link href="/admin/products/new">
+            <Button size="sm">+ Добавить товар</Button>
+          </Link>
+        }
+      />
 
-        <Link href="/admin/products/new">
-          <Button size="sm" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold">
-            + Добавить товар
-          </Button>
-        </Link>
+      {/* Overview: one ruled grid, numbers set in mono */}
+      <div className="rule-grid grid-cols-1 sm:grid-cols-3">
+        {stats.map((stat, i) => (
+          <div key={stat.caption} className="relative p-6 bg-surface">
+            <span className="label absolute top-6 right-6">{String(i + 1).padStart(2, "0")}</span>
+            <p className="label">{stat.caption}</p>
+            <p className="data text-[40px] font-medium leading-none text-ink mt-6">{stat.value}</p>
+          </div>
+        ))}
       </div>
 
-      {/* Overview Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <Card className="p-6">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Всего товаров</p>
-              <h3 className="text-3xl font-black text-slate-900 mt-2">{productCount}</h3>
-            </div>
-            <span className="p-2 bg-blue-50 text-blue-600 rounded-lg text-lg">📦</span>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Активные заказы</p>
-              <h3 className="text-3xl font-black text-slate-900 mt-2">{orderCount}</h3>
-            </div>
-            <span className="p-2 bg-emerald-50 text-emerald-600 rounded-lg text-lg">🛒</span>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Пользователи</p>
-              <h3 className="text-3xl font-black text-slate-900 mt-2">{userCount}</h3>
-            </div>
-            <span className="p-2 bg-purple-50 text-purple-600 rounded-lg text-lg">👥</span>
-          </div>
-        </Card>
-      </div>
-
-      {/* Quick Navigation Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="p-6 space-y-4">
-          <h3 className="text-base font-bold text-slate-900">Управление каталогом</h3>
-          <p className="text-xs text-slate-500">
+      {/* Quick Navigation */}
+      <div className="rule-grid grid-cols-1 md:grid-cols-2">
+        <div className="p-6 flex flex-col gap-4">
+          <h3 className="text-h3 text-ink">Управление каталогом</h3>
+          <p className="text-small text-ink-2">
             Создание новых позиций цифровой техники, изменение цен, остатков на складе и деактивация устаревших позиций.
           </p>
-          <Link href="/admin/products">
-            <Button variant="outline" size="sm" className="w-full">
-              Перейти к товарам →
-            </Button>
+          <Link
+            href="/admin/products"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-ink mt-auto"
+          >
+            Перейти к товарам
+            <span className="arrow" aria-hidden="true">→</span>
           </Link>
-        </Card>
+        </div>
 
-        <Card className="p-6 space-y-4">
-          <h3 className="text-base font-bold text-slate-900">Управление заказами</h3>
-          <p className="text-xs text-slate-500">
+        <div className="p-6 flex flex-col gap-4">
+          <h3 className="text-h3 text-ink">Управление заказами</h3>
+          <p className="text-small text-ink-2">
             Просмотр поступающих заказов от клиентов, изменение статусов (PENDING, PROCESSING, SHIPPED, COMPLETED).
           </p>
-          <Link href="/admin/orders">
-            <Button variant="outline" size="sm" className="w-full">
-              Перейти к заказам →
-            </Button>
+          <Link
+            href="/admin/orders"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-ink mt-auto"
+          >
+            Перейти к заказам
+            <span className="arrow" aria-hidden="true">→</span>
           </Link>
-        </Card>
+        </div>
       </div>
 
     </div>

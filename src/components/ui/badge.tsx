@@ -2,22 +2,24 @@ import React from "react";
 
 export interface BadgeProps {
   children: React.ReactNode;
-  variant?: "default" | "success" | "warning" | "danger" | "outline";
+  variant?: "default" | "success" | "warning" | "danger" | "outline" | "signal" | "ink";
   className?: string;
 }
 
-export function Badge({ children, variant = "default", className = "" }: BadgeProps) {
-  const styles = {
-    default: "bg-slate-100 text-slate-800",
-    success: "bg-emerald-50 text-emerald-700 border border-emerald-200",
-    warning: "bg-amber-50 text-amber-700 border border-amber-200",
-    danger: "bg-red-50 text-red-700 border border-red-200",
-    outline: "border border-slate-200 text-slate-700",
-  };
+const styles: Record<NonNullable<BadgeProps["variant"]>, string> = {
+  default: "bg-paper-2 text-ink-2",
+  success: "bg-ok-soft text-ok",
+  warning: "bg-warn-soft text-warn",
+  danger: "bg-danger-soft text-danger",
+  outline: "border border-line text-ink-2 bg-surface",
+  signal: "bg-signal-soft text-signal-strong",
+  ink: "bg-ink text-ink-inverse",
+};
 
+export function Badge({ children, variant = "default", className = "" }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[variant]} ${className}`}
+      className={`inline-flex items-center gap-1 h-5.5 px-1.5 rounded-xs font-mono text-[10.5px] font-medium uppercase tracking-[0.08em] whitespace-nowrap ${styles[variant]} ${className}`}
     >
       {children}
     </span>

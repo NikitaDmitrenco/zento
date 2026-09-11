@@ -6,6 +6,11 @@ import { Locale } from "../../i18n/config";
 import { Dictionary } from "../../i18n/get-dictionary";
 import { LanguageSwitcher } from "./language-switcher";
 
+const navLink =
+  "relative py-1 text-sm font-medium text-ink-2 hover:text-ink transition-colors duration-180 " +
+  "after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-ink after:scale-x-0 after:origin-left " +
+  "after:transition-transform after:duration-180 hover:after:scale-x-100";
+
 export function Header({
   locale,
   dict,
@@ -28,143 +33,105 @@ export function Header({
     }
   };
 
+  const links = [
+    { href: `/${locale}/catalog`, label: dict.nav.catalog },
+    { href: `/${locale}/catalog?category=smartphones`, label: dict.nav.smartphones },
+    { href: `/${locale}/catalog?category=laptops`, label: dict.nav.laptops },
+    { href: `/${locale}/catalog?category=headphones`, label: dict.nav.headphones },
+  ];
+
   return (
-    <header className="sticky top-0 z-40 glass-header">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-4">
-          
-          {/* Logo */}
-          <Link href={`/${locale}`} className="flex items-center gap-2 group">
-            <span className="text-2xl font-black tracking-tighter text-slate-900 font-sans lowercase group-hover:opacity-80 transition-opacity">
-              zento<span className="text-blue-600">.</span>
-            </span>
+    <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur-[2px] border-b border-line">
+      <div className="container-x">
+        <div className="flex items-center justify-between h-16 gap-6">
+          {/* Wordmark */}
+          <Link href={`/${locale}`} className="wordmark text-[26px] shrink-0" aria-label={dict.common.brand}>
+            zento
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
-            <Link
-              href={`/${locale}/catalog`}
-              className="hover:text-slate-900 transition-colors"
-            >
-              {dict.nav.catalog}
-            </Link>
-            <Link
-              href={`/${locale}/catalog?category=smartphones`}
-              className="hover:text-slate-900 transition-colors"
-            >
-              {dict.nav.smartphones}
-            </Link>
-            <Link
-              href={`/${locale}/catalog?category=laptops`}
-              className="hover:text-slate-900 transition-colors"
-            >
-              {dict.nav.laptops}
-            </Link>
-            <Link
-              href={`/${locale}/catalog?category=headphones`}
-              className="hover:text-slate-900 transition-colors"
-            >
-              {dict.nav.headphones}
-            </Link>          </nav>
+          <nav className="hidden md:flex items-center gap-7">
+            {links.map((l) => (
+              <Link key={l.href} href={l.href} className={navLink}>
+                {l.label}
+              </Link>
+            ))}
+          </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            
-            {/* Language Switcher */}
+          <div className="flex items-center gap-3 sm:gap-4">
             <LanguageSwitcher currentLocale={locale} />
 
-            {/* Cart Icon */}
+            {/* Cart */}
             <Link
               href={`/${locale}/cart`}
-              className="relative p-2 text-slate-700 hover:text-slate-900 transition-colors rounded-lg hover:bg-slate-100"
+              className="group inline-flex items-center gap-1.5 h-8 px-2 -mr-1 text-ink-2 hover:text-ink transition-colors duration-180"
               aria-label={dict.common.cart}
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                ></path>
+              <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 5h2l1.6 10.5a1 1 0 001 .85h8.9a1 1 0 001-.8L20 8H7" />
+                <circle cx="9.5" cy="20" r="1" fill="currentColor" />
+                <circle cx="17" cy="20" r="1" fill="currentColor" />
               </svg>
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-slate-900 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="data text-[11px] font-medium text-ink-inverse bg-signal min-w-4.5 h-4.5 px-1 rounded-full inline-flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
             </Link>
 
-            {/* User Auth state & Logout */}
+            {/* Auth state */}
             {user ? (
-              <div className="hidden sm:flex items-center gap-3 border-l border-slate-200 pl-3">
-                <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <div className="hidden sm:flex items-center gap-3 border-l border-line pl-4 h-8">
+                <span className="text-[13px] font-medium text-ink inline-flex items-center gap-2 max-w-40 truncate">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ok shrink-0" aria-hidden="true" />
                   {user.name}
                 </span>
                 {user.role === "ADMIN" && (
                   <Link
                     href={`/admin`}
-                    className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md hover:bg-blue-100 transition-colors"
+                    className="label h-7 inline-flex items-center px-2 rounded-xs bg-signal-soft text-signal-strong hover:bg-signal hover:text-white transition-colors duration-180"
                   >
-                    🛡️ {dict.common.admin}
+                    {dict.common.admin}
                   </Link>
                 )}
                 <button
                   onClick={handleLogout}
-                  className="text-xs font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 px-2.5 py-1.5 rounded-md transition-colors cursor-pointer flex items-center gap-1"
-                  title="Выйти из аккаунта"
+                  className="text-[13px] font-medium text-ink-3 hover:text-danger transition-colors duration-180 cursor-pointer"
+                  title={dict.common.logout}
                 >
-                  🚪 Выйти
+                  {dict.common.logout}
                 </button>
               </div>
             ) : (
-              <div className="hidden sm:flex items-center gap-2 border-l border-slate-200 pl-3">
+              <div className="hidden sm:flex items-center gap-4 border-l border-line pl-4 h-8">
                 <Link
                   href={`/${locale}/auth/login`}
-                  className="text-xs font-medium text-slate-700 hover:text-slate-900 px-2.5 py-1.5 rounded-md hover:bg-slate-100 transition-colors"
+                  className="text-[13px] font-medium text-ink-2 hover:text-ink transition-colors duration-180"
                 >
                   {dict.common.login}
                 </Link>
                 <Link
                   href={`/${locale}/auth/register`}
-                  className="text-xs font-medium bg-slate-900 text-white px-3 py-1.5 rounded-md hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center h-8 px-3.5 rounded-sm bg-ink text-ink-inverse text-[13px] font-medium hover:bg-signal transition-colors duration-180"
                 >
                   {dict.common.register}
                 </Link>
               </div>
             )}
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-slate-700 hover:text-slate-900 rounded-lg hover:bg-slate-100"
+              className="md:hidden inline-flex items-center justify-center w-9 h-9 -mr-2 text-ink cursor-pointer"
               aria-label="Toggle Navigation"
+              aria-expanded={mobileMenuOpen}
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
                 {mobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
+                  <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
+                  <path strokeLinecap="round" d="M3 7h18M3 12h18M3 17h18" />
                 )}
               </svg>
             </button>
@@ -173,71 +140,59 @@ export function Header({
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 py-4 px-2 space-y-3 bg-white">
-            <Link
-              href={`/${locale}/catalog`}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 rounded-lg"
-            >
-              {dict.nav.catalog}
-            </Link>
-            <Link
-              href={`/${locale}/catalog?category=smartphones`}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg"
-            >
-              {dict.nav.smartphones}
-            </Link>
-            <Link
-              href={`/${locale}/catalog?category=laptops`}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg"
-            >
-              {dict.nav.laptops}
-            </Link>
-            <Link
-              href={`/${locale}/catalog?category=headphones`}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg"
-            >
-              {dict.nav.headphones}
-            </Link>
+          <div className="md:hidden border-t border-line -mx-5 sm:-mx-8 px-5 sm:px-8 pb-5 bg-paper">
+            <nav className="divide-y divide-line">
+              {links.map((l, i) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-3.5 text-[15px] font-medium text-ink"
+                >
+                  <span>{l.label}</span>
+                  <span className="label">{String(i + 1).padStart(2, "0")}</span>
+                </Link>
+              ))}
+            </nav>
 
-            <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div className="pt-4 border-t border-line-strong">
               {user ? (
-                <div className="flex flex-col gap-2 w-full">
-                  <div className="flex items-center justify-between text-xs font-bold text-slate-800">
-                    <span>👤 {user.name}</span>
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between text-[13px] font-medium text-ink">
+                    <span className="inline-flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-ok" aria-hidden="true" />
+                      {user.name}
+                    </span>
                     {user.role === "ADMIN" && (
                       <Link
                         href="/admin"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded"
+                        className="label h-7 inline-flex items-center px-2 rounded-xs bg-signal-soft text-signal-strong"
                       >
-                        🛡️ {dict.common.admin}
+                        {dict.common.admin}
                       </Link>
                     )}
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="w-full text-center py-2 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors cursor-pointer"
+                    className="h-10 w-full rounded-sm border border-line text-[13px] font-medium text-danger hover:border-danger transition-colors cursor-pointer"
                   >
-                    🚪 Выйти из аккаунта
+                    {dict.common.logout}
                   </button>
                 </div>
               ) : (
-                <div className="flex gap-2 w-full">
+                <div className="grid grid-cols-2 gap-2">
                   <Link
                     href={`/${locale}/auth/login`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 text-center py-2 text-xs font-medium text-slate-700 bg-slate-100 rounded-md"
+                    className="inline-flex items-center justify-center h-10 rounded-sm border border-ink text-[13px] font-medium text-ink"
                   >
                     {dict.common.login}
                   </Link>
                   <Link
                     href={`/${locale}/auth/register`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 text-center py-2 text-xs font-medium text-white bg-slate-900 rounded-md"
+                    className="inline-flex items-center justify-center h-10 rounded-sm bg-ink text-ink-inverse text-[13px] font-medium"
                   >
                     {dict.common.register}
                   </Link>

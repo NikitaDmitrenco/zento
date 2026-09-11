@@ -7,6 +7,17 @@ interface CategoryIconProps extends React.SVGProps<SVGSVGElement> {
 export function CategoryIcon({ slug, className = "w-6 h-6", ...props }: CategoryIconProps) {
   const normSlug = slug.toLowerCase();
 
+  if (normSlug === "headphones" || normSlug.includes("audio") || normSlug.includes("sound")) {
+    return (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
+        {/* Headphones icon */}
+        <path d="M3 14v-3a9 9 0 0118 0v3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="2" y="14" width="4" height="6" rx="2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="18" y="14" width="4" height="6" rx="2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
   if (normSlug === "smartphones" || normSlug.includes("phone")) {
     return (
       <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
@@ -36,17 +47,6 @@ export function CategoryIcon({ slug, className = "w-6 h-6", ...props }: Category
         <rect x="4" y="3" width="16" height="18" rx="2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="12" cy="18" r="0.75" fill="currentColor" />
         <line x1="9" y1="6" x2="15" y2="6" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-
-  if (normSlug === "headphones" || normSlug.includes("audio") || normSlug.includes("sound")) {
-    return (
-      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
-        {/* Headphones icon */}
-        <path d="M3 14v-3a9 9 0 0118 0v3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <rect x="2" y="14" width="4" height="6" rx="2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <rect x="18" y="14" width="4" height="6" rx="2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     );
   }

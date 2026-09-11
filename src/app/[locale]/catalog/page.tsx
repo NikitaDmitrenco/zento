@@ -8,6 +8,8 @@ import { demoCategories, demoBrands } from "../../../db/data/demo-data";
 import { ProductCard } from "../../../components/catalog/product-card";
 import { CatalogFilters } from "../../../components/catalog/catalog-filters";
 import { Button } from "../../../components/ui/button";
+import { SectionHead } from "../../../components/ui/section-head";
+import { EmptyState } from "../../../components/ui/empty-state";
 
 export default async function CatalogPage({
   params,
@@ -63,91 +65,96 @@ export default async function CatalogPage({
   });
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      
-      {/* Page Title */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 pb-5 gap-4">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            {dict.catalog.title}
-          </h1>
-          <p className="text-xs text-slate-500 mt-1">
-            {dict.catalog.itemsFound}: <span className="font-semibold text-slate-800">{result.total}</span>
+    <main className="container-x pt-10 sm:pt-14 pb-8 space-y-10">
+      {/* Page head */}
+      <SectionHead
+        as="h1"
+        index="—"
+        title={dict.catalog.title}
+        aside={
+          <p className="label">
+            {dict.catalog.itemsFound}: <span className="text-ink">{String(result.total).padStart(2, "0")}</span>
           </p>
-        </div>
-      </div>
+        }
+      />
 
-      {/* Main Grid & Filters Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        
-        {/* Sidebar Filters */}
-        <div className="lg:col-span-1">
-          <CatalogFilters
-            locale={locale as Locale}
-            dict={dict}
-            categories={categoriesList}
-            brands={brandsList}
-          />
+      {/* Filters + grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-10 items-start">
+        <div className="lg:col-span-3">
+          {/* Below lg the filters collapse behind a ruled disclosure row */}
+          <details className="lg:hidden group border-y border-line">
+            <summary className="flex items-center justify-between py-3.5 cursor-pointer list-none label text-ink [&::-webkit-details-marker]:hidden">
+              {dict.catalog.filterBy}
+              <span className="text-[15px] leading-none transition-transform duration-180 group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <div className="pb-6">
+              <CatalogFilters locale={locale as Locale} dict={dict} categories={categoriesList} brands={brandsList} />
+            </div>
+          </details>
+          <div className="hidden lg:block">
+            <CatalogFilters locale={locale as Locale} dict={dict} categories={categoriesList} brands={brandsList} />
+          </div>
         </div>
 
-        {/* Catalog Products Grid */}
-        <div className="lg:col-span-3 space-y-8">
+        <div className="lg:col-span-9 space-y-8">
           {result.items.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {result.items.map((prod) => (
+            <div className="rule-grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+              {result.items.map((prod, i) => (
                 <ProductCard
                   key={prod.id}
                   product={prod}
                   locale={locale as Locale}
                   dict={dict}
+                  index={(result.page - 1) * result.limit + i + 1}
                 />
               ))}
             </div>
           ) : (
-            /* Empty State */
-            <div className="bg-white p-12 text-center rounded-2xl border border-slate-200 space-y-4">
-              <div className="w-16 h-16 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400">
-                🔍
-              </div>
-              <h3 className="text-lg font-bold text-slate-900">
-                {dict.common.empty}
-              </h3>
-              <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                {dict.catalog.noProducts}
-              </p>
-              <Link href={`/${locale}/catalog`}>
-                <Button variant="secondary" size="sm">
-                  {dict.catalog.resetFilters}
-                </Button>
-              </Link>
-            </div>
+            <EmptyState
+              index="00"
+              title={dict.common.empty}
+              text={dict.catalog.noProducts}
+              action={
+                <Link href={`/${locale}/catalog`}>
+                  <Button variant="outline" size="sm">
+                    {dict.catalog.resetFilters}
+                  </Button>
+                </Link>
+              }
+            />
           )}
 
-          {/* Pagination */}
+          {/* Pagination: a ruled row of mono page numbers */}
           {result.totalPages > 1 && (
-            <div className="flex justify-center items-center gap-2 pt-6 border-t border-slate-200">
-              {Array.from({ length: result.totalPages }, (_, i) => i + 1).map((p) => {
-                const isActive = p === result.page;
-                const newParams = new URLSearchParams(queryParams as any);
-                newParams.set("page", p.toString());
-                return (
-                  <Link key={p} href={`/${locale}/catalog?${newParams.toString()}`}>
-                    <Button
-                      size="sm"
-                      variant={isActive ? "primary" : "outline"}
-                      className="w-9 h-9 p-0 text-xs"
+            <nav className="flex items-center justify-between pt-5 border-t border-line" aria-label="Pagination">
+              <span className="label">
+                {String(result.page).padStart(2, "0")} / {String(result.totalPages).padStart(2, "0")}
+              </span>
+              <div className="flex items-center gap-1">
+                {Array.from({ length: result.totalPages }, (_, i) => i + 1).map((p) => {
+                  const isActive = p === result.page;
+                  const newParams = new URLSearchParams(queryParams as any);
+                  newParams.set("page", p.toString());
+                  return (
+                    <Link
+                      key={p}
+                      href={`/${locale}/catalog?${newParams.toString()}`}
+                      aria-current={isActive ? "page" : undefined}
+                      className={`data inline-flex items-center justify-center w-9 h-9 rounded-sm text-[13px] transition-colors duration-180 ${
+                        isActive
+                          ? "bg-ink text-ink-inverse"
+                          : "text-ink-2 hover:bg-surface hover:text-ink border border-transparent hover:border-line"
+                      }`}
                     >
-                      {p}
-                    </Button>
-                  </Link>
-                );
-              })}
-            </div>
+                      {String(p).padStart(2, "0")}
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
           )}
         </div>
-
       </div>
-
     </main>
   );
 }
