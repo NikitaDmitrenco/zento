@@ -12,17 +12,17 @@
   --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   /* Surfaces */
-  --color-paper: #ffffff;      /* page ground */
-  --color-paper-2: #ffffff;    /* sunken ground: image plates, footer, admin canvas */
-  --color-surface: #ffffff;    /* raised: inputs, product plates, panels */
-  --color-line: #e2e2dc;       /* hairline rules */
+  --color-paper: #f5f4ef;      /* page ground */
+  --color-paper-2: #f5f4ef;    /* sunken ground: image plates match page ground */
+  --color-surface: #ffffff;    /* raised: inputs, panels */
+  --color-line: #d9d8d0;       /* hairline rules */
   --color-line-strong: #141413; /* emphasized rules */
 
   /* Ink */
   --color-ink: #141413;
   --color-ink-2: #4f4f4a;      /* secondary text */
   --color-ink-3: #8a8a83;      /* muted text, labels */
-  --color-ink-inverse: #ffffff;
+  --color-ink-inverse: #f5f4ef;
 
   /* Signal (single accent) */
   --color-signal: #e4531b;
@@ -222,9 +222,9 @@
     text-decoration-color: var(--color-signal);
   }
 
-  /* Product image plate: photos blend into clean white ground */
+  /* Product image plate: photos blend into paper ground */
   .plate {
-    background: var(--color-surface);
+    background: var(--color-paper);
     overflow: hidden;
   }
   .plate img {

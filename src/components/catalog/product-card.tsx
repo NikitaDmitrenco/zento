@@ -24,9 +24,9 @@ export function ProductCard({
   const href = `/${locale}/product/${product.slug}`;
 
   return (
-    <article className="group relative flex flex-col h-full p-4 sm:p-5 bg-white">
+    <article className="group relative flex flex-col h-full p-4 sm:p-5 bg-paper">
       {/* Plate */}
-      <Link href={href} className="plate block aspect-[5/4] rounded-sm relative bg-white" tabIndex={-1} aria-hidden="true">
+      <Link href={href} className="plate block aspect-[5/4] rounded-sm relative bg-paper" tabIndex={-1} aria-hidden="true">
         {product.primaryImage ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img

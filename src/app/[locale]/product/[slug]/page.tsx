@@ -114,7 +114,7 @@ export default async function ProductPage({
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
         {/* Gallery */}
         <div className="lg:col-span-7 space-y-3">
-          <div className="plate aspect-[4/3] rounded-md relative bg-white">
+          <div className="plate aspect-[4/3] rounded-md relative bg-paper">
             {product.images && product.images.length > 0 && product.images[0] ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain p-4" />
@@ -133,7 +133,7 @@ export default async function ProductPage({
               {product.images.map((img, idx) => (
                 <div
                   key={idx}
-                  className="plate w-20 h-20 rounded-sm shrink-0 border border-line first:border-ink bg-white"
+                  className="plate w-20 h-20 rounded-sm shrink-0 border border-line first:border-ink bg-paper"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-contain p-1" />
