@@ -3,7 +3,35 @@ import { eq } from "drizzle-orm";
 import { getSession } from "../../../../lib/auth/session";
 import { db } from "../../../../db";
 import { products, categories, brands, productImages } from "../../../../db/schema";
-import { demoProducts } from "../../../../db/data/demo-data";
+
+// Max size for inline base64 images (data: URLs), ~1.5MB, to bound DB row growth.
+const MAX_DATA_URL_LENGTH = 1_500_000;
+
+// Only accept image references we trust: relative storage paths, trusted https hosts,
+// or bounded inline base64 images. Everything else (other hosts, http:, javascript:, etc.) is rejected.
+function isAllowedImageUrl(value: string): boolean {
+  if (!value) return true; // empty -> a placeholder is used
+
+  // Bounded inline base64 image
+  if (value.startsWith("data:")) {
+    return /^data:image\/(png|jpe?g|webp|gif|avif);base64,/i.test(value) && value.length <= MAX_DATA_URL_LENGTH;
+  }
+
+  // Relative storage path (no scheme, no leading slash, no traversal)
+  if (/^(products|brands)\//.test(value) && !value.includes("..")) {
+    return true;
+  }
+
+  // Absolute URL: https only, from a small allowlist of trusted image hosts
+  try {
+    const u = new URL(value);
+    if (u.protocol !== "https:") return false;
+    const host = u.hostname.toLowerCase();
+    return host === "images.unsplash.com" || host === "supabase.co" || host.endsWith(".supabase.co");
+  } catch {
+    return false;
+  }
+}
 
 export async function POST(req: Request) {
   try {
@@ -17,6 +45,13 @@ export async function POST(req: Request) {
 
     if (!name || !description || !price || stock === undefined || !categorySlug || !brandSlug) {
       return NextResponse.json({ error: "Please fill in all required product fields." }, { status: 400 });
+    }
+
+    if (imageUrl && !isAllowedImageUrl(imageUrl)) {
+      return NextResponse.json(
+        { error: "Invalid image. Use a storage path, a trusted https image URL, or an uploaded image under 1.5MB." },
+        { status: 400 }
+      );
     }
 
     const priceCents = Math.round(Number(price) * 100);
@@ -84,25 +119,8 @@ export async function POST(req: Request) {
       });
 
     } catch (err) {
-      console.error("DB product creation error:", err);
+      console.error("DB product creation error:", err instanceof Error ? err.message : "unknown error");
     }
-
-    // Always push to demo dataset so offline mode also reflects the new product
-    demoProducts.unshift({
-      name,
-      slug: finalSlug,
-      description,
-      price: priceCents,
-      stock: Number(stock),
-      isFeatured: Boolean(isFeatured),
-      categorySlug,
-      brandSlug,
-      images: [imageUrl || "products/placeholders/category-smartphones.webp"],
-      specs: [
-        { groupName: "General", name: "Brand", value: brandSlug },
-        { groupName: "General", name: "Category", value: categorySlug },
-      ],
-    });
 
     return NextResponse.json({
       success: true,
@@ -113,7 +131,7 @@ export async function POST(req: Request) {
       },
     }, { status: 201 });
   } catch (error) {
-    console.error("Error creating product:", error);
+    console.error("Error creating product:", error instanceof Error ? error.message : "unknown error");
     return NextResponse.json({ error: "Failed to create product" }, { status: 500 });
   }
 }

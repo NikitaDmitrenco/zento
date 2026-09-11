@@ -12,7 +12,12 @@ import { Alert } from "../ui/alert";
 export function LoginForm({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || `/${locale}`;
+  // Only allow same-origin, path-relative redirects to prevent open-redirect phishing.
+  const rawCallback = searchParams.get("callbackUrl");
+  const callbackUrl =
+    rawCallback && rawCallback.startsWith("/") && !rawCallback.startsWith("//") && !rawCallback.startsWith("/\\")
+      ? rawCallback
+      : `/${locale}`;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

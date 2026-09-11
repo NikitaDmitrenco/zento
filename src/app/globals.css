@@ -222,9 +222,9 @@
     text-decoration-color: var(--color-signal);
   }
 
-  /* Product image plate: photos multiply into the warm ground */
+  /* Product image plate: photos blend into clean white ground */
   .plate {
-    background: var(--color-paper-2);
+    background: var(--color-surface);
     overflow: hidden;
   }
   .plate img {

@@ -11,7 +11,7 @@ const connectionString = process.env.DATABASE_URL || "postgres://postgres:postgr
 // Disable prefetch for serverless environments, enforce SSL on Supabase, and set 3s connect timeout
 const client = postgres(connectionString, {
   prepare: false,
-  ssl: connectionString.includes("supabase.com") ? "require" : undefined,
+  ssl: connectionString.includes("supabase.co") ? "require" : undefined,
   max: 5,
   connect_timeout: 3, // 3-second timeout to prevent request hanging and enable instant graceful fallback
   idle_timeout: 10,

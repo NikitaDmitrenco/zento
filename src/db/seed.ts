@@ -8,6 +8,8 @@ import {
   productImages,
   productSpecifications,
   users,
+  orders,
+  orderItems,
 } from "./schema";
 import { demoCategories, demoBrands, demoProducts, demoUsers } from "./data/demo-data";
 
@@ -15,6 +17,18 @@ export { demoCategories, demoBrands, demoProducts, demoUsers };
 
 export async function seedDatabase() {
   console.log("Starting Zento database seed...");
+
+  // Clear existing records for a fresh seed
+  console.log("Clearing existing database records...");
+  await db.delete(orderItems);
+  await db.delete(orders);
+  await db.delete(productSpecifications);
+  await db.delete(productImages);
+  await db.delete(products);
+  await db.delete(categories);
+  await db.delete(brands);
+  await db.delete(users);
+  console.log("Database cleared successfully.");
 
   // 0. Seed Users
   for (const usr of demoUsers) {

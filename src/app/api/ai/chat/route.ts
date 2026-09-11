@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { processAiChat } from "../../../../services/ai/deepseek-service";
+import { enforceRateLimit, getClientIp, tooManyRequests } from "../../../../lib/rate-limit";
 
 const chatRequestSchema = z.object({
   messages: z.array(
@@ -14,6 +15,11 @@ const chatRequestSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    // Limit abuse of the (potentially paid) AI endpoint. Public access is allowed.
+    const ip = getClientIp(req);
+    const ipLimit = await enforceRateLimit("ai-ip", ip, 20, "10 m");
+    if (!ipLimit.ok) return tooManyRequests(ipLimit.retryAfterSeconds);
+
     const body = await req.json();
     const parsed = chatRequestSchema.safeParse(body);
 

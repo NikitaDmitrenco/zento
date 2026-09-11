@@ -48,6 +48,12 @@ export const demoBrands = [
   { name: "Bose", slug: "bose", logoUrl: "brands/bose.webp" },
   { name: "Garmin", slug: "garmin", logoUrl: "brands/garmin.webp" },
   { name: "Anker", slug: "anker", logoUrl: "brands/anker.webp" },
+  { name: "OnePlus", slug: "oneplus", logoUrl: "brands/oneplus.webp" },
+  { name: "Dell", slug: "dell", logoUrl: "brands/dell.webp" },
+  { name: "Razer", slug: "razer", logoUrl: "brands/razer.webp" },
+  { name: "Sennheiser", slug: "sennheiser", logoUrl: "brands/sennheiser.webp" },
+  { name: "Belkin", slug: "belkin", logoUrl: "brands/belkin.webp" },
+  { name: "Satechi", slug: "satechi", logoUrl: "brands/satechi.webp" },
 ];
 
 export const demoUsers = [
@@ -66,12 +72,12 @@ export const demoUsers = [
 ];
 
 export const demoProducts = [
-  // Smartphones (4)
+  // ==================== SMARTPHONES (6) ====================
   {
     name: "Apple iPhone 16 Pro Max (2024)",
     slug: "apple-iphone-16-pro-max-2024",
     description: "Флагманский смартфон 2024 года с дисплеем Super Retina XDR 6.9 дюйма, чипом A18 Pro, титановым корпусом и кнопкой управления камерой Camera Control.",
-    price: 2799900, // 27,999 MDL / 2799900 cents
+    price: 2799900,
     stock: 15,
     isFeatured: true,
     categorySlug: "smartphones",
@@ -89,14 +95,14 @@ export const demoProducts = [
   {
     name: "Samsung Galaxy S24 Ultra (2024)",
     slug: "samsung-galaxy-s24-ultra-2024",
-    description: "Премиальный смартфон с 6.8-дюймовым экраном Dynamic AMOLED 2X 120Гц, титановым рамкой, процессором Snapdragon 8 Gen 3, пером S Pen и искусственным интеллектом Galaxy AI.",
-    price: 2499900, // 24,999 MDL
+    description: "Премиальный смартфон с 6.8-дюймовым экраном Dynamic AMOLED 2X 120Гц, титановой рамкой, процессором Snapdragon 8 Gen 3, пером S Pen и искусственным интеллектом Galaxy AI.",
+    price: 2499900,
     stock: 20,
     isFeatured: true,
     categorySlug: "smartphones",
     brandSlug: "samsung",
     images: [
-      "/products/samsung-galaxy-s24-ultra.jpg",
+      "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "6.8\" Dynamic AMOLED 2X 120Hz QHD+" },
@@ -109,7 +115,7 @@ export const demoProducts = [
     name: "Google Pixel 9 Pro (2024)",
     slug: "google-pixel-9-pro-2024",
     description: "Флагман от Google с нейропроцессором Tensor G4, встроенным ИИ Gemini Advanced, матовым стеклом и передовой системой мобильной фотографии.",
-    price: 1999900, // 19,999 MDL
+    price: 1999900,
     stock: 12,
     isFeatured: false,
     categorySlug: "smartphones",
@@ -127,7 +133,7 @@ export const demoProducts = [
     name: "Xiaomi 14 Ultra (2024)",
     slug: "xiaomi-14-ultra-2024",
     description: "Фотофлагман с 1-дюймовым сенсором Sony LYT-900, оптикой Leica Summilux, переменной диафрагмой f/1.63–f/4.0 и ультрабыстрой зарядкой 90Вт.",
-    price: 2299900, // 22,999 MDL
+    price: 2299900,
     stock: 10,
     isFeatured: false,
     categorySlug: "smartphones",
@@ -141,13 +147,49 @@ export const demoProducts = [
       { groupName: "Дисплей", name: "Матрица", value: "6.73\" WQHD+ AMOLED 120Hz" },
     ],
   },
+  {
+    name: "OnePlus 12 (2024)",
+    slug: "oneplus-12-2024",
+    description: "Скоростной флагман с чипом Snapdragon 8 Gen 3, системой охлаждения Dual Cryo-velocity VC, камерами Hasselblad 4-го поколения и быстрой зарядкой 100W.",
+    price: 1699900,
+    stock: 14,
+    isFeatured: false,
+    categorySlug: "smartphones",
+    brandSlug: "oneplus",
+    images: [
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Дисплей", name: "Экран", value: "6.82\" 2K 120Hz ProXDR LTPO" },
+      { groupName: "Зарядка", name: "Мощность", value: "100W SUPERVOOC / 50W AIRVOOC" },
+      { groupName: "Камера", name: "Партнер", value: "Hasselblad Camera for Mobile 50MP" },
+    ],
+  },
+  {
+    name: "Samsung Galaxy Z Fold 6 (2024)",
+    slug: "samsung-galaxy-z-fold-6-2024",
+    description: "Инновационный складной смартфон с 7.6-дюймовым гибким экраном Dynamic AMOLED 2X, ударопрочным шарниром Flex Hinge и поддержкой петабайтного ИИ Galaxy AI.",
+    price: 3299900,
+    stock: 7,
+    isFeatured: true,
+    categorySlug: "smartphones",
+    brandSlug: "samsung",
+    images: [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Дисплей", name: "Главный экран", value: "7.6\" Dynamic AMOLED 2X Foldable 120Hz" },
+      { groupName: "Форм-фактор", name: "Шарнир", value: "Armor Aluminum Dual Rail Hinge" },
+      { groupName: "Процессор", name: "Чипсет", value: "Snapdragon 8 Gen 3 for Galaxy" },
+    ],
+  },
 
-  // Laptops (4)
+  // ==================== LAPTOPS (6) ====================
   {
     name: "Apple MacBook Pro 16 M3 Max (2024)",
     slug: "apple-macbook-pro-16-m3-max",
     description: "Мощнейшая мобильная станция в цвете Space Black на чипе M3 Max (16 ядер CPU, 40 ядер GPU), 48GB объединенной памяти и дисплеем Liquid Retina XDR.",
-    price: 4999900, // 49,999 MDL
+    price: 4999900,
     stock: 8,
     isFeatured: true,
     categorySlug: "laptops",
@@ -165,7 +207,7 @@ export const demoProducts = [
     name: "Apple MacBook Air 15 M3 (2024)",
     slug: "apple-macbook-air-15-m3-2024",
     description: "Ультратонкий 15-дюймовый ноутбук в алюминиевом корпусе на чипе M3 с пассивным бесшумным охлаждением и до 18 часов автономной работы.",
-    price: 2599900, // 25,999 MDL
+    price: 2599900,
     stock: 25,
     isFeatured: false,
     categorySlug: "laptops",
@@ -183,7 +225,7 @@ export const demoProducts = [
     name: "ASUS ROG Zephyrus G16 (2024)",
     slug: "asus-rog-zephyrus-g16-2024",
     description: "Игровой ноутбук премиум-класса с 16-дюймовым ROG Nebula OLED экраном 240Гц, процессором Intel Core Ultra 9 185H и графикой NVIDIA RTX 4080.",
-    price: 4299900, // 42,999 MDL
+    price: 4299900,
     stock: 6,
     isFeatured: true,
     categorySlug: "laptops",
@@ -201,7 +243,7 @@ export const demoProducts = [
     name: "Lenovo ThinkPad X1 Carbon Gen 12 (2024)",
     slug: "lenovo-thinkpad-x1-carbon-gen12",
     description: "Бизнес-ультрабук из углеродного волокна весом 1.09 кг с процессором Intel Core Ultra 7, 32GB RAM, сенсорным OLED-дисплеем и сканером отпечатков.",
-    price: 3799900, // 37,999 MDL
+    price: 3799900,
     stock: 14,
     isFeatured: false,
     categorySlug: "laptops",
@@ -215,13 +257,49 @@ export const demoProducts = [
       { groupName: "Память", name: "ОЗУ / Накопитель", value: "32 GB LPDDR5x / 1 TB SSD" },
     ],
   },
+  {
+    name: "Dell XPS 16 9640 (2024)",
+    slug: "dell-xps-16-9640-2024",
+    description: "Флагманский ультрабук с безупречным минималистичным дизайном, сенсорной стеклянной панелью задач, OLED-экраном 4K и графикой RTX 4070.",
+    price: 4499900,
+    stock: 5,
+    isFeatured: false,
+    categorySlug: "laptops",
+    brandSlug: "dell",
+    images: [
+      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Дисплей", name: "Экран", value: "16.3\" 4K+ (3840x2400) OLED Touch 120Hz" },
+      { groupName: "Процессор", name: "CPU", value: "Intel Core Ultra 9 185H" },
+      { groupName: "Видеокарта", name: "GPU", value: "NVIDIA GeForce RTX 4070 8GB" },
+    ],
+  },
+  {
+    name: "Razer Blade 16 (2024)",
+    slug: "razer-blade-16-2024",
+    description: "Геймерский ноутбук в цельноалюминиевом черном корпусе Unibody с OLED-дисплеем 240Гц, процессором Intel Core i9-14900HX и графикой RTX 4090.",
+    price: 5499900,
+    stock: 4,
+    isFeatured: true,
+    categorySlug: "laptops",
+    brandSlug: "razer",
+    images: [
+      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Процессор", name: "CPU", value: "Intel Core i9-14900HX (24 cores)" },
+      { groupName: "Видеокарта", name: "GPU", value: "NVIDIA GeForce RTX 4090 16GB" },
+      { groupName: "Дисплей", name: "Экран", value: "16\" QHD+ 240Hz OLED Dual-Mode" },
+    ],
+  },
 
-  // Tablets (3)
+  // ==================== TABLETS (5) ====================
   {
     name: "Apple iPad Pro 13 M4 (2024)",
     slug: "apple-ipad-pro-13-m4-2024",
     description: "Самый тонкий продукт Apple за всю историю (5.1 мм). Двухслойный Ultra Retina XDR OLED дисплей, чип M4 и поддержка стилуса Apple Pencil Pro.",
-    price: 2699900, // 26,999 MDL
+    price: 2699900,
     stock: 15,
     isFeatured: true,
     categorySlug: "tablets",
@@ -239,13 +317,13 @@ export const demoProducts = [
     name: "Samsung Galaxy Tab S10 Ultra (2024)",
     slug: "samsung-galaxy-tab-s10-ultra",
     description: "Огромный 14.6-дюймовый планшет с экраном Dynamic AMOLED 2X, антибликовым покрытием, защитой IP68 от воды и фирменным стилусом S Pen.",
-    price: 2399900, // 23,999 MDL
+    price: 2399900,
     stock: 18,
     isFeatured: false,
     categorySlug: "tablets",
     brandSlug: "samsung",
     images: [
-      "/products/samsung-galaxy-tab-s10-ultra.jpg",
+      "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=800&auto=format&fit=crop&q=80",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "14.6\" Dynamic AMOLED 2X 120Hz Anti-Reflection" },
@@ -257,7 +335,7 @@ export const demoProducts = [
     name: "Apple iPad Air 11 M2 (2024)",
     slug: "apple-ipad-air-11-m2-2024",
     description: "Универсальный планшет с дисплеем Liquid Retina 11 дюймов, чипом M2, фронтальной камерой на длинной грани и стереодинамиками.",
-    price: 1399900, // 13,999 MDL
+    price: 1399900,
     stock: 30,
     isFeatured: false,
     categorySlug: "tablets",
@@ -271,13 +349,49 @@ export const demoProducts = [
       { groupName: "Память", name: "Накопитель", value: "128 GB" },
     ],
   },
+  {
+    name: "Xiaomi Pad 6 Max 14 (2024)",
+    slug: "xiaomi-pad-6-max-14-2024",
+    description: "Большой планшет для работы и развлечений с 14-дюймовым экраном 2.8K 120Гц, 8 динамиками с Dolby Atmos и батареей 10000 мАч.",
+    price: 1199900,
+    stock: 12,
+    isFeatured: false,
+    categorySlug: "tablets",
+    brandSlug: "xiaomi",
+    images: [
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Дисплей", name: "Экран", value: "14\" 2.8K (2880x1800) IPS 120Hz" },
+      { groupName: "Звук", name: "Акустика", value: "8-Speaker Array Dolby Atmos" },
+      { groupName: "Батарея", name: "Зарядка", value: "10,000 mAh / 67W HyperCharge" },
+    ],
+  },
+  {
+    name: "Apple iPad mini 7 (2024)",
+    slug: "apple-ipad-mini-7-2024",
+    description: "Компактный планшет с 8.3-дюймовым экраном Liquid Retina, процессором A17 Pro, поддержкой Apple Intelligence и стилуса Apple Pencil Pro.",
+    price: 1149900,
+    stock: 22,
+    isFeatured: false,
+    categorySlug: "tablets",
+    brandSlug: "apple",
+    images: [
+      "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Дисплей", name: "Экран", value: "8.3\" Liquid Retina IPS True Tone" },
+      { groupName: "Процессор", name: "Чипсет", value: "Apple A17 Pro (6 CPU / 5 GPU)" },
+      { groupName: "Сеть", name: "Связь", value: "Wi-Fi 6E + Bluetooth 5.3" },
+    ],
+  },
 
-  // Headphones (3)
+  // ==================== HEADPHONES (6) ====================
   {
     name: "Sony WH-1000XM5",
     slug: "sony-wh-1000xm5",
     description: "Флагманские полноразмерные наушники с активным шумоподавлением (2 процессора, 8 микрофонов), 30 часами работы и кодеком LDAC Hi-Res Audio.",
-    price: 749900, // 7,499 MDL
+    price: 749900,
     stock: 35,
     isFeatured: true,
     categorySlug: "headphones",
@@ -295,7 +409,7 @@ export const demoProducts = [
     name: "Apple AirPods Max USB-C (2024)",
     slug: "apple-airpods-max-usbc-2024",
     description: "Полноразмерные наушники с динамическими драйверами Apple, цифровым шумоподавлением, режимом прозрачности и портом зарядки USB-C.",
-    price: 1199900, // 11,999 MDL
+    price: 1199900,
     stock: 20,
     isFeatured: false,
     categorySlug: "headphones",
@@ -310,10 +424,10 @@ export const demoProducts = [
     ],
   },
   {
-    name: "Bose QuietComfort Ultra",
-    slug: "bose-quietcomfort-ultra",
+    name: "Bose QuietComfort Ultra Headphones",
+    slug: "bose-quietcomfort-ultra-headphones",
     description: "Премиальные наушники Bose с запатентованной технологией Immersive Audio для объемного звучания и отделкой из мягкой натуральной кожи.",
-    price: 899900, // 8,999 MDL
+    price: 899900,
     stock: 22,
     isFeatured: false,
     categorySlug: "headphones",
@@ -327,19 +441,73 @@ export const demoProducts = [
       { groupName: "Режимы", name: "Шумоподавление", value: "Quiet Mode, Aware Mode, Immersion Mode" },
     ],
   },
+  {
+    name: "Sennheiser Momentum 4 Wireless",
+    slug: "sennheiser-momentum-4-wireless",
+    description: "Аудиофильские беспроводные наушники с 42-мм излучателями, адаптивным ANC и феноменальной автономностью до 60 часов работы от одного заряда.",
+    price: 699900,
+    stock: 16,
+    isFeatured: false,
+    categorySlug: "headphones",
+    brandSlug: "sennheiser",
+    images: [
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Батарея", name: "Автономность", value: "60 Hours Battery Life" },
+      { groupName: "Драйверы", name: "Акустика", value: "42mm Audiophile Transducer System" },
+      { groupName: "Звук", name: "Кодеки", value: "aptX Adaptive, aptX, AAC, SBC" },
+    ],
+  },
+  {
+    name: "Apple AirPods Pro 2 USB-C (2024)",
+    slug: "apple-airpods-pro-2-usbc",
+    description: "Легендарные TWS-наушники с чипом H2, активным шумоподавлением 2-го поколения, адаптивным прозрачным режимом и отслеживанием здоровья слуха.",
+    price: 499900,
+    stock: 45,
+    isFeatured: true,
+    categorySlug: "headphones",
+    brandSlug: "apple",
+    images: [
+      "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Процессор", name: "Чипсет", value: "Apple H2 Headphone Chip" },
+      { groupName: "Защита", name: "Класс", value: "IP54 Dust, Sweat, and Water Resistant" },
+      { groupName: "Кейс", name: "Зарядка", value: "MagSafe Charging Case (USB-C) with Speaker" },
+    ],
+  },
+  {
+    name: "Sony WF-1000XM5 TWS",
+    slug: "sony-wf-1000xm5-tws",
+    description: "Ультракомпактные внутриканальные TWS наушники с динамиками Dynamic Driver X, кодеком LDAC и непревзойденной передачей голоса.",
+    price: 549900,
+    stock: 28,
+    isFeatured: false,
+    categorySlug: "headphones",
+    brandSlug: "sony",
+    images: [
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Драйверы", name: "Излучатель", value: "8.4mm Dynamic Driver X" },
+      { groupName: "Шумоподавление", name: "Процессор", value: "Integrated Processor V2 + HD Noise Cancelling QN2e" },
+      { groupName: "Микрофоны", name: "Связь", value: "Bone Conduction Sensors + AI Deep Neural Network" },
+    ],
+  },
 
-  // Smart Watches (3)
+  // ==================== SMART WATCHES (5) ====================
   {
     name: "Apple Watch Series 10 (2024)",
     slug: "apple-watch-series-10-2024",
     description: "Самые тонкие смарт-часы Apple с широким углом обзора Wide-Angle OLED, распознаванием апноэ во сне, глубиномером и динамиком.",
-    price: 899900, // 8,999 MDL
+    price: 899900,
     stock: 25,
     isFeatured: true,
     categorySlug: "smart-watches",
     brandSlug: "apple",
     images: [
-      "/products/apple-watch-series-10.jpg",
+      "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "Wide-Angle Always-On Retina OLED" },
@@ -351,7 +519,7 @@ export const demoProducts = [
     name: "Samsung Galaxy Watch 7 (2024)",
     slug: "samsung-galaxy-watch-7-2024",
     description: "Смарт-часы на 3-нм процессоре Exynos W1000 с обновленным сенсором BioActive, расчетом конечных продуктов гликирования (AGEs) и GPS L1+L5.",
-    price: 599900, // 5,999 MDL
+    price: 599900,
     stock: 40,
     isFeatured: false,
     categorySlug: "smart-watches",
@@ -369,13 +537,13 @@ export const demoProducts = [
     name: "Garmin Fenix 8 Sapphire AMOLED (2024)",
     slug: "garmin-fenix-8-sapphire-2024",
     description: "Премиальные мультиспортивные часы с титановым безелем, AMOLED-дисплеем 1.4\", сапфировым стеклом, светодиодным фонариком и погружением до 40м.",
-    price: 2199900, // 21,999 MDL
+    price: 2199900,
     stock: 12,
     isFeatured: false,
     categorySlug: "smart-watches",
     brandSlug: "garmin",
     images: [
-      "/products/garmin-fenix-8.jpg",
+      "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&auto=format&fit=crop&q=80",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "1.4\" AMOLED Sapphire Glass" },
@@ -383,13 +551,49 @@ export const demoProducts = [
       { groupName: "Функции", name: "Оснащение", value: "Built-in LED Flashlight, ECG, Dive 40m" },
     ],
   },
+  {
+    name: "Apple Watch Ultra 2 Titanium (2024)",
+    slug: "apple-watch-ultra-2-2024",
+    description: "Экстремальные часы в титановом корпусе 49мм с экраном яркостью 3000 нит, кнопкой Action Button, глушителем шума ветра и до 72 часов работы.",
+    price: 1799900,
+    stock: 10,
+    isFeatured: true,
+    categorySlug: "smart-watches",
+    brandSlug: "apple",
+    images: [
+      "https://images.unsplash.com/photo-1510017803434-a899398421b3?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Корпус", name: "Материал", value: "49mm Aerospace Titanium Case & Sapphire Crystal" },
+      { groupName: "Яркость", name: "Дисплей", value: "3000 nits Always-On Retina OLED" },
+      { groupName: "Защита", name: "Водонепроницаемость", value: "100m Water Resistant / EN13319 Scuba Dive" },
+    ],
+  },
+  {
+    name: "Samsung Galaxy Watch Ultra (2024)",
+    slug: "samsung-galaxy-watch-ultra-2024",
+    description: "Бронированные часы Samsung с титановым корпусом Cushion Design, функцией Siren 86dB, трекингом экстремального спорта и защитой 10ATM / IP68.",
+    price: 1399900,
+    stock: 14,
+    isFeatured: false,
+    categorySlug: "smart-watches",
+    brandSlug: "samsung",
+    images: [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Корпус", name: "Конструкция", value: "Grade 4 Titanium Cushion Design 47mm" },
+      { groupName: "Безопасность", name: "Сирена", value: "Emergency Siren 86dB (Audible 180m away)" },
+      { groupName: "Защита", name: "Стандарты", value: "10ATM / IP68 / MIL-STD-810H" },
+    ],
+  },
 
-  // Accessories (3)
+  // ==================== ACCESSORIES (5) ====================
   {
     name: "Anker Prime 20,000mAh 200W Power Bank",
     slug: "anker-prime-20000mah-200w",
     description: "Мощнейший внешний аккумулятор 20 000 мАч с суммарной отдачей 200Вт (два порта USB-C по 100Вт каждый) и цветным дисплеем с индикацией ватт.",
-    price: 249900, // 2,499 MDL
+    price: 249900,
     stock: 50,
     isFeatured: false,
     categorySlug: "accessories",
@@ -407,7 +611,7 @@ export const demoProducts = [
     name: "Apple 140W USB-C Power Adapter",
     slug: "apple-140w-usbc-power-adapter",
     description: "Оригинальное сетевое зарядное устройство Apple мощностью 140 Вт на основе технологии GaN для быстрой зарядки MacBook Pro 16 до 50% за 30 минут.",
-    price: 179900, // 1,799 MDL
+    price: 179900,
     stock: 60,
     isFeatured: false,
     categorySlug: "accessories",
@@ -425,7 +629,7 @@ export const demoProducts = [
     name: "Anker MagGo 3-in-1 Wireless Charging Station",
     slug: "anker-maggo-3in1-wireless-station",
     description: "Складная алюминиевая док-станция 3-в-1 со стандартом Qi2 (15Вт MagSafe) для одновременной быстрой зарядки iPhone, Apple Watch и AirPods.",
-    price: 199900, // 1,999 MDL
+    price: 199900,
     stock: 45,
     isFeatured: false,
     categorySlug: "accessories",
@@ -437,6 +641,42 @@ export const demoProducts = [
       { groupName: "Мощность", name: "Зарядка", value: "15W Qi2 Fast Wireless MagSafe" },
       { groupName: "Корпус", name: "Материал", value: "Premium Foldable Aluminum Travel Stand" },
       { groupName: "Совместимость", name: "Устройства", value: "iPhone, Apple Watch, AirPods 3-in-1" },
+    ],
+  },
+  {
+    name: "Belkin BoostCharge Pro MagSafe 3-in-1 Pad",
+    slug: "belkin-boostcharge-pro-3in1",
+    description: "Плоский коврик беспроводной зарядки MagSafe 15W от Belkin с быстрой зарядкой для Apple Watch Series 10/Ultra и слотом для AirPods.",
+    price: 219900,
+    stock: 30,
+    isFeatured: false,
+    categorySlug: "accessories",
+    brandSlug: "belkin",
+    images: [
+      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Стандарт", name: "Мощность", value: "Official Apple MagSafe 15W Fast Charge" },
+      { groupName: "Модули", name: "Зарядка", value: "3 Dedicated Charging Pads (Phone, Watch, Buds)" },
+      { groupName: "Питание", name: "Адаптер", value: "40W PSU Included" },
+    ],
+  },
+  {
+    name: "Satechi USB-C On-the-Go Multiport Adapter",
+    slug: "satechi-usbc-onthego-adapter",
+    description: "Алюминиевый хаб 9-в-1 для ноутбуков и планшетов: 4K 60Hz HDMI, VGA, Gigabit Ethernet, USB-C PD 100W, SD/microSD картридер и 2x USB-A.",
+    price: 159900,
+    stock: 40,
+    isFeatured: false,
+    categorySlug: "accessories",
+    brandSlug: "satechi",
+    images: [
+      "https://images.unsplash.com/photo-1544652478-6653e09f18a2?w=800&auto=format&fit=crop&q=80",
+    ],
+    specs: [
+      { groupName: "Порты", name: "Видеовыход", value: "HDMI 4K 60Hz + VGA Full HD" },
+      { groupName: "Питание", name: "Pass-Through", value: "USB-C Power Delivery Up to 100W" },
+      { groupName: "Сеть", name: "Разъем", value: "Gigabit Ethernet RJ45 1000 Mbps" },
     ],
   },
 ];

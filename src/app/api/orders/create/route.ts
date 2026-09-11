@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { createOrder } from "../../../../services/orders/order-service";
+import { enforceRateLimit, getClientIp, tooManyRequests } from "../../../../lib/rate-limit";
 
 export async function POST(request: Request) {
   try {
+    // Limit automated/spam order submissions from a single source.
+    const ip = getClientIp(request);
+    const ipLimit = await enforceRateLimit("orders-ip", ip, 10, "1 h");
+    if (!ipLimit.ok) return tooManyRequests(ipLimit.retryAfterSeconds);
+
     const body = await request.json();
     const result = await createOrder(body);
     return NextResponse.json(result, { status: 201 });

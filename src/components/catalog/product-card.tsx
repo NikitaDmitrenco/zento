@@ -26,13 +26,13 @@ export function ProductCard({
   return (
     <article className="group relative flex flex-col h-full p-4 sm:p-5">
       {/* Plate */}
-      <Link href={href} className="plate block aspect-[5/4] rounded-sm relative" tabIndex={-1} aria-hidden="true">
+      <Link href={href} className="plate block aspect-[5/4] rounded-sm relative bg-white" tabIndex={-1} aria-hidden="true">
         {product.primaryImage ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={product.primaryImage}
             alt=""
-            className="w-full h-full object-cover transition-transform duration-500 ease-[var(--ease-out-quart)] group-hover:scale-[1.03]"
+            className="w-full h-full object-contain p-2.5 transition-transform duration-500 ease-[var(--ease-out-quart)] group-hover:scale-[1.03]"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-ink-3/60">

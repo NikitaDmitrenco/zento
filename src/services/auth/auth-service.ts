@@ -14,8 +14,7 @@ import {
 export const registerSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-  role: z.enum(["USER", "ADMIN"]).optional().default("USER"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;
@@ -50,7 +49,7 @@ export async function registerUser(input: RegisterInput): Promise<{
       name: validated.name,
       email: validated.email.toLowerCase(),
       passwordHash,
-      role: validated.role || "USER",
+      role: "USER",
     })
     .returning();
 
@@ -94,32 +93,9 @@ export async function loginUser(input: LoginInput): Promise<{
     // Database offline
   }
 
-  // Demo accounts fallback if user not in DB or DB offline
+  // No hardcoded credential fallback: authentication is only ever granted against
+  // a real user record in the database.
   if (!foundUser) {
-    if (validated.email.toLowerCase() === "admin@zento.tech" && validated.password === "admin123") {
-      const payload: UserSessionPayload = {
-        userId: "usr-admin-demo",
-        email: "admin@zento.tech",
-        name: "Администратор Zento",
-        role: "ADMIN",
-      };
-      const token = await createSessionToken(payload);
-      await setSessionCookie(token);
-      return { user: { id: payload.userId, email: payload.email, name: payload.name, role: payload.role }, token };
-    }
-
-    if (validated.email.toLowerCase() === "user@zento.tech" && validated.password === "user123") {
-      const payload: UserSessionPayload = {
-        userId: "usr-user-demo",
-        email: "user@zento.tech",
-        name: "Сергей Новиков",
-        role: "USER",
-      };
-      const token = await createSessionToken(payload);
-      await setSessionCookie(token);
-      return { user: { id: payload.userId, email: payload.email, name: payload.name, role: payload.role }, token };
-    }
-
     throw new Error("INVALID_CREDENTIALS");
   }
 

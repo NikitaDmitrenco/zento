@@ -217,10 +217,10 @@ ${catalogKnowledge}`;
           provider: "deepseek",
         };
       } else {
-        console.warn("DeepSeek API returned error:", response.status, await response.text());
+        console.warn("DeepSeek API returned error status:", response.status);
       }
     } catch (err) {
-      console.error("DeepSeek API connection exception:", err);
+      console.error("DeepSeek API connection exception:", err instanceof Error ? err.message : "unknown error");
     }
   }
 
