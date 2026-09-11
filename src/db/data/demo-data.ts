@@ -83,7 +83,7 @@ export const demoProducts = [
     categorySlug: "smartphones",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80",
+      "/products/image 14.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "6.9\" Super Retina XDR OLED 120Hz ProMotion" },
@@ -102,7 +102,7 @@ export const demoProducts = [
     categorySlug: "smartphones",
     brandSlug: "samsung",
     images: [
-      "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80",
+      "/products/image 15.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "6.8\" Dynamic AMOLED 2X 120Hz QHD+" },
@@ -121,7 +121,7 @@ export const demoProducts = [
     categorySlug: "smartphones",
     brandSlug: "google",
     images: [
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
+      "/products/image 16.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "6.3\" Super Actua LTPO OLED 120Hz" },
@@ -139,7 +139,7 @@ export const demoProducts = [
     categorySlug: "smartphones",
     brandSlug: "xiaomi",
     images: [
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80",
+      "/products/image 17.svg",
     ],
     specs: [
       { groupName: "Камера", name: "Оптика", value: "Leica Quad Camera System (50MP x4)" },
@@ -157,7 +157,7 @@ export const demoProducts = [
     categorySlug: "smartphones",
     brandSlug: "oneplus",
     images: [
-      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+      "/products/image 18.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "6.82\" 2K 120Hz ProXDR LTPO" },
@@ -175,7 +175,7 @@ export const demoProducts = [
     categorySlug: "smartphones",
     brandSlug: "samsung",
     images: [
-      "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+      "/products/image 19.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Главный экран", value: "7.6\" Dynamic AMOLED 2X Foldable 120Hz" },
@@ -195,7 +195,7 @@ export const demoProducts = [
     categorySlug: "laptops",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80",
+      "/products/image 20.svg",
     ],
     specs: [
       { groupName: "Процессор", name: "Чипсет", value: "Apple M3 Max (16 CPU / 40 GPU cores)" },
@@ -213,7 +213,7 @@ export const demoProducts = [
     categorySlug: "laptops",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=80",
+      "/products/image 21.svg",
     ],
     specs: [
       { groupName: "Процессор", name: "Чипсет", value: "Apple M3 (8 CPU / 10 GPU)" },
@@ -231,7 +231,7 @@ export const demoProducts = [
     categorySlug: "laptops",
     brandSlug: "asus",
     images: [
-      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=800&auto=format&fit=crop&q=80",
+      "/products/image 22.svg",
     ],
     specs: [
       { groupName: "Процессор", name: "CPU", value: "Intel Core Ultra 9 185H" },
@@ -249,7 +249,7 @@ export const demoProducts = [
     categorySlug: "laptops",
     brandSlug: "lenovo",
     images: [
-      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=800&auto=format&fit=crop&q=80",
+      "/products/image 23.svg",
     ],
     specs: [
       { groupName: "Корпус", name: "Материал / Вес", value: "Carbon Fiber & Magnesium Chassis (1.09 kg)" },
@@ -267,7 +267,7 @@ export const demoProducts = [
     categorySlug: "laptops",
     brandSlug: "dell",
     images: [
-      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800&auto=format&fit=crop&q=80",
+      "/products/image 24.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "16.3\" 4K+ (3840x2400) OLED Touch 120Hz" },
@@ -285,7 +285,7 @@ export const demoProducts = [
     categorySlug: "laptops",
     brandSlug: "razer",
     images: [
-      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&auto=format&fit=crop&q=80",
+      "/products/image 25.svg",
     ],
     specs: [
       { groupName: "Процессор", name: "CPU", value: "Intel Core i9-14900HX (24 cores)" },
@@ -305,7 +305,7 @@ export const demoProducts = [
     categorySlug: "tablets",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&auto=format&fit=crop&q=80",
+      "/products/image 26.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Матрица", value: "13\" Tandem OLED Ultra Retina XDR 120Hz" },
@@ -323,7 +323,7 @@ export const demoProducts = [
     categorySlug: "tablets",
     brandSlug: "samsung",
     images: [
-      "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=800&auto=format&fit=crop&q=80",
+      "/products/image 27.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "14.6\" Dynamic AMOLED 2X 120Hz Anti-Reflection" },
@@ -341,7 +341,7 @@ export const demoProducts = [
     categorySlug: "tablets",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=800&auto=format&fit=crop&q=80",
+      "/products/image 28.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "11\" Liquid Retina True Tone" },
@@ -359,7 +359,7 @@ export const demoProducts = [
     categorySlug: "tablets",
     brandSlug: "xiaomi",
     images: [
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80",
+      "/products/image 29.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "14\" 2.8K (2880x1800) IPS 120Hz" },
@@ -377,7 +377,7 @@ export const demoProducts = [
     categorySlug: "tablets",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=800&auto=format&fit=crop&q=80",
+      "/products/image 30.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "8.3\" Liquid Retina IPS True Tone" },
@@ -397,7 +397,7 @@ export const demoProducts = [
     categorySlug: "headphones",
     brandSlug: "sony",
     images: [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80",
+      "/products/image 31.svg",
     ],
     specs: [
       { groupName: "Шумоподавление", name: "Система", value: "Dual Processors V1 + QN1 ANC" },
@@ -415,7 +415,7 @@ export const demoProducts = [
     categorySlug: "headphones",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&auto=format&fit=crop&q=80",
+      "/products/image 32.svg",
     ],
     specs: [
       { groupName: "Драйверы", name: "Излучатель", value: "Apple-designed 40mm Dynamic Driver" },
@@ -433,7 +433,7 @@ export const demoProducts = [
     categorySlug: "headphones",
     brandSlug: "bose",
     images: [
-      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80",
+      "/products/image 33.svg",
     ],
     specs: [
       { groupName: "Звук", name: "Технология", value: "Bose Immersive Audio & CustomTune" },
@@ -451,7 +451,7 @@ export const demoProducts = [
     categorySlug: "headphones",
     brandSlug: "sennheiser",
     images: [
-      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&auto=format&fit=crop&q=80",
+      "/products/image 34.svg",
     ],
     specs: [
       { groupName: "Батарея", name: "Автономность", value: "60 Hours Battery Life" },
@@ -469,7 +469,7 @@ export const demoProducts = [
     categorySlug: "headphones",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80",
+      "/products/image 35.svg",
     ],
     specs: [
       { groupName: "Процессор", name: "Чипсет", value: "Apple H2 Headphone Chip" },
@@ -487,7 +487,7 @@ export const demoProducts = [
     categorySlug: "headphones",
     brandSlug: "sony",
     images: [
-      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80",
+      "/products/image 36.svg",
     ],
     specs: [
       { groupName: "Драйверы", name: "Излучатель", value: "8.4mm Dynamic Driver X" },
@@ -507,7 +507,7 @@ export const demoProducts = [
     categorySlug: "smart-watches",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80",
+      "/products/image 37.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "Wide-Angle Always-On Retina OLED" },
@@ -525,7 +525,7 @@ export const demoProducts = [
     categorySlug: "smart-watches",
     brandSlug: "samsung",
     images: [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80",
+      "/products/image 38.svg",
     ],
     specs: [
       { groupName: "Процессор", name: "Чипсет", value: "3nm Exynos W1000 Penta-Core" },
@@ -543,7 +543,7 @@ export const demoProducts = [
     categorySlug: "smart-watches",
     brandSlug: "garmin",
     images: [
-      "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&auto=format&fit=crop&q=80",
+      "/products/image 39.svg",
     ],
     specs: [
       { groupName: "Дисплей", name: "Экран", value: "1.4\" AMOLED Sapphire Glass" },
@@ -561,7 +561,7 @@ export const demoProducts = [
     categorySlug: "smart-watches",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1510017803434-a899398421b3?w=800&auto=format&fit=crop&q=80",
+      "/products/image 40.svg",
     ],
     specs: [
       { groupName: "Корпус", name: "Материал", value: "49mm Aerospace Titanium Case & Sapphire Crystal" },
@@ -579,7 +579,7 @@ export const demoProducts = [
     categorySlug: "smart-watches",
     brandSlug: "samsung",
     images: [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80",
+      "/products/image 41.svg",
     ],
     specs: [
       { groupName: "Корпус", name: "Конструкция", value: "Grade 4 Titanium Cushion Design 47mm" },
@@ -599,7 +599,7 @@ export const demoProducts = [
     categorySlug: "accessories",
     brandSlug: "anker",
     images: [
-      "https://images.unsplash.com/photo-1609592424074-2ef5336bf7b1?w=800&auto=format&fit=crop&q=80",
+      "/products/image 42.svg",
     ],
     specs: [
       { groupName: "Емкость", name: "Батарея", value: "20,000 mAh (72Wh)" },
@@ -617,7 +617,7 @@ export const demoProducts = [
     categorySlug: "accessories",
     brandSlug: "apple",
     images: [
-      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=800&auto=format&fit=crop&q=80",
+      "/products/image 43.svg",
     ],
     specs: [
       { groupName: "Мощность", name: "Технология", value: "140W GaN Fast Charge" },
@@ -635,7 +635,7 @@ export const demoProducts = [
     categorySlug: "accessories",
     brandSlug: "anker",
     images: [
-      "https://images.unsplash.com/photo-1622445268465-843d3a8a3a27?w=800&auto=format&fit=crop&q=80",
+      "/products/image 45.svg",
     ],
     specs: [
       { groupName: "Мощность", name: "Зарядка", value: "15W Qi2 Fast Wireless MagSafe" },
@@ -653,7 +653,7 @@ export const demoProducts = [
     categorySlug: "accessories",
     brandSlug: "belkin",
     images: [
-      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&auto=format&fit=crop&q=80",
+      "/products/image 46.svg",
     ],
     specs: [
       { groupName: "Стандарт", name: "Мощность", value: "Official Apple MagSafe 15W Fast Charge" },
@@ -671,7 +671,7 @@ export const demoProducts = [
     categorySlug: "accessories",
     brandSlug: "satechi",
     images: [
-      "https://images.unsplash.com/photo-1544652478-6653e09f18a2?w=800&auto=format&fit=crop&q=80",
+      "/products/image 47.svg",
     ],
     specs: [
       { groupName: "Порты", name: "Видеовыход", value: "HDMI 4K 60Hz + VGA Full HD" },
