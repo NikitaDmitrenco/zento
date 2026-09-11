@@ -52,9 +52,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <p>RU · EN · RO</p>
         </div>
 
-        {/* Giant clipped wordmark: the footer's signature */}
-        <div className="overflow-hidden h-[0.62em] text-[clamp(6rem,19vw,17rem)] mt-6 select-none" aria-hidden="true">
-          <span className="wordmark block leading-[0.8] text-ink/90">zento</span>
+        {/* Giant wordmark: the footer's signature */}
+        <div className="text-[clamp(5rem,17vw,15rem)] mt-6 pb-8 select-none overflow-hidden" aria-hidden="true">
+          <span className="wordmark block leading-[0.9] text-ink/90">zento</span>
         </div>
       </div>
     </footer>

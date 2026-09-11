@@ -11,6 +11,27 @@ const navLink =
   "after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-ink after:scale-x-0 after:origin-left " +
   "after:transition-transform after:duration-180 hover:after:scale-x-100";
 
+const iconButton =
+  "inline-flex items-center justify-center w-9 h-9 rounded-sm text-ink-2 hover:text-ink hover:bg-paper-2 transition-colors duration-180 cursor-pointer";
+
+function AdminIcon() {
+  return (
+    <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3.5 5 6.2v5.3c0 4.3 3 8 7 9 4-1 7-4.7 7-9V6.2L12 3.5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="m9.5 12 1.8 1.8 3.4-3.6" />
+    </svg>
+  );
+}
+
+function LogoutIcon() {
+  return (
+    <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M10 4.5H6a1.5 1.5 0 0 0-1.5 1.5v12A1.5 1.5 0 0 0 6 19.5h4" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 8.5 19 12l-4 3.5M19 12H9.5" />
+    </svg>
+  );
+}
+
 export function Header({
   locale,
   dict,
@@ -82,25 +103,19 @@ export function Header({
 
             {/* Auth state */}
             {user ? (
-              <div className="hidden sm:flex items-center gap-3 border-l border-line pl-4 h-8">
-                <span className="text-[13px] font-medium text-ink inline-flex items-center gap-2 max-w-40 truncate">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ok shrink-0" aria-hidden="true" />
-                  {user.name}
-                </span>
+              <div className="hidden sm:flex items-center gap-1 border-l border-line pl-3 h-8">
                 {user.role === "ADMIN" && (
-                  <Link
-                    href={`/admin`}
-                    className="label h-7 inline-flex items-center px-2 rounded-xs bg-signal-soft text-signal-strong hover:bg-signal hover:text-white transition-colors duration-180"
-                  >
-                    {dict.common.admin}
+                  <Link href={`/admin`} className={iconButton} title={dict.common.admin} aria-label={dict.common.admin}>
+                    <AdminIcon />
                   </Link>
                 )}
                 <button
                   onClick={handleLogout}
-                  className="text-[13px] font-medium text-ink-3 hover:text-danger transition-colors duration-180 cursor-pointer"
+                  className={`${iconButton} hover:text-danger`}
                   title={dict.common.logout}
+                  aria-label={dict.common.logout}
                 >
-                  {dict.common.logout}
+                  <LogoutIcon />
                 </button>
               </div>
             ) : (
@@ -157,26 +172,22 @@ export function Header({
 
             <div className="pt-4 border-t border-line-strong">
               {user ? (
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between text-[13px] font-medium text-ink">
-                    <span className="inline-flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-ok" aria-hidden="true" />
-                      {user.name}
-                    </span>
-                    {user.role === "ADMIN" && (
-                      <Link
-                        href="/admin"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="label h-7 inline-flex items-center px-2 rounded-xs bg-signal-soft text-signal-strong"
-                      >
-                        {dict.common.admin}
-                      </Link>
-                    )}
-                  </div>
+                <div className={`grid gap-2 ${user.role === "ADMIN" ? "grid-cols-2" : "grid-cols-1"}`}>
+                  {user.role === "ADMIN" && (
+                    <Link
+                      href="/admin"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="inline-flex items-center justify-center gap-2 h-10 rounded-sm border border-ink text-[13px] font-medium text-ink"
+                    >
+                      <AdminIcon />
+                      {dict.common.admin}
+                    </Link>
+                  )}
                   <button
                     onClick={handleLogout}
-                    className="h-10 w-full rounded-sm border border-line text-[13px] font-medium text-danger hover:border-danger transition-colors cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 h-10 rounded-sm border border-line text-[13px] font-medium text-danger hover:border-danger transition-colors cursor-pointer"
                   >
+                    <LogoutIcon />
                     {dict.common.logout}
                   </button>
                 </div>
