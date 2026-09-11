@@ -12,17 +12,17 @@
   --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   /* Surfaces */
-  --color-paper: #f5f4ef;      /* page ground */
-  --color-paper-2: #edece6;    /* sunken ground: image plates, footer, admin canvas */
+  --color-paper: #ffffff;      /* page ground */
+  --color-paper-2: #ffffff;    /* sunken ground: image plates, footer, admin canvas */
   --color-surface: #ffffff;    /* raised: inputs, product plates, panels */
-  --color-line: #d9d8d0;       /* hairline rules */
+  --color-line: #e2e2dc;       /* hairline rules */
   --color-line-strong: #141413; /* emphasized rules */
 
   /* Ink */
   --color-ink: #141413;
   --color-ink-2: #4f4f4a;      /* secondary text */
   --color-ink-3: #8a8a83;      /* muted text, labels */
-  --color-ink-inverse: #f5f4ef;
+  --color-ink-inverse: #ffffff;
 
   /* Signal (single accent) */
   --color-signal: #e4531b;
