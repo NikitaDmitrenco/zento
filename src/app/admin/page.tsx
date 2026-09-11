@@ -34,7 +34,6 @@ export default async function AdminDashboardPage() {
       {/* Title & Action */}
       <SectionHead
         as="h1"
-        index="—"
         title="Панель управления Zento"
         subtitle="Обзор состояния магазина, товаров и заказов"
         aside={

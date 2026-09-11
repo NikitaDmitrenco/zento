@@ -26,7 +26,7 @@ export default async function CartPage({
 
   return (
     <main className="container-x pt-10 sm:pt-14 pb-8 space-y-10">
-      <SectionHead as="h1" index="—" title={dict.cart.title} />
+      <SectionHead as="h1" title={dict.cart.title} />
 
       <CartView locale={locale as Locale} dict={dict} />
     </main>

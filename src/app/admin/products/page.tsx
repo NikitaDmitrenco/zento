@@ -68,7 +68,6 @@ export default async function AdminProductsPage() {
 
       <SectionHead
         as="h1"
-        index="—"
         title={`Управление товарами (${productList.length})`}
         subtitle="Просмотр, редактирование цен и остатков цифровой техники"
         aside={

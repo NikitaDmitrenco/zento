@@ -26,7 +26,7 @@ export default async function CheckoutPage({
 
   return (
     <main className="container-x pt-10 sm:pt-14 pb-8 space-y-10">
-      <SectionHead as="h1" index="—" title={dict.checkout.title} />
+      <SectionHead as="h1" title={dict.checkout.title} />
 
       <CheckoutForm locale={locale as Locale} dict={dict} />
     </main>

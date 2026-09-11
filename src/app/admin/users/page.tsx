@@ -50,7 +50,6 @@ export default async function AdminUsersPage() {
 
       <SectionHead
         as="h1"
-        index="—"
         title={`Пользователи системы (${userList.length})`}
         subtitle="Список зарегистрированных покупателей и администраторов"
       />

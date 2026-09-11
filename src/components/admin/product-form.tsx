@@ -93,7 +93,6 @@ export function ProductForm() {
     <form onSubmit={handleSubmit} className="space-y-10 max-w-3xl">
       <SectionHead
         as="h1"
-        index="—"
         title="Добавление нового товара"
         subtitle="Заполните данные карточки товара для публикации в каталоге"
         aside={

@@ -29,7 +29,6 @@ export default async function AdminOrdersPage() {
 
       <SectionHead
         as="h1"
-        index="—"
         title={`Управление заказами (${orderList.length})`}
         subtitle="Отслеживание поступающих заказов в реальном времени и управление статусами отгрузки"
       />

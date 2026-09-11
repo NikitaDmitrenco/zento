@@ -69,7 +69,6 @@ export default async function CatalogPage({
       {/* Page head */}
       <SectionHead
         as="h1"
-        index="—"
         title={dict.catalog.title}
         aside={
           <p className="label">

@@ -177,7 +177,7 @@ export default async function ProductPage({
       {/* Specifications: datasheet */}
       {product.specs && product.specs.length > 0 && (
         <section className="mt-20 space-y-8">
-          <SectionHead index="—" title={dict.product.specifications} />
+          <SectionHead title={dict.product.specifications} />
           <dl className="border-t border-line-strong divide-y divide-line">
             {product.specs.map((spec, idx) => (
               <div key={idx} className="grid grid-cols-12 gap-x-4 py-3 text-small">
