@@ -16,7 +16,7 @@
   --color-paper-2: #f5f4ef;    /* sunken ground: image plates match page ground */
   --color-surface: #ffffff;    /* raised: inputs, panels */
   --color-line: #d9d8d0;       /* hairline rules */
-  --color-line-strong: #141413; /* emphasized rules */
+  --color-line-strong: #d9d8d0; /* matches card border color */
 
   /* Ink */
   --color-ink: #141413;
@@ -163,7 +163,7 @@
     column-gap: 1rem;
     align-items: baseline;
     padding-top: 1rem;
-    border-top: 1px solid var(--color-line-strong);
+    border-top: 1px solid var(--color-line);
   }
 
   /* Card grid: container has no border, cards have hairline border */
